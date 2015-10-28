@@ -37,3 +37,7 @@
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
+
+# mac folders
+.DS_Store
+
