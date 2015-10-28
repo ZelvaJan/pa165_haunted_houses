@@ -2,6 +2,8 @@ package com.peta2kuba.pa165_haunted_houses.dao;
 
 import com.peta2kuba.pa165_haunted_houses.entity.Haunter;
 
+import java.util.List;
+
 /**
  *
  * @author petr.melicherik
@@ -9,4 +11,10 @@ import com.peta2kuba.pa165_haunted_houses.entity.Haunter;
 public interface HaunterDao {
 
     public void create(Haunter haunter);
+    public void edit(Haunter haunter);
+    public void remove(Long id);
+
+    public Haunter findById(Long id);
+    public Haunter findByName(String name);
+    public List<Haunter> findAll();
 }

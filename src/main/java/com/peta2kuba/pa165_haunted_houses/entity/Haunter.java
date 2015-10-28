@@ -5,10 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import java.sql.Time;
 
 /**
- *
  * @author petr.melicherik
  */
 @Entity
@@ -21,5 +22,25 @@ public class Haunter {
     @NotNull
     @Column(nullable = false, unique = true)
     private String name;
+
+    @NotNull
+    @Column(nullable = false)
+    private Time hantingFrom;
+
+    @NotNull
+    @Column(nullable = false)
+    private Time hauntingTo;
+
+    @NotNull
+    @Column(nullable = false, unique = true)
+    private String description;
+
+    @NotNull
+    @Column(nullable = false, unique = true)
+    private String hauntingReason;
+
+	@OneToMany
+    @Column(nullable = false, unique = true)
+    private Ability ability;
 
 }

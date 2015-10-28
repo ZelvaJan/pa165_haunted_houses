@@ -1,32 +1,31 @@
 package com.peta2kuba.pa165_haunted_houses.dao.impl;
 
-import com.peta2kuba.pa165_haunted_houses.dao.HaunterDao;
+import com.peta2kuba.pa165_haunted_houses.dao.AbilityDao;
+import com.peta2kuba.pa165_haunted_houses.entity.Ability;
 import com.peta2kuba.pa165_haunted_houses.entity.Haunter;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
-import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
 /**
- * @author petr.melicherik
+ * @author turcovsky on 28/10/15.
  */
 @Repository
-public class HaunterDaoImpl
-		implements HaunterDao {
+public class AbilityDaoImpl
+		implements AbilityDao {
 
 	@PersistenceContext
 	private EntityManager em;
 
 	@Override
-	public void create(Haunter haunter) {
-		em.persist(haunter);
+	public void create(final Ability ability) {
+		em.persist(ability);
 	}
 
 	@Override
-	public void edit(final Haunter haunter) {
+	public void edit(final Ability ability) {
 
 	}
 
@@ -36,12 +35,7 @@ public class HaunterDaoImpl
 	}
 
 	@Override
-	public Haunter findById(final Long id) {
-		return null;
-	}
-
-	@Override
-	public Haunter findByName(final String name) {
+	public Ability findById(final Long id) {
 		return null;
 	}
 
@@ -49,5 +43,4 @@ public class HaunterDaoImpl
 	public List<Haunter> findAll() {
 		return null;
 	}
-
 }
