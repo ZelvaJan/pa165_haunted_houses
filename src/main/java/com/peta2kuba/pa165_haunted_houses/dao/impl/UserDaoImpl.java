@@ -8,9 +8,9 @@ package com.peta2kuba.pa165_haunted_houses.dao.impl;
 import com.peta2kuba.pa165_haunted_houses.dao.UserDao;
 import com.peta2kuba.pa165_haunted_houses.entity.User;
 
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 /**
  * @author skornok
