@@ -5,7 +5,7 @@
  */
 package com.peta2kuba.pa165_haunted_houses;
 
-import com.peta2kuba.pa165_haunted_houses.dao.UserDao;
+import com.peta2kuba.pa165_haunted_houses.dao.PersonDao;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -29,7 +29,7 @@ import javax.sql.DataSource;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories
-@ComponentScan(basePackageClasses = {UserDao.class})
+@ComponentScan(basePackageClasses = {PersonDao.class})
 public class PersistenceTestAplicationContext {
 
 	@Bean

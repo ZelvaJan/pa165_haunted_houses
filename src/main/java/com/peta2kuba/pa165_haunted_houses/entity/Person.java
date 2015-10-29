@@ -19,7 +19,7 @@ import javax.validation.constraints.NotNull;
  * @author skornok
  */
 @Entity
-public class User {
+public class Person {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,11 +33,11 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    public User() {
+    public Person() {
         
     }
     
-    public User(Long id, String email, String password) {
+    public Person(Long id, String email, String password) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -84,7 +84,7 @@ public class User {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final User other = (User) obj;
+        final Person other = (Person) obj;
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }

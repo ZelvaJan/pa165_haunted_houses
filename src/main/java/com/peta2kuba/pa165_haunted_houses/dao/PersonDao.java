@@ -6,22 +6,22 @@
 package com.peta2kuba.pa165_haunted_houses.dao;
 
 import com.peta2kuba.pa165_haunted_houses.entity.Person;
+
 import java.util.List;
 
 /**
- *
  * @author skornok
  */
 public interface PersonDao {
-    
-    public void create(Person user);
 
-    public void edit(Person user);
+	public void create(Person user);
 
-    public void remove(Person user);
+	public void edit(Person user);
 
-    public Person findById(Long id);
+	public void remove(Person user);
 
-    public List<Person> findAll();
+	public Person findById(Long id);
+
+	public List<Person> findAll();
 
 }
