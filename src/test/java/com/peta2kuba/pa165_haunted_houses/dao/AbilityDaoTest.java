@@ -12,10 +12,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,28 +27,35 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 @ContextConfiguration(classes = PersistenceTestAplicationContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
-public class AbilityDaoTest
-		extends AbstractTestNGSpringContextTests {
+public class AbilityDaoTest extends AbstractTestNGSpringContextTests {
 
-	@Autowired
-	private AbilityDao abilityDao;
+    @Autowired
+    private AbilityDao abilityDao;
 
-	@PersistenceContext
-	private EntityManager em;
+    @PersistenceContext
+    private EntityManager em;
 
-	@Test
-	public void findAll() {
-		Ability ability1 = new Ability(Long.MIN_VALUE, "Ability1", "Prvni pokusna ability");
-		Ability ability2 = new Ability((Long.MIN_VALUE + 1), "Ability2", "Druha pokusna ability");
+    @Test
+    public void findAll() {
+        Ability ability1 = new Ability();
+        ability1.setName("Ability1");
+        ability1.setDescription("Ability1desc");
 
-		abilityDao.create(ability1);
-		abilityDao.create(ability2);
+        Ability ability2 = new Ability();
+        ability2.setName("Ability2");
+        ability2.setDescription("Ability2desc");
 
-		List<Ability> abilities = abilityDao.findAll();
+        abilityDao.create(ability1);
+        abilityDao.create(ability2);
 
-		Assert.assertEquals(2, abilities.size());
-		Assert.assertTrue(abilities.contains(ability1));
-		Assert.assertTrue(abilities.contains(ability2));
-	}
+        List<Ability> abilities = abilityDao.findAll();
+
+        Ability ability1assert = new Ability((long) 1, "Ability1","Ability1desc" );
+        Ability ability2assert = new Ability((long) 2, "Ability2","Ability2desc" );
+
+        Assert.assertEquals(2, abilities.size());
+        Assert.assertTrue(abilities.contains(ability1assert));
+        Assert.assertTrue(abilities.contains(ability2assert));
+    }
 
 }
