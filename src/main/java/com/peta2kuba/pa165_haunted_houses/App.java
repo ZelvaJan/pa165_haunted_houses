@@ -1,10 +1,6 @@
 package com.peta2kuba.pa165_haunted_houses;
 
 import com.peta2kuba.pa165_haunted_houses.entity.Ability;
-import com.peta2kuba.pa165_haunted_houses.entity.Haunter;
-import com.peta2kuba.pa165_haunted_houses.entity.HauntingHours;
-import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -12,10 +8,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.validation.constraints.AssertTrue;
-import java.sql.SQLException;
-import java.sql.Time;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
