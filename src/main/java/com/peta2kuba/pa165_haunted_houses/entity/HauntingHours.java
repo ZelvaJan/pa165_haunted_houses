@@ -20,11 +20,11 @@ public class HauntingHours {
 
     @NotNull
     @Column(nullable = false)
-    private Time from;
+    private Time fromTime;
 
     @NotNull
     @Column(nullable = false)
-    private Time to;
+    private Time toTime;
 
     public Long getId() {
         return id;
@@ -34,19 +34,21 @@ public class HauntingHours {
         this.id = id;
     }
 
-    public Time getFrom() {
-        return from;
+    public Time getFromTime() {
+        return fromTime;
     }
 
-    public void setFrom(final Time from) {
-        this.from = from;
+    public void setFromTime(Time fromTime) {
+        this.fromTime = fromTime;
     }
 
-    public Time getTo() {
-        return to;
+    public Time getToTime() {
+        return toTime;
     }
 
-    public void setTo(final Time to) {
-        this.to = to;
+    public void setToTime(Time toTime) {
+        this.toTime = toTime;
     }
+
+    
 }
