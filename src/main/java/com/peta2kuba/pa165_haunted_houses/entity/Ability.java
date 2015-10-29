@@ -2,6 +2,7 @@ package com.peta2kuba.pa165_haunted_houses.entity;
 
 import java.util.Objects;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,6 +11,7 @@ import javax.validation.constraints.NotNull;
 /**
  * @author turcovsky on 28/10/15.
  */
+@Entity
 public class Ability {
 
     @Id

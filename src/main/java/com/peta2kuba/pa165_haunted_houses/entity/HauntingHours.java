@@ -26,4 +26,27 @@ public class HauntingHours {
     @Column(nullable = false)
     private Time to;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(final Long id) {
+        this.id = id;
+    }
+
+    public Time getFrom() {
+        return from;
+    }
+
+    public void setFrom(final Time from) {
+        this.from = from;
+    }
+
+    public Time getTo() {
+        return to;
+    }
+
+    public void setTo(final Time to) {
+        this.to = to;
+    }
 }

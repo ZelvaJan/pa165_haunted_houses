@@ -26,8 +26,41 @@ public class House {
     @Column(nullable = true)
     private String address;
 
-    @NotNull
+	public Timestamp getHauntedSince() {
+		return hauntedSince;
+	}
+
+	public void setHauntedSince(final Timestamp hauntedSince) {
+		this.hauntedSince = hauntedSince;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(final Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(final String name) {
+		this.name = name;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(final String address) {
+		this.address = address;
+	}
+
+	@NotNull
     @Column(nullable = false)
+
     private Timestamp hauntedSince;
 
 
