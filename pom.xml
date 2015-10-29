@@ -62,6 +62,13 @@
             <artifactId>spring-data-jpa</artifactId>
             <version>1.9.0.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>4.0.6.RELEASE</version>
+            <scope>test</scope>
+            <type>jar</type>
+        </dependency>
 
         <!-- Testing and logging -->
         <dependency>
@@ -102,7 +109,6 @@
             <artifactId>derby</artifactId>
             <version>10.10.2.0</version>
         </dependency>
-
     </dependencies>
 
 </project>
