@@ -13,7 +13,7 @@ public interface HouseDao {
 
 	public void edit(House house);
 
-	public void remove(Long id);
+	public void remove(House house);
 
 	public House findById(Long id);
 

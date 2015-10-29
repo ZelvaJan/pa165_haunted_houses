@@ -1,7 +1,9 @@
 package com.peta2kuba.pa165_haunted_houses.dao.impl;
 
 import com.peta2kuba.pa165_haunted_houses.dao.HouseDao;
+import com.peta2kuba.pa165_haunted_houses.entity.Ability;
 import com.peta2kuba.pa165_haunted_houses.entity.House;
+import com.peta2kuba.pa165_haunted_houses.entity.User;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -25,21 +27,21 @@ public class HouseDaoImpl
 
 	@Override
 	public void edit(final House house) {
-
+		em.merge(house);
 	}
 
 	@Override
-	public void remove(final Long id) {
-
+	public void remove(final House house) {
+		em.remove(house);
 	}
 
 	@Override
 	public House findById(final Long id) {
-		return null;
+		return em.find(House.class, id);
 	}
 
 	@Override
 	public List<House> findAll() {
-		return null;
+		return em.createQuery("select house from House house", House.class).getResultList();
 	}
 }

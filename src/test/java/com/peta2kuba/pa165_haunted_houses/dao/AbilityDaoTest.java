@@ -7,9 +7,11 @@ package com.peta2kuba.pa165_haunted_houses.dao;
 
 import com.peta2kuba.pa165_haunted_houses.PersistenceTestAplicationContext;
 import com.peta2kuba.pa165_haunted_houses.entity.Ability;
+
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -26,30 +28,31 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 /**
  * @author petr.melicherik
  */
-@ContextConfiguration(classes=PersistenceTestAplicationContext.class)
+@ContextConfiguration(classes = PersistenceTestAplicationContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
-public class AbilityDaoTest extends AbstractTestNGSpringContextTests {
+public class AbilityDaoTest
+		extends AbstractTestNGSpringContextTests {
 
-    @Autowired
-    private AbilityDao abilityDao;
+	@Autowired
+	private AbilityDao abilityDao;
 
-    @PersistenceContext
-    private EntityManager em;
+	@PersistenceContext
+	private EntityManager em;
 
-    @Test
-    public void findAll() {
-        Ability ability1 = new Ability(Long.MIN_VALUE, "Ability1", "Prvni pokusna ability");
-        Ability ability2 = new Ability((Long.MIN_VALUE + 1), "Ability2", "Druha pokusna ability");
+	@Test
+	public void findAll() {
+		Ability ability1 = new Ability(Long.MIN_VALUE, "Ability1", "Prvni pokusna ability");
+		Ability ability2 = new Ability((Long.MIN_VALUE + 1), "Ability2", "Druha pokusna ability");
 
-        abilityDao.create(ability1);
-        abilityDao.create(ability2);
-        
-        List<Ability> abilities = abilityDao.findAll();
+		abilityDao.create(ability1);
+		abilityDao.create(ability2);
 
-        Assert.assertEquals(2, abilities.size());
-        Assert.assertTrue(abilities.contains(ability1));
-        Assert.assertTrue(abilities.contains(ability2));
-    }
+		List<Ability> abilities = abilityDao.findAll();
+
+		Assert.assertEquals(2, abilities.size());
+		Assert.assertTrue(abilities.contains(ability1));
+		Assert.assertTrue(abilities.contains(ability2));
+	}
 
 }

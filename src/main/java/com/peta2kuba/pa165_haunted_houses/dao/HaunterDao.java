@@ -12,7 +12,7 @@ public interface HaunterDao {
 
     public void create(Haunter haunter);
     public void edit(Haunter haunter);
-    public void remove(Long id);
+    public void remove(Haunter haunter);
 
     public Haunter findById(Long id);
     public Haunter findByName(String name);
