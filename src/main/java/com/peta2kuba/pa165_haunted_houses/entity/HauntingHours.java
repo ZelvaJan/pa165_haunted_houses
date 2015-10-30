@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import java.sql.Time;
+import java.util.Objects;
 
 /**
  * @author petr.melicherik
@@ -82,7 +83,11 @@ public class HauntingHours {
 
 	@Override
 	public int hashCode() {
-		return 3;
+		int hash = 7;
+		hash = 67 * hash + Objects.hashCode(this.id);
+		hash = 67 * hash + Objects.hashCode(this.fromTime);
+		hash = 67 * hash + Objects.hashCode(this.toTime);
+		return hash;
 	}
 
 	@Override
