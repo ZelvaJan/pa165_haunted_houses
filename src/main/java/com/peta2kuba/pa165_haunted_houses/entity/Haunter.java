@@ -33,10 +33,8 @@ public class Haunter {
 	@NotNull
 	private HauntingHours hauntingHours;
 
-	@Column
 	private String description;
 
-	@Column
 	private String hauntingReason;
 
 	public List<Ability> getAbility() {
@@ -48,7 +46,6 @@ public class Haunter {
 	}
 
 	@OneToMany
-	@Column
 	private List<Ability> ability = new ArrayList<Ability>();
 
     public Haunter() {

@@ -30,7 +30,6 @@ public class Person {
     private String email;
 
     @NotNull
-    @Column
     private String password;
 
     public Person() {

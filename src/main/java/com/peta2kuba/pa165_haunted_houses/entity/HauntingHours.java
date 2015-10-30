@@ -20,11 +20,9 @@ public class HauntingHours {
 	private Long id;
 
 	@NotNull
-	@Column
 	private Time fromTime;
 
 	@NotNull
-	@Column
 	private Time toTime;
 
 	public HauntingHours() {

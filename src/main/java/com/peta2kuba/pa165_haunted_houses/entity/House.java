@@ -20,11 +20,9 @@ public class House {
     private Long id;
 
 	@NotNull
-    @Column
     private String name;
 
 	@NotNull
-    @Column
     private String address;
 
     public House() {
