@@ -30,7 +30,7 @@ public class App {
 		log.error("Error Message!");
 		log.fatal("Fatal Message!");
 
-		new AnnotationConfigApplicationContext(InRamDbSpring.class);
+		new AnnotationConfigApplicationContext(InRamDbSpring.class);		// TODO 30/10/2015 choose right class
 
 		emf = Persistence.createEntityManagerFactory("default");
 
