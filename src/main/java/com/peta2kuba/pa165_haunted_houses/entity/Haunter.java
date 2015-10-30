@@ -33,12 +33,10 @@ public class Haunter {
 	@NotNull
 	private HauntingHours hauntingHours;
 
-	@NotNull
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private String description;
 
-	@NotNull
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private String hauntingReason;
 
 	public List<Ability> getAbility() {
@@ -53,6 +51,24 @@ public class Haunter {
 	@Column
 	private List<Ability> ability = new ArrayList<Ability>();
 
+    public Haunter() {
+        
+    }
+        
+    public Haunter(Long id, String name, HauntingHours hauntingHours) {
+        this.id = id;
+        this.name = name;
+        this.hauntingHours = hauntingHours;
+    }        
+
+    public Haunter(Long id, String name, HauntingHours hauntingHours, String description, String hauntingReason) {
+        this.id = id;
+        this.name = name;
+        this.hauntingHours = hauntingHours;
+        this.description = description;
+        this.hauntingReason = hauntingReason;
+    }        
+        
 	public Long getId() {
 		return id;
 	}

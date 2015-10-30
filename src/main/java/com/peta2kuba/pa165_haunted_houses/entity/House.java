@@ -27,6 +27,16 @@ public class House {
     @Column(nullable = true)
     private String address;
 
+    public House() {
+    }
+
+    public House(Long id, String name, String address, Timestamp hauntedSince) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.hauntedSince = hauntedSince;
+    }
+    
 	public Timestamp getHauntedSince() {
 		return hauntedSince;
 	}

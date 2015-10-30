@@ -1,6 +1,7 @@
 package com.peta2kuba.pa165_haunted_houses.entity;
 
 import java.sql.Time;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,6 +27,15 @@ public class HauntingHours {
     @Column(nullable = false)
     private Time toTime;
 
+    public HauntingHours() {
+    }
+
+    public HauntingHours(Long id, Time fromTime, Time toTime) {
+        this.id = id;
+        this.fromTime = fromTime;
+        this.toTime = toTime;
+    }
+
     public Long getId() {
         return id;
     }
@@ -50,5 +60,35 @@ public class HauntingHours {
         this.toTime = toTime;
     }
 
-    
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final HauntingHours other = (HauntingHours) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.fromTime, other.fromTime)) {
+            return false;
+        }
+        if (!Objects.equals(this.toTime, other.toTime)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "HauntingHours{" + "id=" + id + ", fromTime=" + fromTime + ", toTime=" + toTime + '}';
+    }
 }
