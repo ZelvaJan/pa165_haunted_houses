@@ -2,9 +2,12 @@ package com.peta2kuba.pa165_haunted_houses.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import java.sql.Time;
@@ -31,14 +34,15 @@ public class Haunter {
 
 	@ManyToOne(optional = false)
 	@NotNull
-	@Column(nullable = false)
+	@JoinColumn(nullable=false)
 	private HauntingHours hauntingHours;
 
-	@Column(nullable = true)
 	private String description;
 
-	@Column(nullable = true)
 	private String hauntingReason;
+
+	@ManyToMany
+	private List<Ability> ability = new ArrayList<Ability>();
 
 	public List<Ability> getAbility() {
 		return ability;
@@ -47,9 +51,6 @@ public class Haunter {
 	public void setAbility(final List<Ability> ability) {
 		this.ability = ability;
 	}
-
-	@OneToMany
-	private List<Ability> ability = new ArrayList<Ability>();
 
     public Haunter() {
         
