@@ -10,10 +10,14 @@ import java.util.List;
 public interface HaunterDao {
 
 	public void create(Haunter haunter);
+
 	public void edit(Haunter haunter);
+
 	public void remove(Haunter haunter);
 
 	public Haunter findById(Long id);
+
 	public Haunter findByName(String name);
+
 	public List<Haunter> findAll();
 }
