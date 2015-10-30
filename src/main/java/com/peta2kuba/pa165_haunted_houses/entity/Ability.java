@@ -22,8 +22,6 @@ public class Ability {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @NotNull
-    @Column(nullable = true)
     private String description;
 
     public Ability() {

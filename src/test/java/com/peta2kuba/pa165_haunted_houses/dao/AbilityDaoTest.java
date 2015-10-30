@@ -49,7 +49,7 @@ public class AbilityDaoTest extends AbstractTestNGSpringContextTests {
 
         Ability ability2 = new Ability();
         ability2.setName("Ability2");
-        ability2.setDescription("Ability2desc");
+        ability2.setDescription(null);
 
         abilityDao.create(ability1);
         abilityDao.create(ability2);
@@ -57,7 +57,7 @@ public class AbilityDaoTest extends AbstractTestNGSpringContextTests {
         List<Ability> abilities = abilityDao.findAll();
 
         Ability ability1assert = new Ability(ability1.getId(), "Ability1", "Ability1desc");
-        Ability ability2assert = new Ability(ability2.getId(), "Ability2", "Ability2desc");
+        Ability ability2assert = new Ability(ability2.getId(), "Ability2", null);
 
         Assert.assertEquals(2, abilities.size());
         Assert.assertTrue(abilities.contains(ability1assert));
@@ -127,17 +127,6 @@ public class AbilityDaoTest extends AbstractTestNGSpringContextTests {
         Ability ability = new Ability();
         ability.setName(null);
         ability.setDescription("Description");
-        abilityDao.create(ability);
-    }
-
-    /**
-     * Check non-null Description constraints
-     */
-    @Test(expectedExceptions = ConstraintViolationException.class)
-    public void nullAbilityDescriptionNotAllowed() {
-        Ability ability = new Ability();
-        ability.setName("Name");
-        ability.setDescription(null);
         abilityDao.create(ability);
     }
 
