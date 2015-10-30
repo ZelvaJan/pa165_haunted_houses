@@ -53,32 +53,35 @@ public class HouseDaoTest extends AbstractTestNGSpringContextTests {
      */
     @Test
     public void findAll() {
-        House house = new House();
-         
-        house.setName("Simpsons house");
-        house.setAddress("742 Evergreen Terrace");
-        house.setHauntedSince(Timestamp.valueOf("2007-09-23 10:10:10.0"));
-        houseDao.create(house);
-         
-        System.out.println(house);
-
+        String house1Name = "Simpson's house";
+        String house1Address = "742 Evergreen Terrace";
+        Timestamp house1HauntedSince = Timestamp.valueOf("2007-09-23 10:10:10.0");
+        
         House house1 = new House();
-        house1.setName("House1");
+        house1.setName(house1Name);
+        house1.setAddress(house1Address);
+        house1.setHauntedSince(house1HauntedSince);         
 
+        String house2Name = "AirBnB house";
+        String house2Address = "Somewhere over the rainbow";
+        Timestamp house2HauntedSince = Timestamp.valueOf("2007-09-23 10:10:10.0");
+        
         House house2 = new House();
-        house2.setName("House2");
+        house2.setName(house2Name);
+        house2.setAddress(house2Address);
+        house2.setHauntedSince(house2HauntedSince);         
 
         houseDao.create(house1);
         houseDao.create(house2);
 
-//        List<House> abilities = houseDao.findAll();
-//
-//        House house1assert = new House(house1.getId(), "House1", "House1desc");
-//        House house2assert = new House(house2.getId(), "House2", null);
-//
-//        Assert.assertEquals(2, abilities.size());
-//        Assert.assertTrue(abilities.contains(house1assert));
-//        Assert.assertTrue(abilities.contains(house2assert));
+        List<House> houses = houseDao.findAll();
+
+        House house1assert = new House(house1.getId(), house1Name, house1Address, house1HauntedSince);
+        House house2assert = new House(house2.getId(), house2Name, house2Address, house2HauntedSince);
+
+        Assert.assertEquals(2, houses.size());
+        Assert.assertTrue(houses.contains(house1assert));
+        Assert.assertTrue(houses.contains(house2assert));
     }
 
     /**
@@ -86,11 +89,23 @@ public class HouseDaoTest extends AbstractTestNGSpringContextTests {
      */
     @Test
     public void findById() {
+        String house1Name = "Simpson's house";
+        String house1Address = "742 Evergreen Terrace";
+        Timestamp house1HauntedSince = Timestamp.valueOf("2007-09-23 10:10:10.0");
+        
         House house1 = new House();
-        house1.setName("House11");
+        house1.setName(house1Name);
+        house1.setAddress(house1Address);
+        house1.setHauntedSince(house1HauntedSince);         
 
+        String house2Name = "AirBnB house";
+        String house2Address = "Somewhere over the rainbow";
+        Timestamp house2HauntedSince = Timestamp.valueOf("2007-09-23 10:10:10.0");
+        
         House house2 = new House();
-        house2.setName("House22");
+        house2.setName(house2Name);
+        house2.setAddress(house2Address);
+        house2.setHauntedSince(house2HauntedSince);         
 
         houseDao.create(house1);
         houseDao.create(house2);
@@ -104,8 +119,14 @@ public class HouseDaoTest extends AbstractTestNGSpringContextTests {
      */
     @Test()
     public void remove() {
+        String house1Name = "Simpson's house";
+        String house1Address = "742 Evergreen Terrace";
+        Timestamp house1HauntedSince = Timestamp.valueOf("2007-09-23 10:10:10.0");
+        
         House house1 = new House();
-        house1.setName("House1");
+        house1.setName(house1Name);
+        house1.setAddress(house1Address);
+        house1.setHauntedSince(house1HauntedSince);         
 
         houseDao.create(house1);
 
@@ -119,17 +140,25 @@ public class HouseDaoTest extends AbstractTestNGSpringContextTests {
      */
     @Test()
     public void update() {
+        String house1Name = "Simpson's house";
+        String house1Address = "742 Evergreen Terrace";
+        Timestamp house1HauntedSince = Timestamp.valueOf("2007-09-23 10:10:10.0");
+        
         House house1 = new House();
-        house1.setName("House1");
+        house1.setName(house1Name);
+        house1.setAddress(house1Address);
+        house1.setHauntedSince(house1HauntedSince);         
 
         houseDao.create(house1);
 
-//        House updatedHouse = new House(house1.getId(), "Updated house", "Updated description");
-//        houseDao.edit(updatedHouse);
-//
-//        House updatedDbHouse = houseDao.findById(updatedHouse.getId());
-//        Assert.assertEquals(updatedDbHouse.getName(), "Updated house");
-//        Assert.assertEquals(updatedDbHouse.getDescription(), "Updated description");
+        String updatedHouseName = "Mr. Burns' house";
+        String updatedHouseAddress = "Dunno";
+        House updatedHouse = new House(house1.getId(), updatedHouseName, updatedHouseAddress, house1HauntedSince);
+        houseDao.edit(updatedHouse);
+
+        House updatedDbHouse = houseDao.findById(updatedHouse.getId());
+        Assert.assertEquals(updatedDbHouse.getName(), updatedHouseName);
+        Assert.assertEquals(updatedDbHouse.getAddress(), updatedHouseAddress);
     }
 
     /**
@@ -137,22 +166,48 @@ public class HouseDaoTest extends AbstractTestNGSpringContextTests {
      */
     @Test(expectedExceptions = ConstraintViolationException.class)
     public void nullHouseNameNotAllowed() {
-        House house = new House();
-        house.setName(null);
-        houseDao.create(house);
+        String house1Name = null;
+        String house1Address = "742 Evergreen Terrace";
+        Timestamp house1HauntedSince = Timestamp.valueOf("2007-09-23 10:10:10.0");
+        
+        House house1 = new House();
+        house1.setName(house1Name);
+        house1.setAddress(house1Address);
+        house1.setHauntedSince(house1HauntedSince);         
+
+        houseDao.create(house1);
     }
 
     /**
-     * Check name unique constraints
+     * Check non-null name constraints
      */
-    @Test(expectedExceptions = PersistenceException.class)
-    public void nameIsUnique() {
-        House house = new House();
-        house.setName("Name");
-        houseDao.create(house);
+    @Test(expectedExceptions = ConstraintViolationException.class)
+    public void nullHouseAddressNotAllowed() {
+        String house1Name = "Simpson's house";
+        String house1Address = null;
+        Timestamp house1HauntedSince = Timestamp.valueOf("2007-09-23 10:10:10.0");
         
-        House house2 = new House();
-        house2.setName("Name");
-        houseDao.create(house2);
+        House house1 = new House();
+        house1.setName(house1Name);
+        house1.setAddress(house1Address);
+        house1.setHauntedSince(house1HauntedSince);         
+
+        houseDao.create(house1);
+    }
+    
+    /**
+     * Check non-null name constraints
+     */
+    @Test(expectedExceptions = ConstraintViolationException.class)
+    public void nullHouseHauntedSiceNotAllowed() {
+        String house1Name = "Simpson's house";
+        String house1Address = "742 Evergreen Terrace";
+        
+        House house1 = new House();
+        house1.setName(house1Name);
+        house1.setAddress(house1Address);
+        house1.setHauntedSince(null);         
+
+        houseDao.create(house1);
     }
 }
