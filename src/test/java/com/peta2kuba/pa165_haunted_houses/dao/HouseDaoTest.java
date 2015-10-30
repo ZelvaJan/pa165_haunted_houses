@@ -171,7 +171,7 @@ public class HouseDaoTest extends AbstractTestNGSpringContextTests {
         Timestamp house1HauntedSince = Timestamp.valueOf("2007-09-23 10:10:10.0");
         
         House house1 = new House();
-        house1.setName(house1Name);
+        house1.setName(null);
         house1.setAddress(house1Address);
         house1.setHauntedSince(house1HauntedSince);         
 
@@ -189,7 +189,7 @@ public class HouseDaoTest extends AbstractTestNGSpringContextTests {
         
         House house1 = new House();
         house1.setName(house1Name);
-        house1.setAddress(house1Address);
+        house1.setAddress(null);
         house1.setHauntedSince(house1HauntedSince);         
 
         houseDao.create(house1);

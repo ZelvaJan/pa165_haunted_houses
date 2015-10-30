@@ -19,12 +19,12 @@ public class House {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @Column(nullable = true)
+	@NotNull
+    @Column
     private String name;
 
-    @NotNull
-    @Column(nullable = true)
+	@NotNull
+    @Column
     private String address;
 
     public House() {

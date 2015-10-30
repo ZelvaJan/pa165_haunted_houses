@@ -26,11 +26,11 @@ public class Person {
     private Long id;
 
     @NotNull
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String email;
 
     @NotNull
-    @Column(nullable = false)
+    @Column
     private String password;
 
     public Person() {

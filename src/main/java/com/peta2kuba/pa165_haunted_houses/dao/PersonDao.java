@@ -14,11 +14,11 @@ import java.util.List;
  */
 public interface PersonDao {
 
-	public void create(Person user);
+	public void create(Person person);
 
-	public void edit(Person user);
+	public void edit(Person person);
 
-	public void remove(Person user);
+	public void remove(Person person);
 
 	public Person findById(Long id);
 

@@ -1,7 +1,6 @@
 package com.peta2kuba.pa165_haunted_houses.dao;
 
 import com.peta2kuba.pa165_haunted_houses.PersistenceTestAplicationContext;
-import com.peta2kuba.pa165_haunted_houses.entity.Ability;
 import com.peta2kuba.pa165_haunted_houses.entity.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -14,6 +13,8 @@ import org.testng.annotations.Test;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceException;
+import javax.validation.ConstraintViolationException;
 import java.util.List;
 
 /**
@@ -31,7 +32,11 @@ public class PersonDaoTest
 	@PersistenceContext
 	private EntityManager em;
 
-	//@Test
+	/**
+	 * Make sure that the creation of database objects work and can return all
+	 * ability entries.
+	 */
+	@Test
 	public void findAll() {
 		Person person = new Person();
 		person.setEmail("premek@lada.com");
@@ -39,14 +44,115 @@ public class PersonDaoTest
 
 		Person person2 = new Person();
 		person2.setEmail("petr@cukrkandl.cz");
-		person2.setEmail("AzoreLehni!");
+		person2.setPassword("AzoreLehni!");
 
 		personDao.create(person);
 		personDao.create(person2);
 
 		List<Person> people = personDao.findAll();
 
-		Assert.assertEquals(2, people.size());
+		Person aPerson = new Person(person.getId(), person.getEmail(), person.getPassword());
+		Person aPerson2 = new Person(person2.getId(), person2.getEmail(), person2.getPassword());
+
+		Assert.assertTrue(people.size() == 2);
+		Assert.assertTrue(people.contains(aPerson));
+		Assert.assertTrue(people.contains(aPerson2));
 	}
 
+	/**
+	 * Make sure that find object by id work.
+	 */
+	@Test
+	public void findById() {
+		Person person = new Person();
+		person.setEmail("premek@lada.com");
+		person.setPassword("aaaaaa");
+
+		Person person2 = new Person();
+		person2.setEmail("petr@cukrkandl.cz");
+		person2.setPassword("AzoreLehni!");
+
+		personDao.create(person);
+		personDao.create(person2);
+
+		Person result = personDao.findById(person.getId());
+		Assert.assertEquals(result, person);
+	}
+
+	/**
+	 * Make sure that object is successfully inserted to db and can be removed.
+	 */
+	@Test()
+	public void remove() {
+		Person person = new Person();
+		person.setEmail("premek@lada.com");
+		person.setPassword("aaaaaa");
+
+		personDao.create(person);
+
+		Assert.assertNotNull(personDao.findById(person.getId()));
+		personDao.remove(person);
+		Assert.assertNull(personDao.findById(person.getId()));
+	}
+
+	/**
+	 * Make sure that object is successfully inserted to db and can be updated.
+	 */
+	@Test()
+	public void update() {
+		Person person = new Person();
+		person.setEmail("premek@lada.com");
+		person.setPassword("aaaaaa");
+
+		personDao.create(person);
+
+		Person updated = new Person(person.getId(), "premek@head.com", "bbbbbb");
+		personDao.edit(updated);
+
+		Person result = personDao.findById(person.getId());
+
+		Assert.assertEquals(result.getEmail(), updated.getEmail());
+		Assert.assertEquals(result.getPassword(), updated.getPassword());
+	}
+
+	/**
+	 * Make sure email address is unique
+	 */
+	@Test(expectedExceptions = PersistenceException.class)
+	public void uniqueEmail() {
+		Person person = new Person();
+		person.setEmail("notSoUnique@email.com");
+		person.setPassword("aaaaaa");
+
+		Person person2 = new Person();
+		person2.setEmail("notSoUnique@email.com");
+		person2.setPassword("aaaaaa");
+
+		personDao.create(person);
+		personDao.create(person2);
+	}
+
+	/**
+	 * Check non-null name constraints
+	 */
+	@Test(expectedExceptions = ConstraintViolationException.class)
+	public void nullEmail() {
+		Person person = new Person();
+		person.setEmail(null);
+		person.setPassword("aaaaaa");
+
+		personDao.create(person);
+	}
+
+	/**
+	 * Check non-null name constraints
+	 */
+	@Test(expectedExceptions = ConstraintViolationException.class)
+	public void nullPassword() {
+		Person person = new Person();
+		person.setEmail("kuba@email.com");
+		person.setPassword(null);
+
+		personDao.create(person);
+	}
 }
