@@ -33,10 +33,10 @@ public class Haunter {
 	@NotNull
 	private HauntingHours hauntingHours;
 
-	@Column(nullable = true)
+	@Column
 	private String description;
 
-	@Column(nullable = true)
+	@Column
 	private String hauntingReason;
 
 	public List<Ability> getAbility() {
