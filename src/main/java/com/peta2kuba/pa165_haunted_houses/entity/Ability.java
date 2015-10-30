@@ -19,9 +19,10 @@ public class Ability {
     private Long id;
 
     @NotNull
-    @Column(unique = true)
+    @Column(nullable = false, unique = true)
     private String name;
 
+	@Column(nullable = true)
     private String description;
 
     public Ability() {

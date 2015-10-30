@@ -26,15 +26,18 @@ public class Haunter {
 	private Long id;
 
 	@NotNull
-	@Column(unique = true)
+	@Column(nullable = false, unique = true)
 	private String name;
 
 	@ManyToOne(optional = false)
 	@NotNull
+	@Column(nullable = false)
 	private HauntingHours hauntingHours;
 
+	@Column(nullable = true)
 	private String description;
 
+	@Column(nullable = true)
 	private String hauntingReason;
 
 	public List<Ability> getAbility() {
