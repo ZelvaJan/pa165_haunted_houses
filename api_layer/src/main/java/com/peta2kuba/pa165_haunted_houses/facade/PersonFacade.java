@@ -9,14 +9,20 @@ import java.util.List;
  */
 public interface PersonFacade {
 
-	public void create(PersonDTO person);
+	void createPerson(PersonDTO person);
 
-	public void edit(PersonDTO person);
+	void editPerson(PersonDTO person);
 
-	public void remove(PersonDTO person);
+	void removePerson(PersonDTO person);
 
-	public PersonDTO findById(Long id);
+	PersonDTO findById(Long id);
 
-	public List<PersonDTO> findAll();
+	PersonDTO findByEmail(String email);
+
+	List<PersonDTO> findAll();
+
+	boolean isAdmin(PersonDTO person);
+
+	boolean authenticate(String email, String passwordHash);
 
 }
