@@ -5,7 +5,7 @@
  */
 package com.peta2kuba.pa165_haunted_houses.dao;
 
-import com.peta2kuba.pa165_haunted_houses.entity.Person;
+import com.peta2kuba.pa165_haunted_houses.entity.PersonDTO;
 
 import java.util.List;
 
@@ -14,14 +14,14 @@ import java.util.List;
  */
 public interface PersonDao {
 
-	public void create(Person person);
+	public void create(PersonDTO person);
 
-	public void edit(Person person);
+	public void edit(PersonDTO person);
 
-	public void remove(Person person);
+	public void remove(PersonDTO person);
 
-	public Person findById(Long id);
+	public PersonDTO findById(Long id);
 
-	public List<Person> findAll();
+	public List<PersonDTO> findAll();
 
 }
