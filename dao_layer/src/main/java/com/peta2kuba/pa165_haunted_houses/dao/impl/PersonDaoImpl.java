@@ -5,6 +5,7 @@ import com.peta2kuba.pa165_haunted_houses.entity.Person;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
@@ -36,6 +37,21 @@ public class PersonDaoImpl
 	@Override
 	public Person findById(Long id) {
 		return em.find(Person.class, id);
+	}
+
+	@Override
+	public Person findByEmail(final String email) {
+		if (email == null || email.isEmpty())
+			throw new IllegalArgumentException("Email is null!");
+		else {
+			try {
+				return em.createQuery("SELECT person FROM Person person where email=:email", Person.class)
+						.setParameter("email", email)
+						.getSingleResult();
+			} catch (NoResultException e) {
+				return null;
+			}
+		}
 	}
 
 	@Override

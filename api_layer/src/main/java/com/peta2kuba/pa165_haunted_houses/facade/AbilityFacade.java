@@ -9,13 +9,13 @@ import java.util.List;
  */
 public interface AbilityFacade {
 
-	public void create(AbilityDTO ability);
+	void create(AbilityDTO ability);
 
-	public void edit(AbilityDTO ability);
+	void edit(AbilityDTO ability);
 
-	public void remove(AbilityDTO ability);
+	void remove(AbilityDTO ability);
 
-	public AbilityDTO findById(Long id);
+	AbilityDTO findById(Long id);
 
-	public List<AbilityDTO> findAll();
+	List<AbilityDTO> findAll();
 }

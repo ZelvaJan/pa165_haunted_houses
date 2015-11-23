@@ -14,14 +14,16 @@ import java.util.List;
  */
 public interface PersonDao {
 
-	public void create(Person person);
+	void create(Person person);
 
-	public void edit(Person person);
+	void edit(Person person);
 
-	public void remove(Person person);
+	void remove(Person person);
 
-	public Person findById(Long id);
+	Person findById(Long id);
 
-	public List<Person> findAll();
+	Person findByEmail(String email);
+
+	List<Person> findAll();
 
 }

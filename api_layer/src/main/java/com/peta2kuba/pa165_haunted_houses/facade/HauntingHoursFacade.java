@@ -9,13 +9,13 @@ import java.util.List;
  */
 public interface HauntingHoursFacade {
 
-	public void create(HauntingHoursDTO hauntingHours);
+	void create(HauntingHoursDTO hauntingHours);
 
-	public void edit(HauntingHoursDTO hauntingHours);
+	void edit(HauntingHoursDTO hauntingHours);
 
-	public void remove(HauntingHoursDTO hauntingHours);
+	void remove(HauntingHoursDTO hauntingHours);
 
-	public HauntingHoursDTO findById(Long id);
+	HauntingHoursDTO findById(Long id);
 
-	public List<HauntingHoursDTO> findAll();
+	List<HauntingHoursDTO> findAll();
 }

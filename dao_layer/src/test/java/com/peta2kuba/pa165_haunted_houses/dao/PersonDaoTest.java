@@ -77,6 +77,21 @@ public class PersonDaoTest
 	}
 
 	/**
+	 * Make sure that Person can be found by email
+	 */
+	@Test
+	public void findByEmail() {
+		Person person = new Person();
+		person.setEmail("premek@lada.com");
+		person.setPassword("aaaaaa");
+
+		personDao.create(person);
+
+		Person result = personDao.findByEmail(person.getEmail());
+		Assert.assertEquals(result, person);
+	}
+
+	/**
 	 * Make sure that object is successfully inserted to db and can be removed.
 	 */
 	@Test()

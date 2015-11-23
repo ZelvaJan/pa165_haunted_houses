@@ -5,14 +5,13 @@
  */
 package com.peta2kuba.pa165_haunted_houses.entity;
 
-import java.util.List;
-import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 /**
  *
@@ -32,6 +31,16 @@ public class Person {
     @NotNull
     @Column(nullable = false)
     private String password;
+
+    private boolean admin;
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(final boolean admin) {
+        this.admin = admin;
+    }
 
     public Person() {
         

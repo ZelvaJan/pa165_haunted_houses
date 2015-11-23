@@ -9,13 +9,13 @@ import java.util.List;
  */
 public interface HauntingHoursDao {
 
-	public void create(HauntingHours hauntingHours);
+	void create(HauntingHours hauntingHours);
 
-	public void edit(HauntingHours hauntingHours);
+	void edit(HauntingHours hauntingHours);
 
-	public void remove(HauntingHours hauntingHours);
+	void remove(HauntingHours hauntingHours);
 
-	public HauntingHours findById(Long id);
+	HauntingHours findById(Long id);
 
-	public List<HauntingHours> findAll();
+	List<HauntingHours> findAll();
 }

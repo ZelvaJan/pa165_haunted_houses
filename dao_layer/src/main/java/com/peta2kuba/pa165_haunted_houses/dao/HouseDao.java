@@ -9,13 +9,13 @@ import java.util.List;
  */
 public interface HouseDao {
 
-	public void create(House house);
+	void create(House house);
 
-	public void edit(House house);
+	void edit(House house);
 
-	public void remove(House house);
+	void remove(House house);
 
-	public House findById(Long id);
+	House findById(Long id);
 
-	public List<House> findAll();
+	List<House> findAll();
 }

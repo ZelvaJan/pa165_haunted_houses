@@ -9,13 +9,13 @@ import java.util.List;
  */
 public interface AbilityDao {
 
-	public void create(Ability ability);
+	void create(Ability ability);
 
-	public void edit(Ability ability);
+	void edit(Ability ability);
 
-	public void remove(Ability ability);
+	void remove(Ability ability);
 
-	public Ability findById(Long id);
+	Ability findById(Long id);
 
-	public List<Ability> findAll();
+	List<Ability> findAll();
 }

@@ -9,15 +9,15 @@ import java.util.List;
  */
 public interface HaunterFacade {
 
-	public void create(HaunterDTO haunter);
+	void create(HaunterDTO haunter);
 
-	public void edit(HaunterDTO haunter);
+	void edit(HaunterDTO haunter);
 
-	public void remove(HaunterDTO haunter);
+	void remove(HaunterDTO haunter);
 
-	public HaunterDTO findById(Long id);
+	HaunterDTO findById(Long id);
 
-	public HaunterDTO findByName(String name);
+	HaunterDTO findByName(String name);
 
-	public List<HaunterDTO> findAll();
+	List<HaunterDTO> findAll();
 }
