@@ -1,8 +1,7 @@
 package com.peta2kuba.pa165_haunted_houses.dao.impl;
 
 import com.peta2kuba.pa165_haunted_houses.dao.HauntingHoursDao;
-import com.peta2kuba.pa165_haunted_houses.entity.Haunter;
-import com.peta2kuba.pa165_haunted_houses.entity.HauntingHours;
+import com.peta2kuba.pa165_haunted_houses.entity.HauntingHoursDTO;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -20,27 +19,27 @@ public class HauntingHoursDaoImpl
 	private EntityManager em;
 
 	@Override
-	public void create(final HauntingHours hauntingHours) {
+	public void create(final HauntingHoursDTO hauntingHours) {
 		em.persist(hauntingHours);
 	}
 
 	@Override
-	public void edit(final HauntingHours hauntingHours) {
+	public void edit(final HauntingHoursDTO hauntingHours) {
 		em.merge(hauntingHours);
 	}
 
 	@Override
-	public void remove(final HauntingHours hauntingHours) {
+	public void remove(final HauntingHoursDTO hauntingHours) {
 		em.remove(hauntingHours);
 	}
 
 	@Override
-	public HauntingHours findById(final Long id) {
-		return em.find(HauntingHours.class, id);
+	public HauntingHoursDTO findById(final Long id) {
+		return em.find(HauntingHoursDTO.class, id);
 	}
 
 	@Override
-	public List<HauntingHours> findAll() {
-		return em.createQuery("select hauntingHours from HauntingHours hauntingHours", HauntingHours.class).getResultList();
+	public List<HauntingHoursDTO> findAll() {
+		return em.createQuery("select hauntingHours from HauntingHours hauntingHours", HauntingHoursDTO.class).getResultList();
 	}
 }

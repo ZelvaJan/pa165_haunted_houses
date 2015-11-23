@@ -1,6 +1,6 @@
 package com.peta2kuba.pa165_haunted_houses.dao;
 
-import com.peta2kuba.pa165_haunted_houses.entity.HauntingHours;
+import com.peta2kuba.pa165_haunted_houses.entity.HauntingHoursDTO;
 
 import java.util.List;
 
@@ -9,13 +9,13 @@ import java.util.List;
  */
 public interface HauntingHoursDao {
 
-	public void create(HauntingHours hauntingHours);
+	public void create(HauntingHoursDTO hauntingHours);
 
-	public void edit(HauntingHours hauntingHours);
+	public void edit(HauntingHoursDTO hauntingHours);
 
-	public void remove(HauntingHours hauntingHours);
+	public void remove(HauntingHoursDTO hauntingHours);
 
-	public HauntingHours findById(Long id);
+	public HauntingHoursDTO findById(Long id);
 
-	public List<HauntingHours> findAll();
+	public List<HauntingHoursDTO> findAll();
 }
