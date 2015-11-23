@@ -41,6 +41,8 @@
 
     <modules>
         <module>dao_layer</module>
+        <module>service_layer</module>
+        <module>api_layer</module>
     </modules>
 
     <dependencies>
