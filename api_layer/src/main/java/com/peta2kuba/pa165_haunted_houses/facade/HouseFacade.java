@@ -1,5 +1,6 @@
 package com.peta2kuba.pa165_haunted_houses.facade;
 
+import com.peta2kuba.pa165_haunted_houses.dto.HaunterDTO;
 import com.peta2kuba.pa165_haunted_houses.dto.HouseDTO;
 
 import java.util.List;
@@ -18,4 +19,7 @@ public interface HouseFacade {
 	HouseDTO findById(Long id);
 
 	List<HouseDTO> findAll();
+
+	List<HaunterDTO> findAllHaunters();
+
 }

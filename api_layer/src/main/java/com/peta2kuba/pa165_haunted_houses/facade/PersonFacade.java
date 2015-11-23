@@ -1,5 +1,6 @@
 package com.peta2kuba.pa165_haunted_houses.facade;
 
+import com.peta2kuba.pa165_haunted_houses.dto.PersonAuthenticateDTO;
 import com.peta2kuba.pa165_haunted_houses.dto.PersonDTO;
 
 import java.util.List;
@@ -23,6 +24,6 @@ public interface PersonFacade {
 
     boolean isAdmin(PersonDTO person);
 
-    boolean authenticate(String email, String passwordHash);
+    boolean authenticate(PersonAuthenticateDTO person);
 
 }

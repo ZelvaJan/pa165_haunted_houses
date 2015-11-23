@@ -20,4 +20,6 @@ public interface HaunterFacade {
 	HaunterDTO findByName(String name);
 
 	List<HaunterDTO> findAll();
+
+	List<HaunterDTO> findActiveHaunters();
 }

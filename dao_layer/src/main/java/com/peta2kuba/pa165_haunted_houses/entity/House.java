@@ -5,9 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
-import java.util.Objects;
+import java.util.List;
 
 /**
  * @author turcovsky on 28/10/15.
@@ -33,98 +34,121 @@ public class House {
 
     private String description;
 
-    public House() {
-    }
+    @OneToMany
+    private List<Haunter> haunters;
 
-    public House(Long id, String name, String address, Timestamp hauntedSince, String description) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-        this.hauntedSince = hauntedSince;
-        this.description = description;
-    }
+	public House(final String name, final String address, final Timestamp hauntedSince, final String description, final List<Haunter> haunters) {
 
-    public Long getId() {
-        return id;
-    }
+		this.name = name;
+		this.address = address;
+		this.hauntedSince = hauntedSince;
+		this.description = description;
+		this.haunters = haunters;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public House() {
 
-    public String getName() {
-        return name;
-    }
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public Long getId() {
 
-    public String getAddress() {
-        return address;
-    }
+		return id;
+	}
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
+	public void setId(final Long id) {
+		this.id = id;
+	}
 
-    public Timestamp getHauntedSince() {
-        return hauntedSince;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setHauntedSince(Timestamp hauntedSince) {
-        this.hauntedSince = hauntedSince;
-    }
+	public void setName(final String name) {
+		this.name = name;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public String getAddress() {
+		return address;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public void setAddress(final String address) {
+		this.address = address;
+	}
 
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 29 * hash + Objects.hashCode(this.id);
-        hash = 29 * hash + Objects.hashCode(this.name);
-        hash = 29 * hash + Objects.hashCode(this.address);
-        hash = 29 * hash + Objects.hashCode(this.hauntedSince);
-        hash = 29 * hash + Objects.hashCode(this.description);
-        return hash;
-    }
+	public Timestamp getHauntedSince() {
+		return hauntedSince;
+	}
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final House other = (House) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.name, other.name)) {
-            return false;
-        }
-        if (!Objects.equals(this.address, other.address)) {
-            return false;
-        }
-        if (!Objects.equals(this.hauntedSince, other.hauntedSince)) {
-            return false;
-        }
-        if (!Objects.equals(this.description, other.description)) {
-            return false;
-        }
-        return true;
-    }
+	public void setHauntedSince(final Timestamp hauntedSince) {
+		this.hauntedSince = hauntedSince;
+	}
 
-    @Override
-    public String toString() {
-        return "House{" + "id=" + id + ", name=" + name + ", address=" + address + ", hauntedSince=" + hauntedSince + ", description=" + description + '}';
-    }
+	public String getDescription() {
+		return description;
+	}
 
+	public void setDescription(final String description) {
+		this.description = description;
+	}
+
+	public List<Haunter> getHaunters() {
+		return haunters;
+	}
+
+	public void setHaunters(final List<Haunter> haunters) {
+		this.haunters = haunters;
+	}
+
+	@Override
+	public String toString() {
+		return "House{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", address='" + address + '\'' +
+				", hauntedSince=" + hauntedSince +
+				", description='" + description + '\'' +
+				", haunters=" + haunters +
+				'}';
+	}
+
+	@Override
+	public boolean equals(final Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+
+		final House house = (House) o;
+
+		if (id != null ? !id.equals(house.id) : house.id != null) {
+			return false;
+		}
+		if (name != null ? !name.equals(house.name) : house.name != null) {
+			return false;
+		}
+		if (address != null ? !address.equals(house.address) : house.address != null) {
+			return false;
+		}
+		if (hauntedSince != null ? !hauntedSince.equals(house.hauntedSince) : house.hauntedSince != null) {
+			return false;
+		}
+		if (description != null ? !description.equals(house.description) : house.description != null) {
+			return false;
+		}
+		return !(haunters != null ? !haunters.equals(house.haunters) : house.haunters != null);
+
+	}
+
+	@Override
+	public int hashCode() {
+		int result = id != null ? id.hashCode() : 0;
+		result = 31 * result + (name != null ? name.hashCode() : 0);
+		result = 31 * result + (address != null ? address.hashCode() : 0);
+		result = 31 * result + (hauntedSince != null ? hauntedSince.hashCode() : 0);
+		result = 31 * result + (description != null ? description.hashCode() : 0);
+		result = 31 * result + (haunters != null ? haunters.hashCode() : 0);
+		return result;
+	}
 }

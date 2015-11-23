@@ -1,6 +1,9 @@
 package com.peta2kuba.pa165_haunted_houses.dto;
 
+import com.peta2kuba.pa165_haunted_houses.entity.Haunter;
+
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * @author turcovsky
@@ -12,8 +15,17 @@ public class HouseDTO {
 	private String address;
 	private Timestamp hauntedSince;
 	private String description;
+	private List<HaunterDTO> haunters;
 
 	public HouseDTO() {
+	}
+
+	public List<HaunterDTO> getHaunters() {
+		return haunters;
+	}
+
+	public void setHaunters(final List<HaunterDTO> haunters) {
+		this.haunters = haunters;
 	}
 
 	public Long getId() {
@@ -58,17 +70,6 @@ public class HouseDTO {
 	}
 
 	@Override
-	public String toString() {
-		return "HouseDTO{" +
-				"id=" + id +
-				", name='" + name + '\'' +
-				", address='" + address + '\'' +
-				", hauntedSince=" + hauntedSince +
-				", description='" + description + '\'' +
-				'}';
-	}
-
-	@Override
 	public boolean equals(final Object o) {
 		if (this == o) {
 			return true;
@@ -91,7 +92,10 @@ public class HouseDTO {
 		if (hauntedSince != null ? !hauntedSince.equals(houseDTO.hauntedSince) : houseDTO.hauntedSince != null) {
 			return false;
 		}
-		return !(description != null ? !description.equals(houseDTO.description) : houseDTO.description != null);
+		if (description != null ? !description.equals(houseDTO.description) : houseDTO.description != null) {
+			return false;
+		}
+		return !(haunters != null ? !haunters.equals(houseDTO.haunters) : houseDTO.haunters != null);
 
 	}
 
@@ -102,6 +106,19 @@ public class HouseDTO {
 		result = 31 * result + (address != null ? address.hashCode() : 0);
 		result = 31 * result + (hauntedSince != null ? hauntedSince.hashCode() : 0);
 		result = 31 * result + (description != null ? description.hashCode() : 0);
+		result = 31 * result + (haunters != null ? haunters.hashCode() : 0);
 		return result;
+	}
+
+	@Override
+	public String toString() {
+		return "HouseDTO{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", address='" + address + '\'' +
+				", hauntedSince=" + hauntedSince +
+				", description='" + description + '\'' +
+				", haunters=" + haunters +
+				'}';
 	}
 }

@@ -5,6 +5,7 @@
  */
 package com.peta2kuba.service_layer.facade;
 
+import com.peta2kuba.pa165_haunted_houses.dto.PersonAuthenticateDTO;
 import com.peta2kuba.pa165_haunted_houses.dto.PersonDTO;
 import com.peta2kuba.pa165_haunted_houses.entity.Person;
 import com.peta2kuba.pa165_haunted_houses.facade.PersonFacade;
@@ -66,7 +67,7 @@ public class PersonFacadeImpl implements PersonFacade {
     }
 
     @Override
-    public boolean authenticate(String email, String passwordHash) {
+    public boolean authenticate(PersonAuthenticateDTO person) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
