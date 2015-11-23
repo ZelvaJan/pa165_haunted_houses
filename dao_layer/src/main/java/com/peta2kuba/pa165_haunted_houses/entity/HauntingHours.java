@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import java.lang.Override;
 import java.sql.Time;
 import java.util.Objects;
 
@@ -69,16 +70,19 @@ public class HauntingHours {
 			return false;
 		}
 
-		final HauntingHours that = (HauntingHours) o;
+		final HauntingHours hours = (HauntingHours) o;
 
-		if (!id.equals(that.id)) {
+		if (id != null ? !id.equals(hours.id) : hours.id != null) {
 			return false;
 		}
-		if (!fromTime.equals(that.fromTime)) {
+		if (!fromTime.equals(hours.fromTime)) {
 			return false;
 		}
-		return toTime.equals(that.toTime);
+		if (!toTime.equals(hours.toTime)) {
+			return false;
+		}
 
+		return true;
 	}
 
 	@Override

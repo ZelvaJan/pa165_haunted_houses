@@ -68,12 +68,9 @@ public class HouseDaoTest extends AbstractTestNGSpringContextTests {
 
         List<House> houses = houseDao.findAll();
 
-        House house1assert = new House(house1.getId(), house1Name, house1Address, house1HauntedSince, "description");
-        House house2assert = new House(house2.getId(), house2Name, house2Address, house2HauntedSince, null);
-
         Assert.assertEquals(2, houses.size());
-        Assert.assertTrue(houses.contains(house1assert));
-        Assert.assertTrue(houses.contains(house2assert));
+        Assert.assertTrue(houses.contains(house1));
+        Assert.assertTrue(houses.contains(house2));
     }
 
     /**
