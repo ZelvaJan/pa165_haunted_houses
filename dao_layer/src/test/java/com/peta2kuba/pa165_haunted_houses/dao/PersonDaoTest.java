@@ -51,12 +51,9 @@ public class PersonDaoTest
 
 		List<Person> people = personDao.findAll();
 
-		Person aPerson = new Person(person.getId(), person.getEmail(), person.getPassword());
-		Person aPerson2 = new Person(person2.getId(), person2.getEmail(), person2.getPassword());
-
 		Assert.assertTrue(people.size() == 2);
-		Assert.assertTrue(people.contains(aPerson));
-		Assert.assertTrue(people.contains(aPerson2));
+		Assert.assertTrue(people.contains(person));
+		Assert.assertTrue(people.contains(person2));
 	}
 
 	/**

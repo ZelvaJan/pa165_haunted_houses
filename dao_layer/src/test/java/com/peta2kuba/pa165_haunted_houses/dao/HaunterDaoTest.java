@@ -89,12 +89,9 @@ public class HaunterDaoTest
 
         List<Haunter> haunters = haunterDao.findAll();
 
-        Haunter haunter1assert = new Haunter(haunter1.getId(), haunter1Name, haunter1HauntingHours, null, haunter1HauntingReason);
-        Haunter haunter2assert = new Haunter(haunter2.getId(), haunter2Name, haunter2HauntingHours, null, haunter2HauntingReason);
-
         Assert.assertEquals(2, haunters.size());
-        Assert.assertTrue(haunters.contains(haunter1assert));
-        Assert.assertTrue(haunters.contains(haunter2assert));
+        Assert.assertTrue(haunters.contains(haunter1));
+        Assert.assertTrue(haunters.contains(haunter2));
     }
 
     /**

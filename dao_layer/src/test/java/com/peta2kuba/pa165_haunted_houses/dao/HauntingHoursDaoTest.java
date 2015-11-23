@@ -54,12 +54,9 @@ public class HauntingHoursDaoTest
 
 		List<HauntingHours> allHours = hauntingHoursDao.findAll();
 
-		HauntingHours aHours = new HauntingHours(hours.getId(), hours.getFromTime(), hours.getToTime());
-		HauntingHours aHours2 = new HauntingHours(hours2.getId(), hours2.getFromTime(), hours2.getToTime());
-
 		Assert.assertTrue(allHours.size() == 2);
-		Assert.assertTrue(allHours.contains(aHours));
-		Assert.assertTrue(allHours.contains(aHours2));
+		Assert.assertTrue(allHours.contains(hours));
+		Assert.assertTrue(allHours.contains(hours2));
 
 	}
 

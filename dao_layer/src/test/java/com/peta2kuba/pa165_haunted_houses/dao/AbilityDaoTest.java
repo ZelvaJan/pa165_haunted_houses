@@ -56,12 +56,9 @@ public class AbilityDaoTest extends AbstractTestNGSpringContextTests {
 
         List<Ability> abilities = abilityDao.findAll();
 
-        Ability ability1assert = new Ability(ability1.getId(), "Ability1", "Ability1desc");
-        Ability ability2assert = new Ability(ability2.getId(), "Ability2", null);
-
         Assert.assertEquals(2, abilities.size());
-        Assert.assertTrue(abilities.contains(ability1assert));
-        Assert.assertTrue(abilities.contains(ability2assert));
+        Assert.assertTrue(abilities.contains(ability1));
+        Assert.assertTrue(abilities.contains(ability2));
     }
 
     /**
