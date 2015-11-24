@@ -18,14 +18,32 @@ public interface PersonService {
 
     void removePerson(Person person);
 
-    Person findById(Long id);
+    Person findPersonById(Long id);
 
-    Person findByEmail(String email);
+    Person findPersonByEmail(String email);
 
-    List<Person> findAll();
+    /**
+     * Find all existing persons in database
+     *
+     * @return list of existing persons
+     */
+    List<Person> findAllPersons();
 
+    /**
+     * Check if person is admin
+     *
+     * @param person entity to check
+     * @return true if person is admin
+     */
     boolean isAdmin(Person person);
 
+    /**
+     * Verify if person exist in database and passwords match.
+     *
+     * @param email email of verifying person
+     * @param passwordHash input password
+     * @return true if person exist and passwords match
+     */
     boolean authenticate(String email, String passwordHash);
 
 }

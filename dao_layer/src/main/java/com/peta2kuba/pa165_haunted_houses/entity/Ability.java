@@ -29,7 +29,7 @@ public class Ability {
 	private String description;
 
 	@ManyToMany
-	private List<Haunter> haunters = new ArrayList<Haunter>();
+	private List<Haunter> haunters = new ArrayList<>();
 
 	public Ability() {
 	}

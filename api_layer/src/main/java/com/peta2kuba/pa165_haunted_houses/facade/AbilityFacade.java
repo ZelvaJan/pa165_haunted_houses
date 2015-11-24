@@ -1,7 +1,6 @@
 package com.peta2kuba.pa165_haunted_houses.facade;
 
 import com.peta2kuba.pa165_haunted_houses.dto.AbilityDTO;
-import com.peta2kuba.pa165_haunted_houses.dto.HaunterDTO;
 
 import java.util.List;
 
@@ -10,15 +9,14 @@ import java.util.List;
  */
 public interface AbilityFacade {
 
-	void create(AbilityDTO ability);
+    void create(AbilityDTO ability);
 
-	void edit(AbilityDTO ability);
+    void edit(AbilityDTO ability);
 
-	void remove(AbilityDTO ability);
+    void remove(AbilityDTO ability);
 
-	AbilityDTO findById(Long id);
+    AbilityDTO findById(Long id);
 
-	List<AbilityDTO> findAll();
+    List<AbilityDTO> findAll();
 
-	List<HaunterDTO> findHauntersWithAbility(AbilityDTO ability);
 }

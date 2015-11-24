@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.peta2kuba.service_layer.service;
 
 import com.peta2kuba.pa165_haunted_houses.dao.PersonDao;
@@ -14,7 +9,7 @@ import org.springframework.stereotype.Service;
 /**
  * Implementation of the {@link PersonService}. This class is part of the
  * service module of the application that provides the implementation of the
- * business logic (main logic of the application).
+ * business logic.
  *
  * @author petr.melicherik
  */
@@ -40,17 +35,17 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public Person findById(Long id) {
+    public Person findPersonById(Long id) {
         return personDao.findById(id);
     }
 
     @Override
-    public Person findByEmail(String email) {
+    public Person findPersonByEmail(String email) {
         return personDao.findByEmail(email);
     }
 
     @Override
-    public List<Person> findAll() {
+    public List<Person> findAllPersons() {
         return personDao.findAll();
     }
 
@@ -59,13 +54,13 @@ public class PersonServiceImpl implements PersonService {
         if (person == null) {
             return false;
         } else {
-            return findById(person.getId()).isAdmin();
+            return findPersonById(person.getId()).isAdmin();
         }
     }
 
     @Override
     public boolean authenticate(String email, String passwordHash) {
-        Person person = findByEmail(email);
+        Person person = findPersonByEmail(email);
         if (person == null || passwordHash == null) {
             return false;
         } else {

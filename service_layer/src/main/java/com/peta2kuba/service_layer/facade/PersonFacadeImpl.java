@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.peta2kuba.service_layer.facade;
 
 import com.peta2kuba.pa165_haunted_houses.dto.PersonAuthenticateDTO;
@@ -32,43 +27,44 @@ public class PersonFacadeImpl implements PersonFacade {
 
     @Override
     public void createPerson(PersonDTO person) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        personService.createPerson(beanMappingService.mapTo(person, Person.class));
     }
 
     @Override
     public void editPerson(PersonDTO person) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        personService.editPerson(beanMappingService.mapTo(person, Person.class));
     }
 
     @Override
     public void removePerson(PersonDTO person) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        personService.removePerson(beanMappingService.mapTo(person, Person.class));
     }
 
     @Override
-    public PersonDTO findById(Long id) {
-        Person person = personService.findById(id);
+    public PersonDTO findPersonById(Long id) {
+        Person person = personService.findPersonById(id);
         return (person == null) ? null : beanMappingService.mapTo(person, PersonDTO.class);
     }
 
     @Override
-    public PersonDTO findByEmail(String email) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public PersonDTO findPersonByEmail(String email) {
+        Person person = personService.findPersonByEmail(email);
+        return (person == null) ? null : beanMappingService.mapTo(person, PersonDTO.class);
     }
 
     @Override
-    public List<PersonDTO> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<PersonDTO> findAllPersons() {
+        return beanMappingService.mapTo(personService.findAllPersons(), PersonDTO.class);
     }
 
     @Override
     public boolean isAdmin(PersonDTO person) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return personService.isAdmin(beanMappingService.mapTo(person, Person.class));
     }
 
     @Override
     public boolean authenticate(PersonAuthenticateDTO person) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return personService.authenticate(person.getEmail(), person.getPassword());
     }
 
 }

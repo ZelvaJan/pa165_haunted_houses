@@ -16,14 +16,31 @@ public interface PersonFacade {
 
     void removePerson(PersonDTO person);
 
-    PersonDTO findById(Long id);
+    PersonDTO findPersonById(Long id);
 
-    PersonDTO findByEmail(String email);
+    PersonDTO findPersonByEmail(String email);
 
-    List<PersonDTO> findAll();
+    /**
+     * Find all existing persons in database
+     *
+     * @return list of existing persons
+     */
+    List<PersonDTO> findAllPersons();
 
+    /**
+     * Check if person is admin
+     *
+     * @param person entity to check
+     * @return true if person is admin
+     */
     boolean isAdmin(PersonDTO person);
 
+    /**
+     * Verify if person exist in database and passwords match.
+     *
+     * @param person person for verify
+     * @return true if person exist and passwords match
+     */
     boolean authenticate(PersonAuthenticateDTO person);
 
 }
