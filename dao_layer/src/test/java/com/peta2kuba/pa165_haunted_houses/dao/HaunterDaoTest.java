@@ -95,6 +95,43 @@ public class HaunterDaoTest
     }
 
     /**
+     * Test method findActiveHaunters() which should return only haunters
+     * haunting houses right now
+     */
+    @Test
+    public void findActiveHaunters() {
+        String haunter1Name = "Frankenstein";
+        String haunter1HauntingReason = "Headache";
+        HauntingHours haunter1HauntingHours = new HauntingHours();
+        haunter1HauntingHours.setFromTime(Time.valueOf("07:05:00"));
+        haunter1HauntingHours.setToTime(Time.valueOf("17:05:00"));
+        hauntingHoursDao.create(haunter1HauntingHours);
+
+        Haunter haunter1 = new Haunter();
+        haunter1.setName(haunter1Name);
+        haunter1.setHauntingReason(haunter1HauntingReason);
+        haunter1.setHauntingHours(haunter1HauntingHours);
+
+        String haunter2Name = "Alien";
+        String haunter2HauntingReason = "Too many children";
+        HauntingHours haunter2HauntingHours = new HauntingHours();
+        haunter2HauntingHours.setFromTime(Time.valueOf("18:05:00"));
+        haunter2HauntingHours.setToTime(Time.valueOf("23:55:00"));
+        hauntingHoursDao.create(haunter2HauntingHours);
+
+        Haunter haunter2 = new Haunter();
+        haunter2.setName(haunter2Name);
+        haunter2.setHauntingReason(haunter2HauntingReason);
+        haunter2.setHauntingHours(haunter2HauntingHours);
+
+        haunterDao.create(haunter1);
+        haunterDao.create(haunter2);
+
+        List<Haunter> haunters = haunterDao.findActiveHaunters();
+		Assert.assertTrue(haunters.size() <= 1);
+    }
+
+    /**
      * Make sure that find object by id work.
      */
     @Test

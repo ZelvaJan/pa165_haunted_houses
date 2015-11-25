@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import java.sql.Time;
 import java.util.List;
 
 /**
@@ -45,11 +47,28 @@ public class HaunterDaoImpl
 
 	@Override
 	public List<Haunter> findAll() {
-		return em.createQuery("select haunter from Haunter haunter", Haunter.class).getResultList();
+		return em.createQuery("SELECT haunter FROM Haunter haunter", Haunter.class).getResultList();
 	}
 
 	@Override
 	public List<Haunter> findActiveHaunters() {
-		return null;		// TODO implement this!!!
+		Time now = new Time(System.currentTimeMillis());
+		//Query query = em.createQuery(
+		//		"SELECT h " +
+		//		"FROM Haunter h " +
+		//		"WHERE h.hauntingHours.fromTime < :now " +
+		//		"AND h.hauntingHours.toTime > :now");
+		Query query = em.createQuery("SELECT h " +
+				"FROM Haunter h " +
+				"WHERE (h.hauntingHours.fromTime < h.hauntingHours.toTime " +
+						"AND h.hauntingHours.fromTime < :now " +
+						"AND h.hauntingHours.toTime > :now) " +
+						"OR (h.hauntingHours.fromTime > h.hauntingHours.toTime " +
+						"AND h.hauntingHours.fromTime > :now " +
+						"AND h.hauntingHours.toTime < :now)"
+		);
+		query.setParameter("now", now);
+
+		return query.getResultList();
 	}
 }
