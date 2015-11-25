@@ -1,10 +1,10 @@
-package com.peta2kuba.service_layer.facade;
+package com.peta2kuba.pa165_haunted_houses.service_layer.facade;
 
 import com.peta2kuba.pa165_haunted_houses.dto.AbilityDTO;
 import com.peta2kuba.pa165_haunted_houses.entity.Ability;
 import com.peta2kuba.pa165_haunted_houses.facade.AbilityFacade;
-import com.peta2kuba.service_layer.BeanMappingService;
-import com.peta2kuba.service_layer.service.AbilityService;
+import com.peta2kuba.pa165_haunted_houses.service_layer.BeanMappingService;
+import com.peta2kuba.pa165_haunted_houses.service_layer.service.AbilityService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

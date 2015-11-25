@@ -1,4 +1,4 @@
-package com.peta2kuba.service_layer.service;
+package com.peta2kuba.pa165_haunted_houses.service_layer.service;
 
 import com.peta2kuba.pa165_haunted_houses.entity.Ability;
 import java.util.List;

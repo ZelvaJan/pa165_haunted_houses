@@ -1,4 +1,4 @@
-package com.peta2kuba.service_layer.service;
+package com.peta2kuba.pa165_haunted_houses.service_layer.service;
 
 import com.peta2kuba.pa165_haunted_houses.dao.HaunterDao;
 import com.peta2kuba.pa165_haunted_houses.entity.Haunter;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * Implementation of the {@link com.peta2kuba.service_layer.service.HaunterService}. This class is part of the
+ * Implementation of the {@link com.peta2kuba.pa165_haunted_houses.service_layer.service.HaunterService}. This class is part of the
  * service module of the application that provides the implementation of the
  * business logic.
  *

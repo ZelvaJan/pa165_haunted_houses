@@ -1,4 +1,4 @@
-package com.peta2kuba.service_layer;
+package com.peta2kuba.pa165_haunted_houses.service_layer;
 
 
 import java.util.Collection;
