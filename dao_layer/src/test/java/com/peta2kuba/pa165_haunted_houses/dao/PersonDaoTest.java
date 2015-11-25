@@ -9,6 +9,7 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import javax.persistence.EntityManager;
@@ -29,8 +30,22 @@ public class PersonDaoTest
 	@Autowired
 	private PersonDao personDao;
 
-	@PersistenceContext
-	private EntityManager em;
+	private Person p1;
+	private Person p2;
+
+	@BeforeMethod
+	public void initPeople() {
+		p1 = new Person();
+		p1.setEmail("premek@lada.com");
+		p1.setPassword("aaaaaa");
+
+		p2 = new Person();
+		p2.setEmail("petr@cukrkandl.cz");
+		p2.setPassword("AzoreLehni!");
+
+		personDao.create(p1);
+		personDao.create(p2);
+	}
 
 	/**
 	 * Make sure that the creation of database objects work and can return all
@@ -38,22 +53,11 @@ public class PersonDaoTest
 	 */
 	@Test
 	public void findAll() {
-		Person person = new Person();
-		person.setEmail("premek@lada.com");
-		person.setPassword("aaaaaa");
-
-		Person person2 = new Person();
-		person2.setEmail("petr@cukrkandl.cz");
-		person2.setPassword("AzoreLehni!");
-
-		personDao.create(person);
-		personDao.create(person2);
-
 		List<Person> people = personDao.findAll();
 
 		Assert.assertTrue(people.size() == 2);
-		Assert.assertTrue(people.contains(person));
-		Assert.assertTrue(people.contains(person2));
+		Assert.assertTrue(people.contains(p1));
+		Assert.assertTrue(people.contains(p2));
 	}
 
 	/**
@@ -61,19 +65,8 @@ public class PersonDaoTest
 	 */
 	@Test
 	public void findById() {
-		Person person = new Person();
-		person.setEmail("premek@lada.com");
-		person.setPassword("aaaaaa");
-
-		Person person2 = new Person();
-		person2.setEmail("petr@cukrkandl.cz");
-		person2.setPassword("AzoreLehni!");
-
-		personDao.create(person);
-		personDao.create(person2);
-
-		Person result = personDao.findById(person.getId());
-		Assert.assertEquals(result, person);
+		Person result = personDao.findById(p1.getId());
+		Assert.assertEquals(result, p1);
 	}
 
 	/**
@@ -81,14 +74,8 @@ public class PersonDaoTest
 	 */
 	@Test
 	public void findByEmail() {
-		Person person = new Person();
-		person.setEmail("premek@lada.com");
-		person.setPassword("aaaaaa");
-
-		personDao.create(person);
-
-		Person result = personDao.findByEmail(person.getEmail());
-		Assert.assertEquals(result, person);
+		Person result = personDao.findByEmail(p1.getEmail());
+		Assert.assertEquals(result, p1);
 	}
 
 	/**
@@ -96,15 +83,11 @@ public class PersonDaoTest
 	 */
 	@Test()
 	public void remove() {
-		Person person = new Person();
-		person.setEmail("premek@lada.com");
-		person.setPassword("aaaaaa");
+		Assert.assertNotNull(personDao.findById(p1.getId()));
+		personDao.remove(p1);
+		Assert.assertNull(personDao.findById(p1.getId()));
 
-		personDao.create(person);
-
-		Assert.assertNotNull(personDao.findById(person.getId()));
-		personDao.remove(person);
-		Assert.assertNull(personDao.findById(person.getId()));
+		personDao.create(p1);
 	}
 
 	/**
@@ -112,16 +95,10 @@ public class PersonDaoTest
 	 */
 	@Test()
 	public void update() {
-		Person person = new Person();
-		person.setEmail("premek@lada.com");
-		person.setPassword("aaaaaa");
-
-		personDao.create(person);
-
-		Person updated = new Person(person.getId(), "premek@head.com", "bbbbbb");
+		Person updated = new Person(p1.getId(), "premek@head.com", "bbbbbb");
 		personDao.edit(updated);
 
-		Person result = personDao.findById(person.getId());
+		Person result = personDao.findById(p1.getId());
 
 		Assert.assertEquals(result.getEmail(), updated.getEmail());
 		Assert.assertEquals(result.getPassword(), updated.getPassword());
