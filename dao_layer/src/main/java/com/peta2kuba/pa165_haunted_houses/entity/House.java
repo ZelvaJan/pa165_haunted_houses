@@ -38,7 +38,6 @@ public class House {
     private List<Haunter> haunters;
 
 	public House(final String name, final String address, final Timestamp hauntedSince, final String description, final List<Haunter> haunters) {
-
 		this.name = name;
 		this.address = address;
 		this.hauntedSince = hauntedSince;
@@ -150,5 +149,5 @@ public class House {
 		result = 31 * result + (description != null ? description.hashCode() : 0);
 		result = 31 * result + (haunters != null ? haunters.hashCode() : 0);
 		return result;
-	}
+    }
 }

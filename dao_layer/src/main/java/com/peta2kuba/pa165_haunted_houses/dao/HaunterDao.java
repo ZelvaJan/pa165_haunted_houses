@@ -20,4 +20,6 @@ public interface HaunterDao {
 	Haunter findByName(String name);
 
 	List<Haunter> findAll();
+
+	List<Haunter> findActiveHaunters();
 }

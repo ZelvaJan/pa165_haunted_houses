@@ -10,16 +10,16 @@ import java.util.List;
  */
 public interface HouseFacade {
 
-	void create(HouseDTO house);
+	void createHouse(HouseDTO houseDTO);
 
-	void edit(HouseDTO house);
+	void editHouse(HouseDTO houseDTO);
 
-	void remove(HouseDTO house);
+	void removeHouse(HouseDTO houseDTO);
 
 	HouseDTO findById(Long id);
 
 	List<HouseDTO> findAll();
 
-	List<HaunterDTO> findAllHaunters();
+	List<HaunterDTO> findHaunters();
 
 }

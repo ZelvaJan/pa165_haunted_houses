@@ -1,6 +1,7 @@
 package com.peta2kuba.pa165_haunted_houses.dao.impl;
 
 import com.peta2kuba.pa165_haunted_houses.dao.HouseDao;
+import com.peta2kuba.pa165_haunted_houses.entity.Haunter;
 import com.peta2kuba.pa165_haunted_houses.entity.House;
 import org.springframework.stereotype.Repository;
 
@@ -40,6 +41,12 @@ public class HouseDaoImpl
 
 	@Override
 	public List<House> findAll() {
-		return em.createQuery("select house from House house", House.class).getResultList();
+		return em.createQuery("SELECT house FROM House house", House.class).getResultList();
+	}
+
+	@Override
+	public List<Haunter> findHaunters() {
+		return em.createQuery("SELECT house.haunters FROM House house").getResultList();		// TODO check this again
+
 	}
 }

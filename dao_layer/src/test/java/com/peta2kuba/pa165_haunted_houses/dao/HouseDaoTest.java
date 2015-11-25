@@ -6,7 +6,11 @@
 package com.peta2kuba.pa165_haunted_houses.dao;
 
 import com.peta2kuba.pa165_haunted_houses.PersistenceTestAplicationContext;
+import com.peta2kuba.pa165_haunted_houses.entity.Haunter;
+import com.peta2kuba.pa165_haunted_houses.entity.HauntingHours;
 import com.peta2kuba.pa165_haunted_houses.entity.House;
+
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -28,9 +32,14 @@ import org.testng.annotations.Test;
 @ContextConfiguration(classes = PersistenceTestAplicationContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
-public class HouseDaoTest extends AbstractTestNGSpringContextTests {    
+public class HouseDaoTest extends AbstractTestNGSpringContextTests {
+
     @Autowired
     private HouseDao houseDao;
+    @Autowired
+    private HaunterDao haunterDao;
+	@Autowired
+	private HauntingHoursDao hauntingHoursDao;
 
     @PersistenceContext
     private EntityManager em;
@@ -47,11 +56,11 @@ public class HouseDaoTest extends AbstractTestNGSpringContextTests {
         String house1Name = "Simpson's house";
         String house1Address = "742 Evergreen Terrace";
         Timestamp house1HauntedSince = Timestamp.valueOf("2007-09-23 10:10:10.0");
-        
+
         House house1 = new House();
         house1.setName(house1Name);
         house1.setAddress(house1Address);
-        house1.setHauntedSince(house1HauntedSince);         
+        house1.setHauntedSince(house1HauntedSince);
         house1.setDescription("description");
 
         String house2Name = "AirBnB house";
@@ -142,12 +151,62 @@ public class HouseDaoTest extends AbstractTestNGSpringContextTests {
 
         String updatedHouseName = "Mr. Burns' house";
         String updatedHouseAddress = "Dunno";
-        House updatedHouse = new House(house1.getId(), updatedHouseName, updatedHouseAddress, house1HauntedSince, null);
+		House updatedHouse = new House(updatedHouseName, updatedHouseAddress, house1HauntedSince, null, null);
+		updatedHouse.setId(house1.getId());
         houseDao.edit(updatedHouse);
 
         House updatedDbHouse = houseDao.findById(updatedHouse.getId());
         Assert.assertEquals(updatedDbHouse.getName(), updatedHouseName);
         Assert.assertEquals(updatedDbHouse.getAddress(), updatedHouseAddress);
+    }
+
+    /**
+     * Check find for all haunters in the house
+     */
+    @Test
+    public void findHaunters() {
+		// create Haunter
+		String haunter1Name = "Frankenstein";
+		String haunter1HauntingReason = "Headache";
+		HauntingHours haunter1HauntingHours = new HauntingHours();
+		haunter1HauntingHours.setFromTime(Time.valueOf("07:05:00"));
+		haunter1HauntingHours.setToTime(Time.valueOf("17:05:00"));
+		hauntingHoursDao.create(haunter1HauntingHours);
+
+		Haunter haunter1 = new Haunter();
+		haunter1.setName(haunter1Name);
+		haunter1.setHauntingReason(haunter1HauntingReason);
+		haunter1.setHauntingHours(haunter1HauntingHours);
+
+		haunterDao.create(haunter1);
+
+		// check Haunter
+		List<Haunter> haunters = haunterDao.findAll();
+		Assert.assertTrue(haunters.contains(haunter1));
+
+
+		// create House
+        String house1Name = "Simpson's house";
+        String house1Address = "742 Evergreen Terrace";
+        Timestamp house1HauntedSince = Timestamp.valueOf("2007-09-23 10:10:10.0");
+
+        House house1 = new House();
+        house1.setName(house1Name);
+        house1.setAddress(house1Address);
+        house1.setHauntedSince(house1HauntedSince);
+        house1.setDescription("description");
+		house1.setHaunters(haunters);
+
+        houseDao.create(house1);
+
+		// check House
+        List<House> houses = houseDao.findAll();
+        Assert.assertTrue(houses.contains(house1));
+
+		// check Haunters in House
+        List<Haunter> haunterList = houseDao.findHaunters();
+		Assert.assertTrue(haunterList.contains(haunter1));
+		Assert.assertEquals(haunterList.get(0).getName(), haunter1.getName());
     }
 
     /**

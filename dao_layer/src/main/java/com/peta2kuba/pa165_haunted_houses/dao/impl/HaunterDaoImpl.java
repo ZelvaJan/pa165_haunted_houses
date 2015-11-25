@@ -48,4 +48,8 @@ public class HaunterDaoImpl
 		return em.createQuery("select haunter from Haunter haunter", Haunter.class).getResultList();
 	}
 
+	@Override
+	public List<Haunter> findActiveHaunters() {
+		return null;		// TODO implement this!!!
+	}
 }

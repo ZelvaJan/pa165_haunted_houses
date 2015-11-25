@@ -9,11 +9,11 @@ import java.util.List;
  */
 public interface HaunterFacade {
 
-	void create(HaunterDTO haunter);
+	void createHaunter(HaunterDTO haunterDTO);
 
-	void edit(HaunterDTO haunter);
+	void editHaunter(HaunterDTO haunterDTO);
 
-	void remove(HaunterDTO haunter);
+	void removeHaunter(HaunterDTO haunterDTO);
 
 	HaunterDTO findById(Long id);
 
