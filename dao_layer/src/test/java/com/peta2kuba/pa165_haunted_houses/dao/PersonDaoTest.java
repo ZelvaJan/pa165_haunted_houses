@@ -2,7 +2,6 @@ package com.peta2kuba.pa165_haunted_houses.dao;
 
 import com.peta2kuba.pa165_haunted_houses.PersistenceTestAplicationContext;
 import com.peta2kuba.pa165_haunted_houses.builder.DirectorPersonBuilder;
-import com.peta2kuba.pa165_haunted_houses.builder.PersonBuilder;
 import com.peta2kuba.pa165_haunted_houses.builder.PersonPetrBuilder;
 import com.peta2kuba.pa165_haunted_houses.builder.PersonPremekBuilder;
 import com.peta2kuba.pa165_haunted_houses.entity.Person;
@@ -16,8 +15,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.validation.ConstraintViolationException;
 import java.util.List;
