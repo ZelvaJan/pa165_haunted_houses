@@ -1,6 +1,10 @@
 package com.peta2kuba.pa165_haunted_houses.dao;
 
 import com.peta2kuba.pa165_haunted_houses.PersistenceTestAplicationContext;
+import com.peta2kuba.pa165_haunted_houses.builder.DirectorPersonBuilder;
+import com.peta2kuba.pa165_haunted_houses.builder.PersonBuilder;
+import com.peta2kuba.pa165_haunted_houses.builder.PersonPetrBuilder;
+import com.peta2kuba.pa165_haunted_houses.builder.PersonPremekBuilder;
 import com.peta2kuba.pa165_haunted_houses.entity.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -35,13 +39,22 @@ public class PersonDaoTest
 
 	@BeforeMethod
 	public void initPeople() {
-		p1 = new Person();
-		p1.setEmail("premek@lada.com");
-		p1.setPassword("aaaaaa");
+		// This is an example of how to use Data Builders
+		// Recommended by our lector Tomas Skopal
+		// This would be an overkill for this project, so let's stick to
+		// the principals used in other test classes
+		DirectorPersonBuilder director = new DirectorPersonBuilder();
+		PersonPremekBuilder premekBuilder = new PersonPremekBuilder();
+		PersonPetrBuilder petrBuilder = new PersonPetrBuilder();
 
-		p2 = new Person();
-		p2.setEmail("petr@cukrkandl.cz");
-		p2.setPassword("AzoreLehni!");
+		director.setBuilder(premekBuilder);
+		director.createPerson();
+
+		p1 = director.getPerson();
+
+		director.setBuilder(petrBuilder);
+		director.createPerson();
+		p2 = director.getPerson();
 
 		personDao.create(p1);
 		personDao.create(p2);
@@ -83,6 +96,7 @@ public class PersonDaoTest
 	 */
 	@Test()
 	public void remove() {
+		Person backup = p1;
 		Assert.assertNotNull(personDao.findById(p1.getId()));
 		personDao.remove(p1);
 		Assert.assertNull(personDao.findById(p1.getId()));
