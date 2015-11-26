@@ -1,7 +1,15 @@
 package com.peta2kuba.pa165_haunted_houses.service_layer.config;
 
 import com.peta2kuba.pa165_haunted_houses.PersistenceTestAplicationContext;
+import com.peta2kuba.pa165_haunted_houses.dto.AbilityDTO;
+import com.peta2kuba.pa165_haunted_houses.dto.HaunterDTO;
+import com.peta2kuba.pa165_haunted_houses.dto.HauntingHoursDTO;
+import com.peta2kuba.pa165_haunted_houses.dto.HouseDTO;
 import com.peta2kuba.pa165_haunted_houses.dto.PersonDTO;
+import com.peta2kuba.pa165_haunted_houses.entity.Ability;
+import com.peta2kuba.pa165_haunted_houses.entity.Haunter;
+import com.peta2kuba.pa165_haunted_houses.entity.HauntingHours;
+import com.peta2kuba.pa165_haunted_houses.entity.House;
 import com.peta2kuba.pa165_haunted_houses.entity.Person;
 import com.peta2kuba.pa165_haunted_houses.service_layer.facade.PersonFacadeImpl;
 import com.peta2kuba.pa165_haunted_houses.service_layer.service.PersonServiceImpl;
@@ -18,7 +26,7 @@ import org.springframework.context.annotation.Import;
  */
 @Configuration
 @Import(PersistenceTestAplicationContext.class)
-@ComponentScan(basePackageClasses={PersonServiceImpl.class, PersonFacadeImpl.class})
+@ComponentScan(basePackageClasses={PersonServiceImpl.class})
 public class ServiceConfiguration {
 
 
@@ -29,17 +37,16 @@ public class ServiceConfiguration {
 		return dozer;
 	}
 
-	/**
-	 * Custom config for Dozer if needed
-	 *
-	 * @author nguyen
-	 */
 	public class DozerCustomConfig
 			extends BeanMappingBuilder {
 
 		@Override
 		protected void configure() {
 			mapping(Person.class, PersonDTO.class);
+			mapping(Ability.class, AbilityDTO.class);
+			mapping(Haunter.class, HaunterDTO.class);
+			mapping(HauntingHours.class, HauntingHoursDTO.class);
+			mapping(House.class, HouseDTO.class);
 		}
 	}
 }

@@ -18,9 +18,7 @@ import org.testng.annotations.Test;
 /**
  * @author petr.melicherik
  */
-//@ContextConfiguration(classes=ServiceConfiguration.class)
-@ContextConfiguration(classes = PersistenceTestAplicationContext.class)
-@TestExecutionListeners(TransactionalTestExecutionListener.class)
+@ContextConfiguration(classes=ServiceConfiguration.class)
 public class AbilityServiceTest extends AbstractTransactionalTestNGSpringContextTests {
 
     @BeforeClass

@@ -1,6 +1,5 @@
 package com.peta2kuba.pa165_haunted_houses.service_layer;
 
-import com.peta2kuba.pa165_haunted_houses.PersistenceTestAplicationContext;
 import com.peta2kuba.pa165_haunted_houses.dao.PersonDao;
 import com.peta2kuba.pa165_haunted_houses.entity.Person;
 import com.peta2kuba.pa165_haunted_houses.service_layer.config.ServiceConfiguration;
@@ -10,9 +9,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
-import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -23,8 +20,7 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 /**
  * @author turcovsky on 26/11/15.
  */
-@ContextConfiguration(classes=PersistenceTestAplicationContext.class)
-@TestExecutionListeners({TransactionalTestExecutionListener.class})
+@ContextConfiguration(classes = ServiceConfiguration.class)
 public class PersonServiceTest extends AbstractTransactionalTestNGSpringContextTests {
 
 	@Mock
