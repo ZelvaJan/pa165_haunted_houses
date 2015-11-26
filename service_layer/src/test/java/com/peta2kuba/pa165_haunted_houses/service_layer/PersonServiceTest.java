@@ -23,62 +23,47 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 @ContextConfiguration(classes = ServiceConfiguration.class)
 public class PersonServiceTest extends AbstractTransactionalTestNGSpringContextTests {
 
-	@Mock
-	private PersonDao personDao;
+    @Mock
+    private PersonDao personDao;
 
-	@Autowired
-	@InjectMocks
-	private PersonService personService;
+    @Autowired
+    @InjectMocks
+    private PersonService personService;
 
-	private Person p1;
-	private Person p2;
+    private Person p1;
+    private Person p2;
 
-	@BeforeClass
-	public void setupClass() {
-		MockitoAnnotations.initMocks(this);
-	}
+    @BeforeClass
+    public void setupClass() {
+        MockitoAnnotations.initMocks(this);
+    }
 
-	@BeforeMethod
-	public void init() {
-		p1 = new Person();
-		p1.setEmail("turcovsky@master.cz");
-		p1.setPassword("aaaaaa");
-		p1.setAdmin(true);
+    @BeforeMethod
+    public void init() {
+        p1 = new Person();
+        p1.setEmail("turcovsky@master.cz");
+        p1.setPassword("aaaaaa");
+        p1.setAdmin(true);
 
-		p2 = new Person();
-		p2.setEmail("hnidopich@zapadakov.cz");
-		p2.setPassword("secure");
-		p2.setAdmin(false);
-	}
+        p2 = new Person();
+        p2.setEmail("hnidopich@zapadakov.cz");
+        p2.setPassword("secure");
+        p2.setAdmin(false);
+    }
 
-	@Test
-	public void createPersonTest() {
-		personService.createPerson(p1);
+    @Test
+    public void createPersonTest() {
+        personService.createPerson(p1);
+        verify(personDao).create(p1);
+    }
 
-		verify(personDao).create(p1);
-		verifyNoMoreInteractions(personDao);
-	}
+    @Test
+    public void isAdminTest() {
+        // TODO
+    }
 
-	@Test
-	public void editPersonTest() {
-		personService.createPerson(p1);
-
-		verify(personDao).create(p1);
-
-		p1.setPassword("bbbbbb");
-		personService.editPerson(p1);
-
-		verify(personDao).edit(p1);
-		verifyNoMoreInteractions(personDao);
-	}
-
-	@Test
-	public void removePersonTest() {
-		personService.createPerson(p1);
-
-		verify(personDao).create(p1);
-
-		personService.removePerson(p1);
-		verify(personDao).remove(p1);
-	}
+    @Test
+    public void authenticateTest() {
+        // TODO
+    }
 }
