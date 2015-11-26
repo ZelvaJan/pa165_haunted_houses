@@ -1,5 +1,10 @@
 package com.peta2kuba.pa165_haunted_houses.service_layer.config;
 
+import com.peta2kuba.pa165_haunted_houses.PersistenceTestAplicationContext;
+import com.peta2kuba.pa165_haunted_houses.dto.PersonDTO;
+import com.peta2kuba.pa165_haunted_houses.entity.Person;
+import com.peta2kuba.pa165_haunted_houses.service_layer.facade.PersonFacadeImpl;
+import com.peta2kuba.pa165_haunted_houses.service_layer.service.PersonServiceImpl;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.dozer.loader.api.BeanMappingBuilder;
@@ -12,13 +17,13 @@ import org.springframework.context.annotation.Import;
  * @author turcovsky on 26/11/15.
  */
 @Configuration
-@Import(xxx.class)
-@ComponentScan(basePackageClasses={xxx.class, xxx.class})
+@Import(PersistenceTestAplicationContext.class)
+@ComponentScan(basePackageClasses={PersonServiceImpl.class, PersonFacadeImpl.class})
 public class ServiceConfiguration {
 
 
 	@Bean
-	public Mapper dozer(){
+	public Mapper dozer() {
 		DozerBeanMapper dozer = new DozerBeanMapper();
 		dozer.addMapping(new DozerCustomConfig());
 		return dozer;
@@ -26,12 +31,15 @@ public class ServiceConfiguration {
 
 	/**
 	 * Custom config for Dozer if needed
-	 * @author nguyen
 	 *
+	 * @author nguyen
 	 */
-	public class DozerCustomConfig extends BeanMappingBuilder {
+	public class DozerCustomConfig
+			extends BeanMappingBuilder {
+
 		@Override
 		protected void configure() {
-			mapping(xxx.class, xxx.class);
+			mapping(Person.class, PersonDTO.class);
 		}
 	}
+}
