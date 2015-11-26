@@ -31,7 +31,7 @@ public interface HaunterService {
          * Determine if actual haunter is more powerful than competitor
          * @param actualHaunter 
          * @param competitorHaunter
-         * @return -1 actual haunter is weaker, 0 same power, 1 actual haunter is stronger 
+         * @return negative number => actual haunter is weaker, 0 => same power, positive number => actual haunter is stronger
          */
         long isHaunterStronger (Haunter actualHaunter, Haunter competitorHaunter);
 }

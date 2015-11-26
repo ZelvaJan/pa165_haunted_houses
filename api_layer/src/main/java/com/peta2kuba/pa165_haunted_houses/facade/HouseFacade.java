@@ -22,4 +22,5 @@ public interface HouseFacade {
 
 	List<HaunterDTO> findHaunters();
 
+	boolean exorcism(HaunterDTO haunterDTO);
 }

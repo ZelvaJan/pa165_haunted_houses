@@ -14,7 +14,7 @@ public class HaunterDTO {
 	private HauntingHoursDTO hauntingHours;
 	private String description;
 	private String hauntingReason;
-	private List<AbilityDTO> ability = new ArrayList<AbilityDTO>();
+	private List<AbilityDTO> abilities = new ArrayList<AbilityDTO>();
 
 	public HaunterDTO() {
 	}
@@ -59,12 +59,12 @@ public class HaunterDTO {
 		this.hauntingReason = hauntingReason;
 	}
 
-	public List<AbilityDTO> getAbility() {
-		return ability;
+	public List<AbilityDTO> getAbilities() {
+		return abilities;
 	}
 
-	public void setAbility(final List<AbilityDTO> ability) {
-		this.ability = ability;
+	public void setAbilities(final List<AbilityDTO> abilities) {
+		this.abilities = abilities;
 	}
 
 	@Override
@@ -75,7 +75,7 @@ public class HaunterDTO {
 				", hauntingHours=" + hauntingHours +
 				", description='" + description + '\'' +
 				", hauntingReason='" + hauntingReason + '\'' +
-				", ability=" + ability +
+				", abilities=" + abilities +
 				'}';
 	}
 
@@ -105,7 +105,7 @@ public class HaunterDTO {
 		if (hauntingReason != null ? !hauntingReason.equals(that.hauntingReason) : that.hauntingReason != null) {
 			return false;
 		}
-		return !(ability != null ? !ability.equals(that.ability) : that.ability != null);
+		return !(abilities != null ? !abilities.equals(that.abilities) : that.abilities != null);
 
 	}
 
@@ -116,7 +116,7 @@ public class HaunterDTO {
 		result = 31 * result + (hauntingHours != null ? hauntingHours.hashCode() : 0);
 		result = 31 * result + (description != null ? description.hashCode() : 0);
 		result = 31 * result + (hauntingReason != null ? hauntingReason.hashCode() : 0);
-		result = 31 * result + (ability != null ? ability.hashCode() : 0);
+		result = 31 * result + (abilities != null ? abilities.hashCode() : 0);
 		return result;
 	}
 }

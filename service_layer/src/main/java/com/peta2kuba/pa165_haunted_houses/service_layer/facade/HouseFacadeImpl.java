@@ -2,6 +2,7 @@ package com.peta2kuba.pa165_haunted_houses.service_layer.facade;
 
 import com.peta2kuba.pa165_haunted_houses.dto.HaunterDTO;
 import com.peta2kuba.pa165_haunted_houses.dto.HouseDTO;
+import com.peta2kuba.pa165_haunted_houses.entity.Haunter;
 import com.peta2kuba.pa165_haunted_houses.entity.House;
 import com.peta2kuba.pa165_haunted_houses.facade.HouseFacade;
 import com.peta2kuba.pa165_haunted_houses.service_layer.BeanMappingService;
@@ -57,5 +58,10 @@ public class HouseFacadeImpl implements HouseFacade {
 	@Override
 	public List<HaunterDTO> findHaunters() {
 		return beanMappingService.mapTo(houseService.findHaunters(), HaunterDTO.class);
+	}
+
+	@Override
+	public boolean exorcism(final HaunterDTO haunterDTO) {
+		return houseService.exorcism(beanMappingService.mapTo(haunterDTO, Haunter.class));
 	}
 }

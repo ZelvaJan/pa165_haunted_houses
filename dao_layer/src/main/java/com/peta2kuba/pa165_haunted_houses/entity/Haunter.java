@@ -2,20 +2,15 @@ package com.peta2kuba.pa165_haunted_houses.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
-import java.sql.Time;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 import javax.persistence.ManyToOne;
 
 /**
@@ -42,14 +37,14 @@ public class Haunter {
 	private String hauntingReason;
 
 	@ManyToMany
-	private List<Ability> ability = new ArrayList<Ability>();
+	private List<Ability> abilities = new ArrayList<Ability>();
 
-	public List<Ability> getAbility() {
-		return ability;
+	public List<Ability> getAbilities() {
+		return abilities;
 	}
 
-	public void setAbility(final List<Ability> ability) {
-		this.ability = ability;
+	public void setAbilities(final List<Ability> abilities) {
+		this.abilities = abilities;
 	}
 
     public Haunter() {
@@ -118,7 +113,7 @@ public class Haunter {
         hash = 59 * hash + Objects.hashCode(this.hauntingHours);
         hash = 59 * hash + Objects.hashCode(this.description);
         hash = 59 * hash + Objects.hashCode(this.hauntingReason);
-        hash = 59 * hash + Objects.hashCode(this.ability);
+        hash = 59 * hash + Objects.hashCode(this.abilities);
         return hash;
     }
 
@@ -146,7 +141,7 @@ public class Haunter {
         if (!Objects.equals(this.hauntingReason, other.hauntingReason)) {
             return false;
         }
-        if (!Objects.equals(this.ability, other.ability)) {
+        if (!Objects.equals(this.abilities, other.abilities)) {
             return false;
         }
         return true;
@@ -154,7 +149,7 @@ public class Haunter {
 
     @Override
     public String toString() {
-        return "Haunter{" + "id=" + id + ", name=" + name + ", hauntingHours=" + hauntingHours + ", description=" + description + ", hauntingReason=" + hauntingReason + ", ability=" + ability + '}';
+        return "Haunter{" + "id=" + id + ", name=" + name + ", hauntingHours=" + hauntingHours + ", description=" + description + ", hauntingReason=" + hauntingReason + ", abilities=" + abilities + '}';
     }
 
         

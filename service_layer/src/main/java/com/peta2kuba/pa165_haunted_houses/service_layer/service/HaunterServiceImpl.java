@@ -62,9 +62,9 @@ public class HaunterServiceImpl implements HaunterService {
     public long isHaunterStronger(Haunter actualHaunter, Haunter competitorHaunter) {
         if (actualHaunter != null && competitorHaunter != null) {
             long actualHaunterPower = getNamePower(actualHaunter.getName())
-                    + getAbilityPower(actualHaunter.getAbility());
+                    + getAbilityPower(actualHaunter.getAbilities());
             long competitorHaunterPower = getNamePower(competitorHaunter.getName())
-                    + getAbilityPower(competitorHaunter.getAbility());
+                    + getAbilityPower(competitorHaunter.getAbilities());
             return Long.compare(actualHaunterPower, competitorHaunterPower);
         } else {
             throw new NullHaunterException();

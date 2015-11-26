@@ -12,6 +12,7 @@ import com.peta2kuba.pa165_haunted_houses.entity.HauntingHours;
 import com.peta2kuba.pa165_haunted_houses.entity.House;
 import com.peta2kuba.pa165_haunted_houses.entity.Person;
 import com.peta2kuba.pa165_haunted_houses.service_layer.facade.PersonFacadeImpl;
+import com.peta2kuba.pa165_haunted_houses.service_layer.service.PersonService;
 import com.peta2kuba.pa165_haunted_houses.service_layer.service.PersonServiceImpl;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
