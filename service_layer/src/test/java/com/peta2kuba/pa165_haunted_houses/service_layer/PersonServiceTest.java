@@ -1,25 +1,30 @@
 package com.peta2kuba.pa165_haunted_houses.service_layer;
 
+import com.peta2kuba.pa165_haunted_houses.PersistenceTestAplicationContext;
 import com.peta2kuba.pa165_haunted_houses.dao.PersonDao;
 import com.peta2kuba.pa165_haunted_houses.entity.Person;
 import com.peta2kuba.pa165_haunted_houses.service_layer.config.ServiceConfiguration;
 import com.peta2kuba.pa165_haunted_houses.service_layer.service.PersonService;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
+import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 /**
  * @author turcovsky on 26/11/15.
  */
-@ContextConfiguration(classes=ServiceConfiguration.class)
+@ContextConfiguration(classes=PersistenceTestAplicationContext.class)
+@TestExecutionListeners({TransactionalTestExecutionListener.class})
 public class PersonServiceTest extends AbstractTransactionalTestNGSpringContextTests {
 
 	@Mock
@@ -51,7 +56,33 @@ public class PersonServiceTest extends AbstractTransactionalTestNGSpringContextT
 	}
 
 	@Test
-	public void createUserTest() {
-		verify(new Object());
+	public void createPersonTest() {
+		personService.createPerson(p1);
+
+		verify(personDao).create(p1);
+		verifyNoMoreInteractions(personDao);
 	}
+
+	//@Test
+	//public void editPersonTest() {
+	//	personService.createPerson(p1);
+	//
+	//	verify(personDao).create(p1);
+	//
+	//	p1.setPassword("bbbbbb");
+	//	personService.editPerson(p1);
+	//
+	//	verify(personDao).edit(p1);
+	//	verifyNoMoreInteractions(personDao);
+	//}
+	//
+	//@Test
+	//public void removePersonTest() {
+	//	personService.createPerson(p1);
+	//
+	//	verify(personDao).create(p1);
+	//
+	//	personService.removePerson(p1);
+	//	verify(personDao).remove(p1);
+	//}
 }
