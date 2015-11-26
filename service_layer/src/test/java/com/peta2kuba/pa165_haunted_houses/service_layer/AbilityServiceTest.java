@@ -31,8 +31,8 @@ public class AbilityServiceTest extends AbstractTransactionalTestNGSpringContext
 
     }
     
-    @Test
-    public void editAbility() {
-        fail();
-    }
+    //@Test
+    //public void editAbility() {
+    //    fail();
+    //}
 }
