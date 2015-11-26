@@ -2,6 +2,7 @@ package com.peta2kuba.pa165_haunted_houses.facade;
 
 import com.peta2kuba.pa165_haunted_houses.dto.HaunterDTO;
 import com.peta2kuba.pa165_haunted_houses.dto.HouseDTO;
+import java.sql.Time;
 
 import java.util.List;
 
@@ -10,17 +11,17 @@ import java.util.List;
  */
 public interface HouseFacade {
 
-	void createHouse(HouseDTO houseDTO);
+    void createHouse(HouseDTO houseDTO);
 
-	void editHouse(HouseDTO houseDTO);
+    void editHouse(HouseDTO houseDTO);
 
-	void removeHouse(HouseDTO houseDTO);
+    void removeHouse(HouseDTO houseDTO);
 
-	HouseDTO findById(Long id);
+    HouseDTO findById(Long id);
 
-	List<HouseDTO> findAll();
+    List<HouseDTO> findAll();
 
-	List<HaunterDTO> findHaunters();
+    List<HaunterDTO> findHaunters();
 
-	boolean exorcism(HaunterDTO haunterDTO);
+    boolean exorcism(HouseDTO houseDTO, HaunterDTO haunterDTO, Time exorcismTime);
 }
