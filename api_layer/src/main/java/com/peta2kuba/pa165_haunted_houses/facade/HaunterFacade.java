@@ -9,17 +9,27 @@ import java.util.List;
  */
 public interface HaunterFacade {
 
-	void createHaunter(HaunterDTO haunterDTO);
+    void createHaunter(HaunterDTO haunterDTO);
 
-	void editHaunter(HaunterDTO haunterDTO);
+    void editHaunter(HaunterDTO haunterDTO);
 
-	void removeHaunter(HaunterDTO haunterDTO);
+    void removeHaunter(HaunterDTO haunterDTO);
 
-	HaunterDTO findById(Long id);
+    HaunterDTO findById(Long id);
 
-	HaunterDTO findByName(String name);
+    HaunterDTO findByName(String name);
 
-	List<HaunterDTO> findAll();
+    List<HaunterDTO> findAll();
 
-	List<HaunterDTO> findActiveHaunters();
+    List<HaunterDTO> findActiveHaunters();
+
+    /**
+     * Determine if actual haunter is more powerful than competitor
+     *
+     * @param actualHaunter
+     * @param competitorHaunter
+     * @return -1 actual haunter is weaker, 0 same power, 1 actual haunter is
+     * stronger
+     */
+    long isHaunterStronger(HaunterDTO actualHaunter, HaunterDTO competitorHaunter);
 }
