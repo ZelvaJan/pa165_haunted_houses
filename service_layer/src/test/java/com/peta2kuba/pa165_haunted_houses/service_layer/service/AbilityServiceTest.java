@@ -1,4 +1,4 @@
-package com.peta2kuba.pa165_haunted_houses.service_layer;
+package com.peta2kuba.pa165_haunted_houses.service_layer.service;
 
 import com.peta2kuba.pa165_haunted_houses.PersistenceTestAplicationContext;
 import com.peta2kuba.pa165_haunted_houses.dao.AbilityDao;

@@ -3,6 +3,9 @@ package com.peta2kuba.pa165_haunted_houses.service_layer;
 
 import java.util.Collection;
 import java.util.List;
+
+import com.peta2kuba.pa165_haunted_houses.dto.HaunterDTO;
+import com.peta2kuba.pa165_haunted_houses.entity.Haunter;
 import org.dozer.Mapper;
 
 /**
@@ -16,4 +19,5 @@ public interface BeanMappingService {
     <T> T mapTo(Object u, Class<T> mapToClass);
 
     Mapper getMapper();
+
 }

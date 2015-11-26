@@ -11,6 +11,7 @@ import com.peta2kuba.pa165_haunted_houses.entity.Haunter;
 import com.peta2kuba.pa165_haunted_houses.entity.HauntingHours;
 import com.peta2kuba.pa165_haunted_houses.entity.House;
 import com.peta2kuba.pa165_haunted_houses.entity.Person;
+import com.peta2kuba.pa165_haunted_houses.service_layer.BeanMappingService;
 import com.peta2kuba.pa165_haunted_houses.service_layer.facade.PersonFacadeImpl;
 import com.peta2kuba.pa165_haunted_houses.service_layer.service.PersonService;
 import com.peta2kuba.pa165_haunted_houses.service_layer.service.PersonServiceImpl;
@@ -27,7 +28,7 @@ import org.springframework.context.annotation.Import;
  */
 @Configuration
 @Import(PersistenceTestAplicationContext.class)
-@ComponentScan(basePackageClasses={PersonServiceImpl.class})
+@ComponentScan(basePackageClasses={PersonServiceImpl.class, PersonFacadeImpl.class, BeanMappingService.class})
 public class ServiceConfiguration {
 
 
