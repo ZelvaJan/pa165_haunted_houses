@@ -59,26 +59,26 @@ public class PersonServiceTest extends AbstractTransactionalTestNGSpringContextT
 		verifyNoMoreInteractions(personDao);
 	}
 
-	//@Test
-	//public void editPersonTest() {
-	//	personService.createPerson(p1);
-	//
-	//	verify(personDao).create(p1);
-	//
-	//	p1.setPassword("bbbbbb");
-	//	personService.editPerson(p1);
-	//
-	//	verify(personDao).edit(p1);
-	//	verifyNoMoreInteractions(personDao);
-	//}
-	//
-	//@Test
-	//public void removePersonTest() {
-	//	personService.createPerson(p1);
-	//
-	//	verify(personDao).create(p1);
-	//
-	//	personService.removePerson(p1);
-	//	verify(personDao).remove(p1);
-	//}
+	@Test
+	public void editPersonTest() {
+		personService.createPerson(p1);
+
+		verify(personDao).create(p1);
+
+		p1.setPassword("bbbbbb");
+		personService.editPerson(p1);
+
+		verify(personDao).edit(p1);
+		verifyNoMoreInteractions(personDao);
+	}
+
+	@Test
+	public void removePersonTest() {
+		personService.createPerson(p1);
+
+		verify(personDao).create(p1);
+
+		personService.removePerson(p1);
+		verify(personDao).remove(p1);
+	}
 }

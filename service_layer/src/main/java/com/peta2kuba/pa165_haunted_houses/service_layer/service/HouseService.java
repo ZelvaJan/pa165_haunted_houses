@@ -25,4 +25,6 @@ public interface HouseService {
 	List<House> findAll();
 
 	List<Haunter> findHaunters();
+
+	boolean exorcism(Haunter haunter);
 }
