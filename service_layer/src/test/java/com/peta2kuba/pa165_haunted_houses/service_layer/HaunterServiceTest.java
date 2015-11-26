@@ -78,7 +78,7 @@ public class HaunterServiceTest extends AbstractTransactionalTestNGSpringContext
 
 		h2 = new Haunter();
 		h2.setHauntingHours(hh2);
-		h2.setName("FartGhost");
+		h2.setName("MisterFartGhost");
 		h2.setDescription("This is one stinky ghost");
 		h2.setHauntingReason("Too much air");
 		h2.setAbilities(abilities2);
