@@ -9,15 +9,17 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import org.testng.Assert;
 
 /**
+ * Test class of {@PersonServiceImpl}'s methods
+ *
  * @author turcovsky on 26/11/15.
  */
 @ContextConfiguration(classes = ServiceConfiguration.class)

@@ -3,7 +3,6 @@ package com.peta2kuba.pa165_haunted_houses.service_layer.facade;
 import com.peta2kuba.pa165_haunted_houses.dto.AbilityDTO;
 import com.peta2kuba.pa165_haunted_houses.facade.AbilityFacade;
 import com.peta2kuba.pa165_haunted_houses.service_layer.config.ServiceConfiguration;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -11,7 +10,10 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 /**
+ * This is an example of simple integration test
  *
  * @author petr.melicherik
  */

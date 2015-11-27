@@ -29,6 +29,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
+ * This Test class is testing methods of {@link AbilityFacadeImpl}
  *
  * @author petr.melicherik
  */

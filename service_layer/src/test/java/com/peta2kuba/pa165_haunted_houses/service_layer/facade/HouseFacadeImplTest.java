@@ -15,8 +15,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
@@ -32,11 +30,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
+ * This Test class is testing methods of {@link HouseFacadeImpl}
+ *
  * @author turcovsky on 27/11/15.
  */
 @ContextConfiguration(classes = ServiceConfiguration.class)
@@ -77,24 +76,36 @@ public class HouseFacadeImplTest extends AbstractTransactionalTestNGSpringContex
 		houseDTO = mapper.mapTo(house, HouseDTO.class);
 	}
 
+	/**
+	 * Test of create method
+	 */
 	@Test
 	public void testCreateHouse() {
 		houseFacade.createHouse(houseDTO);
 		verify(houseDao).create(house);
 	}
 
+	/**
+	 * Test of editing method
+	 */
 	@Test
 	public void testEditHouse() {
 		houseFacade.editHouse(houseDTO);
 		verify(houseDao).edit(house);
 	}
 
+	/**
+	 * Test of remove method
+	 */
 	@Test
 	public void testRemoveHouse() {
 		houseFacade.removeHouse(houseDTO);
 		verify(houseDao).remove(house);
 	}
 
+	/**
+	 * Test of findById() method
+	 */
 	@Test
 	public void testFindById() {
 		Mockito.when(houseDao.findById(any(Long.class))).thenReturn(house);
@@ -102,6 +113,9 @@ public class HouseFacadeImplTest extends AbstractTransactionalTestNGSpringContex
 		Assert.assertEquals(mapper.mapTo(house, HouseDTO.class), hDTO);
 	}
 
+	/**
+	 * Test of findAll() method
+	 */
 	@Test
 	public void testFindAll() {
 		List<House> houses = new ArrayList<>();
@@ -112,6 +126,9 @@ public class HouseFacadeImplTest extends AbstractTransactionalTestNGSpringContex
 		Assert.assertEquals(mapper.mapTo(houses, HouseDTO.class), houseDTOs);
 	}
 
+	/**
+	 * Test of exorcism method
+	 */
 	@Test
 	public void testExorcism() {
 		HauntingHours hh = new HauntingHours();

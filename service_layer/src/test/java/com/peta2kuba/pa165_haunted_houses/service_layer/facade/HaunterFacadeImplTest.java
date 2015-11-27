@@ -3,7 +3,6 @@ package com.peta2kuba.pa165_haunted_houses.service_layer.facade;
 import com.peta2kuba.pa165_haunted_houses.dao.HaunterDao;
 import com.peta2kuba.pa165_haunted_houses.dto.HaunterDTO;
 import com.peta2kuba.pa165_haunted_houses.dto.HauntingHoursDTO;
-import com.peta2kuba.pa165_haunted_houses.dto.PersonAuthenticateDTO;
 import com.peta2kuba.pa165_haunted_houses.entity.Ability;
 import com.peta2kuba.pa165_haunted_houses.entity.Haunter;
 import com.peta2kuba.pa165_haunted_houses.entity.HauntingHours;
@@ -31,6 +30,8 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
+ * This Test class is testing methods of {@link HaunterFacadeImpl}
+ *
  * @author skornok on 26/11/15.
  */
 @ContextConfiguration(classes = ServiceConfiguration.class)
@@ -74,24 +75,36 @@ public class HaunterFacadeImplTest extends AbstractTransactionalTestNGSpringCont
 		haunterDTO = mapper.mapTo(haunter, HaunterDTO.class);
 	}
 
+	/**
+	 * Testing create method
+	 */
 	@Test
 	public void testCreateHaunter() {
 		haunterFacade.createHaunter(haunterDTO);
 		verify(haunterDao).create(haunter);
 	}
 
+	/**
+	 * Testing edit method
+	 */
 	@Test
 	public void testEditHaunter() {
 		haunterFacade.editHaunter(haunterDTO);
 		verify(haunterDao).edit(haunter);
 	}
 
+	/**
+	 * Testing remove method
+	 */
 	@Test
 	public void testRemoveHaunter() {
 		haunterFacade.removeHaunter(haunterDTO);
 		verify(haunterDao).remove(haunter);
 	}
 
+	/**
+	 * Testing method findById()
+	 */
 	@Test
 	public void testFindById() {
 		Mockito.when(haunterDao.findById(any(Long.class))).thenReturn(haunter);
@@ -99,6 +112,9 @@ public class HaunterFacadeImplTest extends AbstractTransactionalTestNGSpringCont
 		Assert.assertEquals(mapper.mapTo(haunter, HaunterDTO.class), hDTO);
 	}
 
+	/**
+	 * Testing method findByName()
+	 */
 	@Test
 	public void testFindByName() {
 		Mockito.when(haunterDao.findByName(any(String.class))).thenReturn(haunter);
@@ -106,6 +122,9 @@ public class HaunterFacadeImplTest extends AbstractTransactionalTestNGSpringCont
 		Assert.assertEquals(mapper.mapTo(haunter, HaunterDTO.class), hDTO);
 	}
 
+	/**
+	 * Testing method findByAll()
+	 */
 	@Test
 	public void testFindAll() {
 		List<Haunter> haunters = new ArrayList<>();
@@ -116,6 +135,9 @@ public class HaunterFacadeImplTest extends AbstractTransactionalTestNGSpringCont
 		Assert.assertEquals(mapper.mapTo(haunters, HaunterDTO.class), haunterDTOs);
 	}
 
+	/**
+	 * Testing searching for active Haunters
+	 */
 	@Test
 	public void testFindActiveHaunters() {
 		List<Haunter> haunters = new ArrayList<>();
@@ -126,6 +148,9 @@ public class HaunterFacadeImplTest extends AbstractTransactionalTestNGSpringCont
 		Assert.assertEquals(mapper.mapTo(haunters, HaunterDTO.class), haunterDTOs);
 	}
 
+	/**
+	 * Testing method isHaunterStronger()
+	 */
 	@Test
 	public void testIsHaunterStronger() {
 		Haunter haunter2 = new Haunter();

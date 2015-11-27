@@ -6,9 +6,6 @@ import com.peta2kuba.pa165_haunted_houses.entity.Haunter;
 import com.peta2kuba.pa165_haunted_houses.entity.HauntingHours;
 import com.peta2kuba.pa165_haunted_houses.entity.House;
 import com.peta2kuba.pa165_haunted_houses.service_layer.config.ServiceConfiguration;
-import java.sql.Time;
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.Assert;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -20,7 +17,13 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
+ * Test class of {@HouseServiceImpl}'s methods
+ *
  * @author petr.melicherik
  */
 @ContextConfiguration(classes = ServiceConfiguration.class)
@@ -35,15 +38,14 @@ public class HouseServiceTest extends AbstractTransactionalTestNGSpringContextTe
     @Autowired
     @InjectMocks
     private HouseService houseService;
+    private House houseBrno;
+    private Haunter haunter1;
+    private Haunter haunter2;
 
     @BeforeClass
     public void setupClass() {
         MockitoAnnotations.initMocks(this);
     }
-
-    private House houseBrno;
-    private Haunter haunter1;
-    private Haunter haunter2;
 
     @BeforeMethod
     public void createHouses() {

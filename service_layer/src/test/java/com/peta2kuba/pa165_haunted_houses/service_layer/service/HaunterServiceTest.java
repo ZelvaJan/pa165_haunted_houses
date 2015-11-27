@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Test class of {@HaunterServiceImpl}'s methods
+ *
  * @author turcovsky on 26/11/15.
  */
 @ContextConfiguration(classes = ServiceConfiguration.class)
