@@ -1,36 +1,43 @@
-package com.peta2kuba.pa165_haunted_houses.service_layer.facade;
-
-import com.peta2kuba.pa165_haunted_houses.dto.AbilityDTO;
-import com.peta2kuba.pa165_haunted_houses.dto.HaunterDTO;
-import com.peta2kuba.pa165_haunted_houses.dto.HauntingHoursDTO;
-import com.peta2kuba.pa165_haunted_houses.entity.Ability;
-import com.peta2kuba.pa165_haunted_houses.entity.Haunter;
-import com.peta2kuba.pa165_haunted_houses.entity.HauntingHours;
-import com.peta2kuba.pa165_haunted_houses.facade.HaunterFacade;
-import com.peta2kuba.pa165_haunted_houses.service_layer.BeanMappingService;
-import com.peta2kuba.pa165_haunted_houses.service_layer.config.ServiceConfiguration;
-import com.peta2kuba.pa165_haunted_houses.service_layer.service.HaunterService;
-import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-
-import java.sql.Time;
-import java.util.ArrayList;
-
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
-/**
- * @author skornok on 26/11/15.
- */
-@ContextConfiguration(classes = ServiceConfiguration.class)
-public class HaunterFacadeImplTest {
-
+//package com.peta2kuba.pa165_haunted_houses.service_layer.facade;
+//
+//import com.peta2kuba.pa165_haunted_houses.dao.HaunterDao;
+//import com.peta2kuba.pa165_haunted_houses.dto.AbilityDTO;
+//import com.peta2kuba.pa165_haunted_houses.dto.HaunterDTO;
+//import com.peta2kuba.pa165_haunted_houses.dto.HauntingHoursDTO;
+//import com.peta2kuba.pa165_haunted_houses.entity.Ability;
+//import com.peta2kuba.pa165_haunted_houses.entity.Haunter;
+//import com.peta2kuba.pa165_haunted_houses.entity.HauntingHours;
+//import com.peta2kuba.pa165_haunted_houses.facade.HaunterFacade;
+//import com.peta2kuba.pa165_haunted_houses.service_layer.BeanMappingService;
+//import com.peta2kuba.pa165_haunted_houses.service_layer.config.ServiceConfiguration;
+//import com.peta2kuba.pa165_haunted_houses.service_layer.service.HaunterService;
+//import org.mockito.InjectMocks;
+//import org.mockito.Mock;
+//import org.mockito.Mockito;
+//import org.mockito.MockitoAnnotations;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.test.context.ContextConfiguration;
+//import org.testng.Assert;
+//import org.testng.annotations.BeforeClass;
+//import org.testng.annotations.BeforeMethod;
+//import org.testng.annotations.Test;
+//
+//import java.sql.Time;
+//import java.util.ArrayList;
+//
+//import static org.mockito.Matchers.any;
+//
+///**
+// * @author skornok on 26/11/15.
+// */
+//@ContextConfiguration(classes = ServiceConfiguration.class)
+//public class HaunterFacadeImplTest {
+//
+//	@Mock
+//	private HaunterDao haunterDao;
+//
 //	@Autowired
+//	@InjectMocks
 //	private HaunterService haunterService;
 //
 //	@Autowired
@@ -104,17 +111,21 @@ public class HaunterFacadeImplTest {
 //
 //	@Test
 //	public void testFindById() {
-//		h.setId(0l);
-//		hDTO.setId(0l);
+//		//h.setId(0l);
+//		//hDTO.setId(0l);
+//		//
+//		//when(mapper.mapTo(h, HaunterDTO.class)).thenReturn(hDTO);
+//		//when(haunterService.findById(0l)).thenReturn(h);
+//		//
+//		//Assert.assertEquals(haunterFacade.findById(0l), hDTO);
+//		//Assert.assertNull(haunterFacade.findById(1l));
+//		//
+//		//verify(mapper).mapTo(h, HaunterDTO.class);
+//		//verify(haunterService).findById(0l);
 //
-//		when(mapper.mapTo(h, HaunterDTO.class)).thenReturn(hDTO);
-//		when(haunterService.findById(0l)).thenReturn(h);
-//
-//		Assert.assertEquals(haunterFacade.findById(0l), hDTO);
-//		Assert.assertNull(haunterFacade.findById(1l));
-//
-//		verify(mapper).mapTo(h, HaunterDTO.class);
-//		verify(haunterService).findById(0l);
+//		Mockito.when(haunterDao.findById(any(Long.class))).thenReturn(h);
+//		HaunterDTO hDTO = haunterFacade.findById(0l);
+//		Assert.assertEquals(mapper.mapTo(h, HaunterDTO.class), hDTO);
 //	}
 //
 //	@Test
@@ -136,4 +147,4 @@ public class HaunterFacadeImplTest {
 //	public void testIsHaunterStronger() throws Exception {
 //
 //	}
-}
+//}
