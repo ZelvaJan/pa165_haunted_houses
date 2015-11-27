@@ -22,11 +22,6 @@ public interface PersonService {
 
     Person findPersonByEmail(String email);
 
-    /**
-     * Find all existing persons in database
-     *
-     * @return list of existing persons
-     */
     List<Person> findAllPersons();
 
     /**
@@ -41,9 +36,9 @@ public interface PersonService {
      * Verify if person exist in database and passwords match.
      *
      * @param email email of verifying person
-     * @param passwordHash input password
+     * @param passwordTyped input password
      * @return true if person exist and passwords match
      */
-    boolean authenticate(String email, String passwordHash);
+    boolean authenticate(String email, String passwordTyped);
 
 }

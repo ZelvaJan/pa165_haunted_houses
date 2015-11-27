@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.peta2kuba.pa165_haunted_houses.dao;
 
 import com.peta2kuba.pa165_haunted_houses.PersistenceTestAplicationContext;
@@ -38,8 +33,8 @@ public class HouseDaoTest extends AbstractTestNGSpringContextTests {
     private HouseDao houseDao;
     @Autowired
     private HaunterDao haunterDao;
-	@Autowired
-	private HauntingHoursDao hauntingHoursDao;
+    @Autowired
+    private HauntingHoursDao hauntingHoursDao;
 
     @PersistenceContext
     private EntityManager em;
@@ -66,11 +61,11 @@ public class HouseDaoTest extends AbstractTestNGSpringContextTests {
         String house2Name = "AirBnB house";
         String house2Address = "Somewhere over the rainbow";
         Timestamp house2HauntedSince = Timestamp.valueOf("2007-09-23 10:10:10.0");
-        
+
         House house2 = new House();
         house2.setName(house2Name);
         house2.setAddress(house2Address);
-        house2.setHauntedSince(house2HauntedSince);         
+        house2.setHauntedSince(house2HauntedSince);
 
         houseDao.create(house1);
         houseDao.create(house2);
@@ -90,20 +85,20 @@ public class HouseDaoTest extends AbstractTestNGSpringContextTests {
         String house1Name = "Simpson's house";
         String house1Address = "742 Evergreen Terrace";
         Timestamp house1HauntedSince = Timestamp.valueOf("2007-09-23 10:10:10.0");
-        
+
         House house1 = new House();
         house1.setName(house1Name);
         house1.setAddress(house1Address);
-        house1.setHauntedSince(house1HauntedSince);         
+        house1.setHauntedSince(house1HauntedSince);
 
         String house2Name = "AirBnB house";
         String house2Address = "Somewhere over the rainbow";
         Timestamp house2HauntedSince = Timestamp.valueOf("2007-09-23 10:10:10.0");
-        
+
         House house2 = new House();
         house2.setName(house2Name);
         house2.setAddress(house2Address);
-        house2.setHauntedSince(house2HauntedSince);         
+        house2.setHauntedSince(house2HauntedSince);
 
         houseDao.create(house1);
         houseDao.create(house2);
@@ -120,11 +115,11 @@ public class HouseDaoTest extends AbstractTestNGSpringContextTests {
         String house1Name = "Simpson's house";
         String house1Address = "742 Evergreen Terrace";
         Timestamp house1HauntedSince = Timestamp.valueOf("2007-09-23 10:10:10.0");
-        
+
         House house1 = new House();
         house1.setName(house1Name);
         house1.setAddress(house1Address);
-        house1.setHauntedSince(house1HauntedSince);         
+        house1.setHauntedSince(house1HauntedSince);
 
         houseDao.create(house1);
 
@@ -141,18 +136,18 @@ public class HouseDaoTest extends AbstractTestNGSpringContextTests {
         String house1Name = "Simpson's house";
         String house1Address = "742 Evergreen Terrace";
         Timestamp house1HauntedSince = Timestamp.valueOf("2007-09-23 10:10:10.0");
-        
+
         House house1 = new House();
         house1.setName(house1Name);
         house1.setAddress(house1Address);
-        house1.setHauntedSince(house1HauntedSince);         
+        house1.setHauntedSince(house1HauntedSince);
 
         houseDao.create(house1);
 
         String updatedHouseName = "Mr. Burns' house";
         String updatedHouseAddress = "Dunno";
-		House updatedHouse = new House(updatedHouseName, updatedHouseAddress, house1HauntedSince, null, null);
-		updatedHouse.setId(house1.getId());
+        House updatedHouse = new House(updatedHouseName, updatedHouseAddress, house1HauntedSince, null, null);
+        updatedHouse.setId(house1.getId());
         houseDao.edit(updatedHouse);
 
         House updatedDbHouse = houseDao.findById(updatedHouse.getId());
@@ -165,27 +160,26 @@ public class HouseDaoTest extends AbstractTestNGSpringContextTests {
      */
     @Test
     public void findHaunters() {
-		// create Haunter
-		String haunter1Name = "Frankenstein";
-		String haunter1HauntingReason = "Headache";
-		HauntingHours haunter1HauntingHours = new HauntingHours();
-		haunter1HauntingHours.setFromTime(Time.valueOf("07:05:00"));
-		haunter1HauntingHours.setToTime(Time.valueOf("17:05:00"));
-		hauntingHoursDao.create(haunter1HauntingHours);
+        // create Haunter
+        String haunter1Name = "Frankenstein";
+        String haunter1HauntingReason = "Headache";
+        HauntingHours haunter1HauntingHours = new HauntingHours();
+        haunter1HauntingHours.setFromTime(Time.valueOf("07:05:00"));
+        haunter1HauntingHours.setToTime(Time.valueOf("17:05:00"));
+        hauntingHoursDao.create(haunter1HauntingHours);
 
-		Haunter haunter1 = new Haunter();
-		haunter1.setName(haunter1Name);
-		haunter1.setHauntingReason(haunter1HauntingReason);
-		haunter1.setHauntingHours(haunter1HauntingHours);
+        Haunter haunter1 = new Haunter();
+        haunter1.setName(haunter1Name);
+        haunter1.setHauntingReason(haunter1HauntingReason);
+        haunter1.setHauntingHours(haunter1HauntingHours);
 
-		haunterDao.create(haunter1);
+        haunterDao.create(haunter1);
 
-		// check Haunter
-		List<Haunter> haunters = haunterDao.findAll();
-		Assert.assertTrue(haunters.contains(haunter1));
+        // check Haunter
+        List<Haunter> haunters = haunterDao.findAll();
+        Assert.assertTrue(haunters.contains(haunter1));
 
-
-		// create House
+        // create House
         String house1Name = "Simpson's house";
         String house1Address = "742 Evergreen Terrace";
         Timestamp house1HauntedSince = Timestamp.valueOf("2007-09-23 10:10:10.0");
@@ -195,18 +189,13 @@ public class HouseDaoTest extends AbstractTestNGSpringContextTests {
         house1.setAddress(house1Address);
         house1.setHauntedSince(house1HauntedSince);
         house1.setDescription("description");
-		house1.setHaunters(haunters);
+        house1.setHaunters(haunters);
 
         houseDao.create(house1);
 
-		// check House
+        // check House
         List<House> houses = houseDao.findAll();
         Assert.assertTrue(houses.contains(house1));
-
-		// check Haunters in House
-        List<Haunter> haunterList = houseDao.findHaunters();
-		Assert.assertTrue(haunterList.contains(haunter1));
-		Assert.assertEquals(haunterList.get(0).getName(), haunter1.getName());
     }
 
     /**
@@ -217,11 +206,11 @@ public class HouseDaoTest extends AbstractTestNGSpringContextTests {
         String house1Name = null;
         String house1Address = "742 Evergreen Terrace";
         Timestamp house1HauntedSince = Timestamp.valueOf("2007-09-23 10:10:10.0");
-        
+
         House house1 = new House();
         house1.setName(null);
         house1.setAddress(house1Address);
-        house1.setHauntedSince(house1HauntedSince);         
+        house1.setHauntedSince(house1HauntedSince);
 
         houseDao.create(house1);
     }
@@ -234,15 +223,15 @@ public class HouseDaoTest extends AbstractTestNGSpringContextTests {
         String house1Name = "Simpson's house";
         String house1Address = null;
         Timestamp house1HauntedSince = Timestamp.valueOf("2007-09-23 10:10:10.0");
-        
+
         House house1 = new House();
         house1.setName(house1Name);
         house1.setAddress(null);
-        house1.setHauntedSince(house1HauntedSince);         
+        house1.setHauntedSince(house1HauntedSince);
 
         houseDao.create(house1);
     }
-    
+
     /**
      * Check non-null name constraints
      */
@@ -250,11 +239,11 @@ public class HouseDaoTest extends AbstractTestNGSpringContextTests {
     public void nullHouseHauntedSiceNotAllowed() {
         String house1Name = "Simpson's house";
         String house1Address = "742 Evergreen Terrace";
-        
+
         House house1 = new House();
         house1.setName(house1Name);
         house1.setAddress(house1Address);
-        house1.setHauntedSince(null);         
+        house1.setHauntedSince(null);
 
         houseDao.create(house1);
     }

@@ -1,6 +1,5 @@
 package com.peta2kuba.pa165_haunted_houses.service_layer;
 
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;

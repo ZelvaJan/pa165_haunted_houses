@@ -57,11 +57,6 @@ public class HouseFacadeImpl implements HouseFacade {
     }
 
     @Override
-    public List<HaunterDTO> findHaunters() {
-        return beanMappingService.mapTo(houseService.findHaunters(), HaunterDTO.class);
-    }
-
-    @Override
     public boolean exorcism(HouseDTO houseDTO, HaunterDTO haunterDTO, Time exorcismTime) {
         return houseService.exorcism(beanMappingService.
                 mapTo(houseDTO, House.class), beanMappingService.

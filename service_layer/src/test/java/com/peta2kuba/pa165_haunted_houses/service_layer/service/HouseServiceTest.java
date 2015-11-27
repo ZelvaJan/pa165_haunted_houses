@@ -2,16 +2,13 @@ package com.peta2kuba.pa165_haunted_houses.service_layer.service;
 
 import com.peta2kuba.pa165_haunted_houses.dao.HaunterDao;
 import com.peta2kuba.pa165_haunted_houses.dao.HouseDao;
-import com.peta2kuba.pa165_haunted_houses.entity.Ability;
 import com.peta2kuba.pa165_haunted_houses.entity.Haunter;
 import com.peta2kuba.pa165_haunted_houses.entity.HauntingHours;
 import com.peta2kuba.pa165_haunted_houses.entity.House;
 import com.peta2kuba.pa165_haunted_houses.service_layer.config.ServiceConfiguration;
-import com.peta2kuba.pa165_haunted_houses.service_layer.service.HouseService;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
-import javax.validation.ConstraintViolationException;
 import org.junit.Assert;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -71,24 +68,46 @@ public class HouseServiceTest extends AbstractTransactionalTestNGSpringContextTe
         houseBrno.setHaunters(haunterBrnoList);
     }
 
+    /**
+     * Test return values for exircism method.
+     */
     @Test
     public void exorcismSuccess1() {
         Assert.assertTrue(houseService.exorcism(houseBrno, haunter1, Time.valueOf("16:05:00")));
     }
 
+    /**
+     * Test return values for exircism method.
+     */
     @Test
     public void exorcismUnsuccessful1() {
         Assert.assertFalse(houseService.exorcism(houseBrno, haunter1, Time.valueOf("18:05:00")));
     }
 
+    /**
+     * Test return values for exircism method.
+     */
     @Test
     public void exorcismSuccess2() {
         Assert.assertFalse(houseService.exorcism(houseBrno, haunter2, Time.valueOf("15:05:00")));
     }
 
+    /**
+     * Test return values for exircism method.
+     */
     @Test
     public void exorcismUnsuccessful2() {
         Assert.assertTrue(houseService.exorcism(houseBrno, haunter2, Time.valueOf("01:05:00")));
     }
 
+    /**
+     * Test null values for exircism method.
+     */
+    @Test
+    public void exorcismNull() {
+        Assert.assertFalse(houseService.exorcism(null, null, null));
+        Assert.assertFalse(houseService.exorcism(null, haunter2, Time.valueOf("01:05:00")));
+        Assert.assertFalse(houseService.exorcism(houseBrno, null, Time.valueOf("01:05:00")));
+        Assert.assertFalse(houseService.exorcism(houseBrno, haunter2, null));
+    }
 }

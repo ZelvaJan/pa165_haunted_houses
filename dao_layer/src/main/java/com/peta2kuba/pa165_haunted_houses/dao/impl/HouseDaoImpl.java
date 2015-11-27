@@ -43,10 +43,4 @@ public class HouseDaoImpl
 	public List<House> findAll() {
 		return em.createQuery("SELECT house FROM House house", House.class).getResultList();
 	}
-
-	@Override
-	public List<Haunter> findHaunters() {
-		return em.createQuery("SELECT house.haunters FROM House house").getResultList();		// TODO check this again
-
-	}
 }

@@ -21,6 +21,11 @@ public interface HaunterFacade {
 
     List<HaunterDTO> findAll();
 
+    /**
+     * Findl all haunters which haunts now
+     *
+     * @return all haunters which haunts now
+     */
     List<HaunterDTO> findActiveHaunters();
 
     /**
@@ -28,8 +33,8 @@ public interface HaunterFacade {
      *
      * @param actualHaunter
      * @param competitorHaunter
-     * @return -1 actual haunter is weaker, 0 same power, 1 actual haunter is
-     * stronger
+     * @return negative number => actual haunter is weaker, 0 => same power,
+     * positive number => actual haunter is stronger
      */
     long isHaunterStronger(HaunterDTO actualHaunter, HaunterDTO competitorHaunter);
 }

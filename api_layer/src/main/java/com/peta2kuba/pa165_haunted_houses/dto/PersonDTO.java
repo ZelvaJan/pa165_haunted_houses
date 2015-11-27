@@ -12,6 +12,9 @@ public class PersonDTO {
     private String email;
     private String password;
 
+    public PersonDTO() {
+    }
+
     public Long getId() {
         return id;
     }
@@ -39,9 +42,9 @@ public class PersonDTO {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.id);
-        hash = 53 * hash + Objects.hashCode(this.email);
-        hash = 53 * hash + Objects.hashCode(this.password);
+        hash = 83 * hash + Objects.hashCode(this.id);
+        hash = 83 * hash + Objects.hashCode(this.email);
+        hash = 83 * hash + Objects.hashCode(this.password);
         return hash;
     }
 
@@ -65,4 +68,10 @@ public class PersonDTO {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "PersonDTO{" + "id=" + id + ", email=" + email + ", password=" + password + '}';
+    }
+
 }

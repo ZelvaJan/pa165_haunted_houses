@@ -7,9 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * Implementation of the {@link PersonService}. This class is part of the
- * service module of the application that provides the implementation of the
- * business logic.
  *
  * @author petr.melicherik
  */
@@ -59,12 +56,12 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public boolean authenticate(String email, String passwordHash) {
+    public boolean authenticate(String email, String passwordTyped) {
         Person person = findPersonByEmail(email);
-        if (person == null || passwordHash == null) {
+        if (person == null || passwordTyped == null) {
             return false;
         } else {
-            return passwordHash.equals(person.getPassword());
+            return passwordTyped.equals(person.getPassword());
         }
     }
 

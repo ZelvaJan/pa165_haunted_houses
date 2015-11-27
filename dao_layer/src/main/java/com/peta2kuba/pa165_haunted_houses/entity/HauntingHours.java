@@ -6,7 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
-import java.lang.Override;
 import java.sql.Time;
 import java.util.Objects;
 
@@ -16,86 +15,84 @@ import java.util.Objects;
 @Entity
 public class HauntingHours {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@NotNull
-	@Column(nullable = false)
-	private Time fromTime;
+    @NotNull
+    @Column(nullable = false)
+    private Time fromTime;
 
-	@NotNull
-	@Column(nullable = false)
-	private Time toTime;
+    @NotNull
+    @Column(nullable = false)
+    private Time toTime;
 
-	public HauntingHours() {
-	}
+    public HauntingHours() {
+    }
 
-	public HauntingHours(Long id, Time fromTime, Time toTime) {
-		this.id = id;
-		this.fromTime = fromTime;
-		this.toTime = toTime;
-	}
+    public HauntingHours(Long id, Time fromTime, Time toTime) {
+        this.id = id;
+        this.fromTime = fromTime;
+        this.toTime = toTime;
+    }
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(final Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public Time getFromTime() {
-		return fromTime;
-	}
+    public Time getFromTime() {
+        return fromTime;
+    }
 
-	public void setFromTime(Time fromTime) {
-		this.fromTime = fromTime;
-	}
+    public void setFromTime(Time fromTime) {
+        this.fromTime = fromTime;
+    }
 
-	public Time getToTime() {
-		return toTime;
-	}
+    public Time getToTime() {
+        return toTime;
+    }
 
-	public void setToTime(Time toTime) {
-		this.toTime = toTime;
-	}
+    public void setToTime(Time toTime) {
+        this.toTime = toTime;
+    }
 
-	@Override
-	public boolean equals(final Object o) {
-		if (this == o) {
-			return true;
-		}
-		if (o == null || getClass() != o.getClass()) {
-			return false;
-		}
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 83 * hash + Objects.hashCode(this.id);
+        hash = 83 * hash + Objects.hashCode(this.fromTime);
+        hash = 83 * hash + Objects.hashCode(this.toTime);
+        return hash;
+    }
 
-		final HauntingHours hours = (HauntingHours) o;
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final HauntingHours other = (HauntingHours) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.fromTime, other.fromTime)) {
+            return false;
+        }
+        if (!Objects.equals(this.toTime, other.toTime)) {
+            return false;
+        }
+        return true;
+    }
 
-		if (id != null ? !id.equals(hours.id) : hours.id != null) {
-			return false;
-		}
-		if (!fromTime.equals(hours.fromTime)) {
-			return false;
-		}
-		if (!toTime.equals(hours.toTime)) {
-			return false;
-		}
+    @Override
+    public String toString() {
+        return "HauntingHours{" + "id=" + id + ", fromTime=" + fromTime + ", toTime=" + toTime + '}';
+    }
 
-		return true;
-	}
-
-	@Override
-	public int hashCode() {
-		int hash = 7;
-		hash = 67 * hash + Objects.hashCode(this.id);
-		hash = 67 * hash + Objects.hashCode(this.fromTime);
-		hash = 67 * hash + Objects.hashCode(this.toTime);
-		return hash;
-	}
-
-	@Override
-	public String toString() {
-		return "HauntingHours{" + "id=" + id + ", fromTime=" + fromTime + ", toTime=" + toTime + '}';
-	}
 }

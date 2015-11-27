@@ -9,17 +9,22 @@ import java.util.List;
  */
 public interface HaunterDao {
 
-	void create(Haunter haunter);
+    void create(Haunter haunter);
 
-	void edit(Haunter haunter);
+    void edit(Haunter haunter);
 
-	void remove(Haunter haunter);
+    void remove(Haunter haunter);
 
-	Haunter findById(Long id);
+    Haunter findById(Long id);
 
-	Haunter findByName(String name);
+    Haunter findByName(String name);
 
-	List<Haunter> findAll();
+    List<Haunter> findAll();
 
-	List<Haunter> findActiveHaunters();
+    /**
+     * Findl all haunters which haunts now
+     *
+     * @return all haunters which haunts now
+     */
+    List<Haunter> findActiveHaunters();
 }

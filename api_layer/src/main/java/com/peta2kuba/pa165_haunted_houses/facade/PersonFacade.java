@@ -20,11 +20,6 @@ public interface PersonFacade {
 
     PersonDTO findPersonByEmail(String email);
 
-    /**
-     * Find all existing persons in database
-     *
-     * @return list of existing persons
-     */
     List<PersonDTO> findAllPersons();
 
     /**

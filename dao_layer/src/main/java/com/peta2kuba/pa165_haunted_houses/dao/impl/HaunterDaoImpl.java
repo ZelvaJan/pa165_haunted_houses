@@ -15,60 +15,54 @@ import java.util.List;
  */
 @Repository
 public class HaunterDaoImpl
-		implements HaunterDao {
+        implements HaunterDao {
 
-	@PersistenceContext
-	private EntityManager em;
+    @PersistenceContext
+    private EntityManager em;
 
-	@Override
-	public void create(Haunter haunter) {
-		em.persist(haunter);
-	}
+    @Override
+    public void create(Haunter haunter) {
+        em.persist(haunter);
+    }
 
-	@Override
-	public void edit(final Haunter haunter) {
-		em.merge(haunter);
-	}
+    @Override
+    public void edit(final Haunter haunter) {
+        em.merge(haunter);
+    }
 
-	@Override
-	public void remove(final Haunter haunter) {
-		em.remove(haunter);
-	}
+    @Override
+    public void remove(final Haunter haunter) {
+        em.remove(haunter);
+    }
 
-	@Override
-	public Haunter findById(final Long id) {
-		return em.find(Haunter.class, id);
-	}
+    @Override
+    public Haunter findById(final Long id) {
+        return em.find(Haunter.class, id);
+    }
 
-	@Override
-	public Haunter findByName(final String name) {
-		return null;
-	}
+    @Override
+    public Haunter findByName(final String name) {
+        return null;
+    }
 
-	@Override
-	public List<Haunter> findAll() {
-		return em.createQuery("SELECT haunter FROM Haunter haunter", Haunter.class).getResultList();
-	}
+    @Override
+    public List<Haunter> findAll() {
+        return em.createQuery("SELECT haunter FROM Haunter haunter", Haunter.class).getResultList();
+    }
 
-	@Override
-	public List<Haunter> findActiveHaunters() {
-		Time now = new Time(System.currentTimeMillis());
-		//Query query = em.createQuery(
-		//		"SELECT h " +
-		//		"FROM Haunter h " +
-		//		"WHERE h.hauntingHours.fromTime < :now " +
-		//		"AND h.hauntingHours.toTime > :now");
-		Query query = em.createQuery("SELECT h " +
-				"FROM Haunter h " +
-				"WHERE (h.hauntingHours.fromTime < h.hauntingHours.toTime " +
-						"AND h.hauntingHours.fromTime < :now " +
-						"AND h.hauntingHours.toTime > :now) " +
-						"OR (h.hauntingHours.fromTime > h.hauntingHours.toTime " +
-						"AND h.hauntingHours.fromTime > :now " +
-						"AND h.hauntingHours.toTime < :now)"
-		);
-		query.setParameter("now", now);
-
-		return query.getResultList();
-	}
+    @Override
+    public List<Haunter> findActiveHaunters() {
+        Time now = new Time(System.currentTimeMillis());
+        Query query = em.createQuery("SELECT h "
+                + "FROM Haunter h "
+                + "WHERE (h.hauntingHours.fromTime < h.hauntingHours.toTime "
+                + "AND h.hauntingHours.fromTime < :now "
+                + "AND h.hauntingHours.toTime > :now) "
+                + "OR (h.hauntingHours.fromTime > h.hauntingHours.toTime "
+                + "AND h.hauntingHours.fromTime > :now "
+                + "AND h.hauntingHours.toTime < :now)"
+        );
+        query.setParameter("now", now);
+        return query.getResultList();
+    }
 }

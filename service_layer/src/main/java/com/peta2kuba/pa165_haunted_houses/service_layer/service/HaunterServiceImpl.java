@@ -10,10 +10,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * Implementation of the
- * {@link com.peta2kuba.pa165_haunted_houses.service_layer.service.HaunterService}.
- * This class is part of the service module of the application that provides the
- * implementation of the business logic.
  *
  * @author skornok on 25/11/15.
  */
@@ -71,6 +67,12 @@ public class HaunterServiceImpl implements HaunterService {
         }
     }
 
+    /**
+     * Determine power of haunter name.
+     *
+     * @param name Haunter name
+     * @return numeric representation of the name power of the dog
+     */
     private long getNamePower(String name) {
         if (name != null) {
             return name.length() * 10;
@@ -79,6 +81,12 @@ public class HaunterServiceImpl implements HaunterService {
         }
     }
 
+    /**
+     * Determine power of haunter abilities.
+     *
+     * @param abilities Haunter abilities
+     * @return numeric representation of the abilities power of the dog
+     */
     private long getAbilityPower(List<Ability> abilities) {
         if (abilities != null) {
             long abilityPower = 0;

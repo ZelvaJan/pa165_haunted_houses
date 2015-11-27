@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.peta2kuba.pa165_haunted_houses.entity;
 
 import javax.persistence.Column;
@@ -19,7 +14,7 @@ import java.util.Objects;
  */
 @Entity
 public class Person {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -34,18 +29,10 @@ public class Person {
 
     private boolean admin = false;
 
-    public boolean isAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(final boolean admin) {
-        this.admin = admin;
-    }
-
     public Person() {
-        
+
     }
-    
+
     public Person(Long id, String email, String password) {
         this.id = id;
         this.email = email;
@@ -55,7 +42,7 @@ public class Person {
     public Long getId() {
         return id;
     }
-    
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -67,7 +54,7 @@ public class Person {
     public void setEmail(String email) {
         this.email = email;
     }
-    
+
     public String getPassword() {
         return password;
     }
@@ -76,12 +63,21 @@ public class Person {
         this.password = password;
     }
 
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 67 * hash + Objects.hashCode(this.id);
-        hash = 67 * hash + Objects.hashCode(this.email);
-        hash = 67 * hash + Objects.hashCode(this.password);
+        int hash = 7;
+        hash = 31 * hash + Objects.hashCode(this.id);
+        hash = 31 * hash + Objects.hashCode(this.email);
+        hash = 31 * hash + Objects.hashCode(this.password);
+        hash = 31 * hash + (this.admin ? 1 : 0);
         return hash;
     }
 
@@ -103,12 +99,15 @@ public class Person {
         if (!Objects.equals(this.password, other.password)) {
             return false;
         }
+        if (this.admin != other.admin) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", email=" + email + ", password=" + password + '}';
+        return "Person{" + "id=" + id + ", email=" + email + ", password=" + password + ", admin=" + admin + '}';
     }
-    
+
 }

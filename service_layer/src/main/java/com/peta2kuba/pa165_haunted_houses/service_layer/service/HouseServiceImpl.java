@@ -12,10 +12,6 @@ import java.sql.Time;
 import java.util.List;
 
 /**
- * Implementation of the
- * {@link com.peta2kuba.pa165_haunted_houses.service_layer.service.HouseService}.
- * This class is part of the service module of the application that provides the
- * implementation of the business logic.
  *
  * @author skornok on 24/11/15.
  */
@@ -51,11 +47,6 @@ public class HouseServiceImpl implements HouseService {
     @Override
     public List<House> findAll() {
         return houseDao.findAll();
-    }
-
-    @Override
-    public List<Haunter> findHaunters() {
-        return houseDao.findHaunters();
     }
 
     @Override

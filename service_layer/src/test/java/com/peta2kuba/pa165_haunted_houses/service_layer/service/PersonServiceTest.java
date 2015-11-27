@@ -3,7 +3,6 @@ package com.peta2kuba.pa165_haunted_houses.service_layer.service;
 import com.peta2kuba.pa165_haunted_houses.dao.PersonDao;
 import com.peta2kuba.pa165_haunted_houses.entity.Person;
 import com.peta2kuba.pa165_haunted_houses.service_layer.config.ServiceConfiguration;
-import com.peta2kuba.pa165_haunted_houses.service_layer.service.PersonService;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -15,7 +14,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.when;
+import org.testng.Assert;
 
 /**
  * @author turcovsky on 26/11/15.
@@ -41,29 +41,57 @@ public class PersonServiceTest extends AbstractTransactionalTestNGSpringContextT
     @BeforeMethod
     public void init() {
         p1 = new Person();
+        p1.setId((long) 0);
         p1.setEmail("turcovsky@master.cz");
         p1.setPassword("aaaaaa");
         p1.setAdmin(true);
 
         p2 = new Person();
+        p2.setId((long) 1);
         p2.setEmail("hnidopich@zapadakov.cz");
         p2.setPassword("secure");
         p2.setAdmin(false);
     }
 
+    /**
+     * Simple test for function proclamation.
+     */
     @Test
     public void createPersonTest() {
         personService.createPerson(p1);
         verify(personDao).create(p1);
     }
 
+    /**
+     * Test return values for isAdmin method.
+     */
     @Test
     public void isAdminTest() {
-        // TODO
+        Assert.assertFalse(personService.isAdmin(null));
+        when(personService.findPersonById((long) 0)).thenReturn(p1);
+        Assert.assertTrue(personService.isAdmin(p1));
+        when(personService.findPersonById((long) 1)).thenReturn(p2);
+        Assert.assertFalse(personService.isAdmin(p2));
     }
 
+    /**
+     * Test return values for anuthenticate method.
+     */
     @Test
     public void authenticateTest() {
-        // TODO
+        when(personService.findPersonByEmail("turcovsky@master.cz")).thenReturn(p1);
+        Assert.assertTrue(personService.authenticate(p1.getEmail(), "aaaaaa"));
+
+        when(personService.findPersonByEmail("hnidopich@zapadakov.cz")).thenReturn(p2);
+        Assert.assertFalse(personService.authenticate(p2.getEmail(), "aaaaaa"));
+    }
+
+    /**
+     * Test return values (null user in db) for anuthenticate method.
+     */
+    @Test
+    public void authenticateTestNullUser() {
+        when(personService.findPersonByEmail("turcovsky@master.cz")).thenReturn(null);
+        Assert.assertFalse(personService.authenticate(p1.getEmail(), "aaaaaa"));
     }
 }

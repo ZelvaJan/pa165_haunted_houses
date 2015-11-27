@@ -1,124 +1,117 @@
 package com.peta2kuba.pa165_haunted_houses.dto;
 
-import com.peta2kuba.pa165_haunted_houses.entity.Haunter;
-
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author turcovsky
  */
 public class HouseDTO {
 
-	private Long id;
-	private String name;
-	private String address;
-	private Timestamp hauntedSince;
-	private String description;
-	private List<HaunterDTO> haunters;
+    private Long id;
+    private String name;
+    private String address;
+    private Timestamp hauntedSince;
+    private String description;
+    private List<HaunterDTO> haunters;
 
-	public HouseDTO() {
-	}
+    public HouseDTO() {
+    }
 
-	public List<HaunterDTO> getHaunters() {
-		return haunters;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setHaunters(final List<HaunterDTO> haunters) {
-		this.haunters = haunters;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public Long getId() {
+    public String getName() {
+        return name;
+    }
 
-		return id;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setId(final Long id) {
-		this.id = id;
-	}
+    public String getAddress() {
+        return address;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-	public void setName(final String name) {
-		this.name = name;
-	}
+    public Timestamp getHauntedSince() {
+        return hauntedSince;
+    }
 
-	public String getAddress() {
-		return address;
-	}
+    public void setHauntedSince(Timestamp hauntedSince) {
+        this.hauntedSince = hauntedSince;
+    }
 
-	public void setAddress(final String address) {
-		this.address = address;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public Timestamp getHauntedSince() {
-		return hauntedSince;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public void setHauntedSince(final Timestamp hauntedSince) {
-		this.hauntedSince = hauntedSince;
-	}
+    public List<HaunterDTO> getHaunters() {
+        return haunters;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public void setHaunters(List<HaunterDTO> haunters) {
+        this.haunters = haunters;
+    }
 
-	public void setDescription(final String description) {
-		this.description = description;
-	}
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 29 * hash + Objects.hashCode(this.id);
+        hash = 29 * hash + Objects.hashCode(this.name);
+        hash = 29 * hash + Objects.hashCode(this.address);
+        hash = 29 * hash + Objects.hashCode(this.hauntedSince);
+        hash = 29 * hash + Objects.hashCode(this.description);
+        hash = 29 * hash + Objects.hashCode(this.haunters);
+        return hash;
+    }
 
-	@Override
-	public boolean equals(final Object o) {
-		if (this == o) {
-			return true;
-		}
-		if (o == null || getClass() != o.getClass()) {
-			return false;
-		}
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final HouseDTO other = (HouseDTO) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (!Objects.equals(this.address, other.address)) {
+            return false;
+        }
+        if (!Objects.equals(this.hauntedSince, other.hauntedSince)) {
+            return false;
+        }
+        if (!Objects.equals(this.description, other.description)) {
+            return false;
+        }
+        if (!Objects.equals(this.haunters, other.haunters)) {
+            return false;
+        }
+        return true;
+    }
 
-		final HouseDTO houseDTO = (HouseDTO) o;
+    @Override
+    public String toString() {
+        return "HouseDTO{" + "id=" + id + ", name=" + name + ", address=" + address + ", hauntedSince=" + hauntedSince + ", description=" + description + ", haunters=" + haunters + '}';
+    }
 
-		if (id != null ? !id.equals(houseDTO.id) : houseDTO.id != null) {
-			return false;
-		}
-		if (name != null ? !name.equals(houseDTO.name) : houseDTO.name != null) {
-			return false;
-		}
-		if (address != null ? !address.equals(houseDTO.address) : houseDTO.address != null) {
-			return false;
-		}
-		if (hauntedSince != null ? !hauntedSince.equals(houseDTO.hauntedSince) : houseDTO.hauntedSince != null) {
-			return false;
-		}
-		if (description != null ? !description.equals(houseDTO.description) : houseDTO.description != null) {
-			return false;
-		}
-		return !(haunters != null ? !haunters.equals(houseDTO.haunters) : houseDTO.haunters != null);
-
-	}
-
-	@Override
-	public int hashCode() {
-		int result = id != null ? id.hashCode() : 0;
-		result = 31 * result + (name != null ? name.hashCode() : 0);
-		result = 31 * result + (address != null ? address.hashCode() : 0);
-		result = 31 * result + (hauntedSince != null ? hauntedSince.hashCode() : 0);
-		result = 31 * result + (description != null ? description.hashCode() : 0);
-		result = 31 * result + (haunters != null ? haunters.hashCode() : 0);
-		return result;
-	}
-
-	@Override
-	public String toString() {
-		return "HouseDTO{" +
-				"id=" + id +
-				", name='" + name + '\'' +
-				", address='" + address + '\'' +
-				", hauntedSince=" + hauntedSince +
-				", description='" + description + '\'' +
-				", haunters=" + haunters +
-				'}';
-	}
 }

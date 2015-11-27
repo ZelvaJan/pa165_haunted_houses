@@ -13,7 +13,6 @@ import com.peta2kuba.pa165_haunted_houses.entity.House;
 import com.peta2kuba.pa165_haunted_houses.entity.Person;
 import com.peta2kuba.pa165_haunted_houses.service_layer.BeanMappingService;
 import com.peta2kuba.pa165_haunted_houses.service_layer.facade.PersonFacadeImpl;
-import com.peta2kuba.pa165_haunted_houses.service_layer.service.PersonService;
 import com.peta2kuba.pa165_haunted_houses.service_layer.service.PersonServiceImpl;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
@@ -28,27 +27,26 @@ import org.springframework.context.annotation.Import;
  */
 @Configuration
 @Import(PersistenceTestAplicationContext.class)
-@ComponentScan(basePackageClasses={PersonServiceImpl.class, PersonFacadeImpl.class, BeanMappingService.class})
+@ComponentScan(basePackageClasses = {PersonServiceImpl.class, PersonFacadeImpl.class, BeanMappingService.class})
 public class ServiceConfiguration {
 
+    @Bean
+    public Mapper dozer() {
+        DozerBeanMapper dozer = new DozerBeanMapper();
+        dozer.addMapping(new DozerCustomConfig());
+        return dozer;
+    }
 
-	@Bean
-	public Mapper dozer() {
-		DozerBeanMapper dozer = new DozerBeanMapper();
-		dozer.addMapping(new DozerCustomConfig());
-		return dozer;
-	}
+    public class DozerCustomConfig
+            extends BeanMappingBuilder {
 
-	public class DozerCustomConfig
-			extends BeanMappingBuilder {
-
-		@Override
-		protected void configure() {
-			mapping(Person.class, PersonDTO.class);
-			mapping(Ability.class, AbilityDTO.class);
-			mapping(Haunter.class, HaunterDTO.class);
-			mapping(HauntingHours.class, HauntingHoursDTO.class);
-			mapping(House.class, HouseDTO.class);
-		}
-	}
+        @Override
+        protected void configure() {
+            mapping(Person.class, PersonDTO.class);
+            mapping(Ability.class, AbilityDTO.class);
+            mapping(Haunter.class, HaunterDTO.class);
+            mapping(HauntingHours.class, HauntingHoursDTO.class);
+            mapping(House.class, HouseDTO.class);
+        }
+    }
 }

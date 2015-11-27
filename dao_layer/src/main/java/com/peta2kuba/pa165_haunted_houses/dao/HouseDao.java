@@ -1,6 +1,5 @@
 package com.peta2kuba.pa165_haunted_houses.dao;
 
-import com.peta2kuba.pa165_haunted_houses.entity.Haunter;
 import com.peta2kuba.pa165_haunted_houses.entity.House;
 
 import java.util.List;
@@ -19,6 +18,4 @@ public interface HouseDao {
 	House findById(Long id);
 
 	List<House> findAll();
-
-	List<Haunter> findHaunters();
 }

@@ -13,25 +13,32 @@ import java.util.List;
 @Service
 public interface HaunterService {
 
-	void createHaunter(Haunter haunter);
+    void createHaunter(Haunter haunter);
 
-	void editHaunter(Haunter haunter);
+    void editHaunter(Haunter haunter);
 
-	void removeHaunter(Haunter haunter);
+    void removeHaunter(Haunter haunter);
 
-	Haunter findById(Long id);
+    Haunter findById(Long id);
 
-	Haunter findByName(String name);
+    Haunter findByName(String name);
 
-	List<Haunter> findAll();
+    List<Haunter> findAll();
 
-	List<Haunter> findActiveHaunters();
-        
-        /**
-         * Determine if actual haunter is more powerful than competitor
-         * @param actualHaunter 
-         * @param competitorHaunter
-         * @return negative number => actual haunter is weaker, 0 => same power, positive number => actual haunter is stronger
-         */
-        long isHaunterStronger (Haunter actualHaunter, Haunter competitorHaunter);
+    /**
+     * Findl all haunters which haunts now
+     *
+     * @return all haunters which haunts now
+     */
+    List<Haunter> findActiveHaunters();
+
+    /**
+     * Determine if actual haunter is more powerful than competitor
+     *
+     * @param actualHaunter
+     * @param competitorHaunter
+     * @return negative number => actual haunter is weaker, 0 => same power,
+     * positive number => actual haunter is stronger
+     */
+    long isHaunterStronger(Haunter actualHaunter, Haunter competitorHaunter);
 }

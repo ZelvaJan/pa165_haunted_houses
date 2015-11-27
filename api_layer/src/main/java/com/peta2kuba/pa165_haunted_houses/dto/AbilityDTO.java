@@ -13,14 +13,14 @@ public class AbilityDTO {
     private String description;
     private ArrayList<HaunterDTO> haunters;
 
+    public AbilityDTO() {
+
+    }
+
     public AbilityDTO(Long id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
-    }
-
-    public AbilityDTO() {
-
     }
 
     public Long getId() {
@@ -58,10 +58,10 @@ public class AbilityDTO {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 41 * hash + Objects.hashCode(this.id);
-        hash = 41 * hash + Objects.hashCode(this.name);
-        hash = 41 * hash + Objects.hashCode(this.description);
-        hash = 41 * hash + Objects.hashCode(this.haunters);
+        hash = 89 * hash + Objects.hashCode(this.id);
+        hash = 89 * hash + Objects.hashCode(this.name);
+        hash = 89 * hash + Objects.hashCode(this.description);
+        hash = 89 * hash + Objects.hashCode(this.haunters);
         return hash;
     }
 
@@ -87,6 +87,11 @@ public class AbilityDTO {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "AbilityDTO{" + "id=" + id + ", name=" + name + ", description=" + description + ", haunters=" + haunters + '}';
     }
 
 }

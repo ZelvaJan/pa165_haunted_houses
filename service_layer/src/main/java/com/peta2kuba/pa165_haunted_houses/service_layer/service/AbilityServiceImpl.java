@@ -7,9 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * Implementation of the {@link AbilityService}. This class is part of the
- * service module of the application that provides the implementation of the
- * business logic.
  *
  * @author petr.melicherik
  */

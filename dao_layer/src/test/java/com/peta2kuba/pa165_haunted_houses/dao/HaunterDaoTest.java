@@ -1,20 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.peta2kuba.pa165_haunted_houses.dao;
 
 import com.peta2kuba.pa165_haunted_houses.PersistenceTestAplicationContext;
 import com.peta2kuba.pa165_haunted_houses.entity.Haunter;
 import com.peta2kuba.pa165_haunted_houses.entity.HauntingHours;
-import com.peta2kuba.pa165_haunted_houses.entity.House;
 
 import java.sql.Time;
-import java.sql.Timestamp;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.validation.ConstraintViolationException;
 
@@ -26,11 +17,6 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 import org.springframework.transaction.annotation.Transactional;
 import org.testng.Assert;
 
-import static org.testng.Assert.*;
-
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -49,39 +35,39 @@ public class HaunterDaoTest
     private HauntingHoursDao hauntingHoursDao;
 
     private Haunter h1;
-	private Haunter h2;
+    private Haunter h2;
 
-	private HauntingHours hh1;
-	private HauntingHours hh2;
+    private HauntingHours hh1;
+    private HauntingHours hh2;
 
     public HaunterDaoTest() {
     }
 
-	@BeforeMethod
-	public void initHaunters() {
-		hh1 = new HauntingHours();
-		hh1.setFromTime(Time.valueOf("07:05:00"));
-		hh1.setToTime(Time.valueOf("17:05:00"));
-		hauntingHoursDao.create(hh1);
+    @BeforeMethod
+    public void initHaunters() {
+        hh1 = new HauntingHours();
+        hh1.setFromTime(Time.valueOf("07:05:00"));
+        hh1.setToTime(Time.valueOf("17:05:00"));
+        hauntingHoursDao.create(hh1);
 
-		h1 = new Haunter();
-		h1.setName("Frankenstein");
-		h1.setHauntingReason("Headache");
-		h1.setHauntingHours(hh1);
+        h1 = new Haunter();
+        h1.setName("Frankenstein");
+        h1.setHauntingReason("Headache");
+        h1.setHauntingHours(hh1);
 
-		hh2 = new HauntingHours();
-		hh2.setFromTime(Time.valueOf("18:05:00"));
-		hh2.setToTime(Time.valueOf("23:55:00"));
-		hauntingHoursDao.create(hh2);
+        hh2 = new HauntingHours();
+        hh2.setFromTime(Time.valueOf("18:05:00"));
+        hh2.setToTime(Time.valueOf("23:55:00"));
+        hauntingHoursDao.create(hh2);
 
-		h2 = new Haunter();
-		h2.setName("Alien");
-		h2.setHauntingReason("Too many children");
-		h2.setHauntingHours(hh2);
+        h2 = new Haunter();
+        h2.setName("Alien");
+        h2.setHauntingReason("Too many children");
+        h2.setHauntingHours(hh2);
 
-		haunterDao.create(h1);
-		haunterDao.create(h2);
-	}
+        haunterDao.create(h1);
+        haunterDao.create(h2);
+    }
 
     /**
      * Make sure that the creation of database objects work and can return all
@@ -103,7 +89,7 @@ public class HaunterDaoTest
     @Test
     public void findActiveHaunters() {
         List<Haunter> haunters = haunterDao.findActiveHaunters();
-		Assert.assertTrue(haunters.size() <= 1);
+        Assert.assertTrue(haunters.size() <= 1);
     }
 
     /**
@@ -124,7 +110,7 @@ public class HaunterDaoTest
         haunterDao.remove(h1);
         Assert.assertNull(haunterDao.findById(h1.getId()));
 
-		haunterDao.create(h1);
+        haunterDao.create(h1);
     }
 
     /**
@@ -132,7 +118,7 @@ public class HaunterDaoTest
      */
     @Test()
     public void update() {
-		final String updatedReason = "Toothache";
+        final String updatedReason = "Toothache";
         final Haunter updatedHaunter = new Haunter(h1.getId(), h1.getName(), h1.getHauntingHours(), null, updatedReason);
         haunterDao.edit(updatedHaunter);
 
@@ -148,7 +134,7 @@ public class HaunterDaoTest
         Haunter haunter1 = new Haunter();
         haunter1.setHauntingHours(hh1);
         haunterDao.create(haunter1);
-}
+    }
 
     /**
      * Check non-null Description constraints
