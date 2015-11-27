@@ -3,6 +3,8 @@ package com.peta2kuba.pa165_haunted_houses.service_layer.facade;
 import com.peta2kuba.pa165_haunted_houses.dao.HaunterDao;
 import com.peta2kuba.pa165_haunted_houses.dto.HaunterDTO;
 import com.peta2kuba.pa165_haunted_houses.dto.HauntingHoursDTO;
+import com.peta2kuba.pa165_haunted_houses.dto.PersonAuthenticateDTO;
+import com.peta2kuba.pa165_haunted_houses.entity.Ability;
 import com.peta2kuba.pa165_haunted_houses.entity.Haunter;
 import com.peta2kuba.pa165_haunted_houses.entity.HauntingHours;
 import com.peta2kuba.pa165_haunted_houses.facade.HaunterFacade;
@@ -126,28 +128,22 @@ public class HaunterFacadeImplTest extends AbstractTransactionalTestNGSpringCont
 
 	@Test
 	public void testIsHaunterStronger() {
-		//Haunter haunter2 = new Haunter();
-		//haunter2.setHauntingHours(hh);
-		//haunter2.setName("Stronger");
-		//haunter2.setDescription("Haunting people with his enormous head");
-		//haunter2.setHauntingReason("Because");
-		//
-		//Ability a = new Ability();
-		//a.setName("Big head");
-		//a.setDescription("It's really large. Watch out!");
-		//ArrayList<Ability> aList = new ArrayList<>();
-		//aList.add(a);
-		//haunter2.setAbilities(aList);
-		//
-		//HaunterDTO haunterDTO2 = mapper.mapTo(haunter2, HaunterDTO.class);
-		//
-		//when(haunter)
-		//
-		//
-		//when(personDao.findByEmail(person.getEmail())).thenReturn(person);
-		//PersonAuthenticateDTO personAuthenticateDTO = new PersonAuthenticateDTO();
-		//personAuthenticateDTO.setEmail(personDTO.getEmail());
-		//personAuthenticateDTO.setPassword(personDTO.getPassword());
-		//Assert.assertTrue(personFacade.authenticate(personAuthenticateDTO));
+		Haunter haunter2 = new Haunter();
+		haunter2.setHauntingHours(hh);
+		haunter2.setName("Stronger");
+		haunter2.setDescription("Haunting people with his enormous head");
+		haunter2.setHauntingReason("Because");
+
+		Ability a = new Ability();
+		a.setName("Big head");
+		a.setDescription("It's really large. Watch out!");
+		ArrayList<Ability> aList = new ArrayList<>();
+		aList.add(a);
+		haunter2.setAbilities(aList);
+
+		HaunterDTO haunterDTO2 = mapper.mapTo(haunter2, HaunterDTO.class);
+
+		long result = haunterFacade.isHaunterStronger(haunterDTO, haunterDTO2);
+		Assert.assertTrue(result < 0);
 	}
 }

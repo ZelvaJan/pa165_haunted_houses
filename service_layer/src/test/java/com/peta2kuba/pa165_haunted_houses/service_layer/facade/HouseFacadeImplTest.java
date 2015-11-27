@@ -134,12 +134,8 @@ public class HouseFacadeImplTest extends AbstractTransactionalTestNGSpringContex
 		haunterDTOs.add(haunterDTO);
 		houseDTO.setHaunters(haunterDTOs);
 
-		doAnswer(new Answer() {
-			@Override
-			public Object answer(final InvocationOnMock invocationOnMock) throws Throwable {
-				haunters.remove(haunter);
-				return null;
-			}
-		}).when(haunterDao.remove(haunter));
+		boolean result = houseFacade.exorcism(houseDTO, haunterDTO, Time.valueOf("10:00:00"));
+		Assert.assertTrue(result);
+		verify(haunterDao).remove(haunter);
 	}
 }
