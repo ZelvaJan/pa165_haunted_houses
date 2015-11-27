@@ -4,5 +4,3 @@ Project Haunted Houses for PA165
 
 for more info, see wiki:
 https://github.com/DrakMelisek/pa165_haunted_houses/wiki
-
-# Nezapomen regenerovat equals(), hashCode() a toString(), Blbecku!!!
