@@ -13,6 +13,16 @@ public class AbilityDTO {
     private String description;
     private ArrayList<HaunterDTO> haunters;
 
+    public AbilityDTO(Long id, String name, String description) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+    }
+
+    public AbilityDTO() {
+
+    }
+
     public Long getId() {
         return id;
     }
