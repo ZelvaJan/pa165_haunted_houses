@@ -12,6 +12,8 @@ import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 
 /**
+ * Entity of an Ability of Haunters with description
+ *
  * @author turcovsky on 28/10/15.
  */
 @Entity

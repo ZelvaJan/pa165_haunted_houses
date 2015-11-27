@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Objects;
 
 /**
+ * Haunted house entity
+ *
  * @author turcovsky on 28/10/15.
  */
 @Entity

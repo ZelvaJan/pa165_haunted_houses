@@ -10,6 +10,8 @@ import java.sql.Time;
 import java.util.Objects;
 
 /**
+ * Entity of hours between which is a Haunter haunting every day
+ *
  * @author petr.melicherik
  */
 @Entity

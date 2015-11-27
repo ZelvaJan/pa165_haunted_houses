@@ -71,6 +71,11 @@ public class HouseServiceImpl implements HouseService {
         return false;
     }
 
+    /**
+     * Remove haunter from database
+     * @param h haunter to remove
+     * @return true, haunter was removed
+     */
     private boolean removeHaunter(Haunter h) {
         haunterDao.remove(h);
         return true;

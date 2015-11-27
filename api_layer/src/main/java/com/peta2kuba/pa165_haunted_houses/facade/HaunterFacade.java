@@ -22,9 +22,9 @@ public interface HaunterFacade {
     List<HaunterDTO> findAll();
 
     /**
-     * Findl all haunters which haunts now
+     * Find all haunters which haunt now
      *
-     * @return all haunters which haunts now
+     * @return all haunters which haunt now
      */
     List<HaunterDTO> findActiveHaunters();
 

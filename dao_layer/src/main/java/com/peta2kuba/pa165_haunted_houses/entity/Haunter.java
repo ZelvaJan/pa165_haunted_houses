@@ -14,6 +14,8 @@ import java.util.Objects;
 import javax.persistence.ManyToOne;
 
 /**
+ * Haunter entity with its Abilities and additional information
+ *
  * @author petr.melicherik
  */
 @Entity
