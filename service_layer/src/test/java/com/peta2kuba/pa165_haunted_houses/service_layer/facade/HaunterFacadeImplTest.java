@@ -1,150 +1,153 @@
-//package com.peta2kuba.pa165_haunted_houses.service_layer.facade;
-//
-//import com.peta2kuba.pa165_haunted_houses.dao.HaunterDao;
-//import com.peta2kuba.pa165_haunted_houses.dto.AbilityDTO;
-//import com.peta2kuba.pa165_haunted_houses.dto.HaunterDTO;
-//import com.peta2kuba.pa165_haunted_houses.dto.HauntingHoursDTO;
-//import com.peta2kuba.pa165_haunted_houses.entity.Ability;
-//import com.peta2kuba.pa165_haunted_houses.entity.Haunter;
-//import com.peta2kuba.pa165_haunted_houses.entity.HauntingHours;
-//import com.peta2kuba.pa165_haunted_houses.facade.HaunterFacade;
-//import com.peta2kuba.pa165_haunted_houses.service_layer.BeanMappingService;
-//import com.peta2kuba.pa165_haunted_houses.service_layer.config.ServiceConfiguration;
-//import com.peta2kuba.pa165_haunted_houses.service_layer.service.HaunterService;
-//import org.mockito.InjectMocks;
-//import org.mockito.Mock;
-//import org.mockito.Mockito;
-//import org.mockito.MockitoAnnotations;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.test.context.ContextConfiguration;
-//import org.testng.Assert;
-//import org.testng.annotations.BeforeClass;
-//import org.testng.annotations.BeforeMethod;
-//import org.testng.annotations.Test;
-//
-//import java.sql.Time;
-//import java.util.ArrayList;
-//
-//import static org.mockito.Matchers.any;
-//
-///**
-// * @author skornok on 26/11/15.
-// */
-//@ContextConfiguration(classes = ServiceConfiguration.class)
-//public class HaunterFacadeImplTest {
-//
-//	@Mock
-//	private HaunterDao haunterDao;
-//
-//	@Autowired
-//	@InjectMocks
-//	private HaunterService haunterService;
-//
-//	@Autowired
-//	private BeanMappingService mapper;
-//
-//	@Autowired
-//	private HaunterFacade haunterFacade;
-//
-//	private Haunter h;
-//	private HauntingHours hh;
-//	private HaunterDTO hDTO;
-//	private HauntingHoursDTO hhDTO;
-//
-//	@BeforeMethod
-//	public void initSingleTest() {
-//		hh = new HauntingHours();
-//		hh.setFromTime(Time.valueOf("8:00:00"));
-//		hh.setToTime(Time.valueOf("20:00:00"));
-//
-//		Ability a = new Ability();
-//		a.setName("Big head");
-//		a.setDescription("It's really large. Watch out!");
-//		ArrayList<Ability> aList = new ArrayList<>();
-//		aList.add(a);
-//
-//		h = new Haunter();
-//		h.setHauntingHours(hh);
-//		h.setName("Premek");
-//		h.setDescription("Haunting people with his enormous head");
-//		h.setHauntingReason("Because");
-//		h.setAbilities(aList);
-//
-//
-//		hhDTO = new HauntingHoursDTO();
-//		hhDTO.setFromTime(Time.valueOf("8:00:00"));
-//		hhDTO.setToTime(Time.valueOf("20:00:00"));
-//
-//		AbilityDTO aDTO = new AbilityDTO();
-//		aDTO.setName("Big head");
-//		aDTO.setDescription("It's really large. Watch out!");
-//		ArrayList<AbilityDTO> aListDTO = new ArrayList<>();
-//		aListDTO.add(aDTO);
-//
-//		hDTO = new HaunterDTO();
-//		hDTO.setHauntingHours(hhDTO);
-//		hDTO.setName("Premek");
-//		hDTO.setDescription("Haunting people with his enormous head");
-//		hDTO.setHauntingReason("Because");
-//		hDTO.setAbilities(aListDTO);
-//	}
-//
-//	@BeforeClass
-//	public void init() {
-//		MockitoAnnotations.initMocks(this);
-//	}
-//
-//	@Test
-//	public void testCreateHaunter() {
-//
-//	}
-//
-//	@Test
-//	public void testEditHaunter() {
-//
-//	}
-//
-//	@Test
-//	public void testRemoveHaunter() {
-//
-//	}
-//
-//	@Test
-//	public void testFindById() {
-//		//h.setId(0l);
-//		//hDTO.setId(0l);
-//		//
-//		//when(mapper.mapTo(h, HaunterDTO.class)).thenReturn(hDTO);
-//		//when(haunterService.findById(0l)).thenReturn(h);
-//		//
-//		//Assert.assertEquals(haunterFacade.findById(0l), hDTO);
-//		//Assert.assertNull(haunterFacade.findById(1l));
-//		//
-//		//verify(mapper).mapTo(h, HaunterDTO.class);
-//		//verify(haunterService).findById(0l);
-//
-//		Mockito.when(haunterDao.findById(any(Long.class))).thenReturn(h);
-//		HaunterDTO hDTO = haunterFacade.findById(0l);
-//		Assert.assertEquals(mapper.mapTo(h, HaunterDTO.class), hDTO);
-//	}
-//
-//	@Test
-//	public void testFindByName() {
-//
-//	}
-//
-//	@Test
-//	public void testFindAll() {
-//
-//	}
-//
-//	@Test
-//	public void testFindActiveHaunters() throws Exception {
-//
-//	}
-//
-//	@Test
-//	public void testIsHaunterStronger() throws Exception {
-//
-//	}
-//}
+package com.peta2kuba.pa165_haunted_houses.service_layer.facade;
+
+import com.peta2kuba.pa165_haunted_houses.dao.HaunterDao;
+import com.peta2kuba.pa165_haunted_houses.dto.HaunterDTO;
+import com.peta2kuba.pa165_haunted_houses.dto.HauntingHoursDTO;
+import com.peta2kuba.pa165_haunted_houses.entity.Haunter;
+import com.peta2kuba.pa165_haunted_houses.entity.HauntingHours;
+import com.peta2kuba.pa165_haunted_houses.facade.HaunterFacade;
+import com.peta2kuba.pa165_haunted_houses.service_layer.BeanMappingService;
+import com.peta2kuba.pa165_haunted_houses.service_layer.config.ServiceConfiguration;
+import com.peta2kuba.pa165_haunted_houses.service_layer.service.HaunterService;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
+import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+/**
+ * @author skornok on 26/11/15.
+ */
+@ContextConfiguration(classes = ServiceConfiguration.class)
+public class HaunterFacadeImplTest extends AbstractTransactionalTestNGSpringContextTests {
+
+	@Mock
+	private HaunterDao haunterDao;
+
+	@Autowired
+	@InjectMocks
+	private HaunterService haunterService;
+
+	@Autowired
+	private BeanMappingService mapper;
+
+	@Autowired
+	private HaunterFacade haunterFacade;
+
+	private Haunter haunter;
+	private HauntingHours hh;
+	private HaunterDTO haunterDTO;
+	private HauntingHoursDTO hhDTO;
+
+	@org.testng.annotations.BeforeClass
+	public void initClass() {
+		MockitoAnnotations.initMocks(this);
+	}
+
+	@BeforeMethod
+	public void init() {
+		hh = new HauntingHours();
+		hh.setFromTime(Time.valueOf("8:00:00"));
+		hh.setToTime(Time.valueOf("20:00:00"));
+
+		haunter = new Haunter();
+		haunter.setHauntingHours(hh);
+		haunter.setName("Premek");
+		haunter.setDescription("Haunting people with his enormous head");
+		haunter.setHauntingReason("Because");
+
+		haunterDTO = mapper.mapTo(haunter, HaunterDTO.class);
+	}
+
+	@Test
+	public void testCreateHaunter() {
+		haunterFacade.createHaunter(haunterDTO);
+		verify(haunterDao).create(haunter);
+	}
+
+	@Test
+	public void testEditHaunter() {
+		haunterFacade.editHaunter(haunterDTO);
+		verify(haunterDao).edit(haunter);
+	}
+
+	@Test
+	public void testRemoveHaunter() {
+		haunterFacade.removeHaunter(haunterDTO);
+		verify(haunterDao).remove(haunter);
+	}
+
+	@Test
+	public void testFindById() {
+		Mockito.when(haunterDao.findById(any(Long.class))).thenReturn(haunter);
+		HaunterDTO hDTO = haunterFacade.findById(0l);
+		Assert.assertEquals(mapper.mapTo(haunter, HaunterDTO.class), hDTO);
+	}
+
+	@Test
+	public void testFindByName() {
+		Mockito.when(haunterDao.findByName(any(String.class))).thenReturn(haunter);
+		HaunterDTO hDTO = haunterFacade.findByName("asdf");
+		Assert.assertEquals(mapper.mapTo(haunter, HaunterDTO.class), hDTO);
+	}
+
+	@Test
+	public void testFindAll() {
+		List<Haunter> haunters = new ArrayList<>();
+		haunters.add(haunter);
+
+		when(haunterDao.findAll()).thenReturn(haunters);
+		List<HaunterDTO> haunterDTOs = haunterFacade.findAll();
+		Assert.assertEquals(mapper.mapTo(haunters, HaunterDTO.class), haunterDTOs);
+	}
+
+	@Test
+	public void testFindActiveHaunters() {
+		List<Haunter> haunters = new ArrayList<>();
+		haunters.add(haunter);
+
+		when(haunterDao.findActiveHaunters()).thenReturn(haunters);
+		List<HaunterDTO> haunterDTOs = haunterFacade.findActiveHaunters();
+		Assert.assertEquals(mapper.mapTo(haunters, HaunterDTO.class), haunterDTOs);
+	}
+
+	@Test
+	public void testIsHaunterStronger() {
+		//Haunter haunter2 = new Haunter();
+		//haunter2.setHauntingHours(hh);
+		//haunter2.setName("Stronger");
+		//haunter2.setDescription("Haunting people with his enormous head");
+		//haunter2.setHauntingReason("Because");
+		//
+		//Ability a = new Ability();
+		//a.setName("Big head");
+		//a.setDescription("It's really large. Watch out!");
+		//ArrayList<Ability> aList = new ArrayList<>();
+		//aList.add(a);
+		//haunter2.setAbilities(aList);
+		//
+		//HaunterDTO haunterDTO2 = mapper.mapTo(haunter2, HaunterDTO.class);
+		//
+		//when(haunter)
+		//
+		//
+		//when(personDao.findByEmail(person.getEmail())).thenReturn(person);
+		//PersonAuthenticateDTO personAuthenticateDTO = new PersonAuthenticateDTO();
+		//personAuthenticateDTO.setEmail(personDTO.getEmail());
+		//personAuthenticateDTO.setPassword(personDTO.getPassword());
+		//Assert.assertTrue(personFacade.authenticate(personAuthenticateDTO));
+	}
+}

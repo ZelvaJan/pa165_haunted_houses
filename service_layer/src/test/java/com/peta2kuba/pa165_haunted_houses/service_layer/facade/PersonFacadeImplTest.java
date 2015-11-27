@@ -6,21 +6,15 @@
 package com.peta2kuba.pa165_haunted_houses.service_layer.facade;
 
 import com.peta2kuba.pa165_haunted_houses.dao.PersonDao;
-import com.peta2kuba.pa165_haunted_houses.dto.AbilityDTO;
 import com.peta2kuba.pa165_haunted_houses.dto.PersonAuthenticateDTO;
 import com.peta2kuba.pa165_haunted_houses.dto.PersonDTO;
-import com.peta2kuba.pa165_haunted_houses.entity.Ability;
 import com.peta2kuba.pa165_haunted_houses.entity.Person;
 import com.peta2kuba.pa165_haunted_houses.facade.PersonFacade;
 import com.peta2kuba.pa165_haunted_houses.service_layer.BeanMappingService;
 import com.peta2kuba.pa165_haunted_houses.service_layer.config.ServiceConfiguration;
 import com.peta2kuba.pa165_haunted_houses.service_layer.service.PersonService;
-import java.util.ArrayList;
-import java.util.List;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -29,6 +23,12 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  *
@@ -50,15 +50,15 @@ public class PersonFacadeImplTest extends AbstractTransactionalTestNGSpringConte
     @Autowired
     private PersonFacade personFacade;
 
-    @BeforeClass
-    public void setupClass() {
-        MockitoAnnotations.initMocks(this);
-    }
-
     Person person;
     Person person2;
     PersonDTO personDTO;
     PersonDTO personDTO2;
+
+    @BeforeClass
+    public void setupClass() {
+        MockitoAnnotations.initMocks(this);
+    }
 
     @BeforeMethod
     public void init() {

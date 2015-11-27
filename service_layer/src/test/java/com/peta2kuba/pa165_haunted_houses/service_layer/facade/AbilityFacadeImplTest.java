@@ -12,11 +12,8 @@ import com.peta2kuba.pa165_haunted_houses.facade.AbilityFacade;
 import com.peta2kuba.pa165_haunted_houses.service_layer.BeanMappingService;
 import com.peta2kuba.pa165_haunted_houses.service_layer.config.ServiceConfiguration;
 import com.peta2kuba.pa165_haunted_houses.service_layer.service.AbilityService;
-import java.util.ArrayList;
-import java.util.List;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import static org.mockito.Mockito.*;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -24,6 +21,12 @@ import org.springframework.test.context.testng.AbstractTransactionalTestNGSpring
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  *
@@ -44,16 +47,15 @@ public class AbilityFacadeImplTest extends AbstractTransactionalTestNGSpringCont
 
     @Autowired
     private AbilityFacade abilityFacade;
+    private Ability ability;
+    private Ability ability2;
+    private AbilityDTO abilityDTO;
+    private AbilityDTO abilityDTO2;
 
     @org.testng.annotations.BeforeClass
     public void setupClass() {
         MockitoAnnotations.initMocks(this);
     }
-
-    private Ability ability;
-    private Ability ability2;
-    private AbilityDTO abilityDTO;
-    private AbilityDTO abilityDTO2;
 
     @BeforeMethod
     public void init() {

@@ -7,11 +7,11 @@ import com.peta2kuba.pa165_haunted_houses.entity.House;
 import com.peta2kuba.pa165_haunted_houses.facade.HouseFacade;
 import com.peta2kuba.pa165_haunted_houses.service_layer.BeanMappingService;
 import com.peta2kuba.pa165_haunted_houses.service_layer.service.HouseService;
-import java.sql.Time;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.sql.Time;
 import java.util.List;
 
 /**
@@ -36,8 +36,7 @@ public class HouseFacadeImpl implements HouseFacade {
 
     @Override
     public void editHouse(final HouseDTO houseDTO) {
-        House house = beanMappingService.mapTo(houseDTO, House.class);
-        houseService.createHouse(house);
+        houseService.editHouse(beanMappingService.mapTo(houseDTO, House.class));
     }
 
     @Override
