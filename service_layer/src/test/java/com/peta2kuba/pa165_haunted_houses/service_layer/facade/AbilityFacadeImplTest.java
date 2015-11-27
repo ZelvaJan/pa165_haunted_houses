@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -58,83 +58,49 @@ public class AbilityFacadeImplTest extends AbstractTransactionalTestNGSpringCont
     @BeforeMethod
     public void init() {
         ability = new Ability((long) 1, "Head  bum", "Watch out!!");
+        ability.setHaunters(new ArrayList<>());
         ability2 = new Ability((long) 2, "Bum bum dum", "Oiii");
-        abilityDTO = new AbilityDTO((long) 1, "Head  bum", "Watch out!!");
-        abilityDTO2 = new AbilityDTO((long) 2, "Bum bum dum", "Oiii");
+        ability2.setHaunters(null);
+
+        abilityDTO = beanMappingService.mapTo(ability, AbilityDTO.class);
+        abilityDTO2 = beanMappingService.mapTo(ability2, AbilityDTO.class);
     }
 
     /**
      * Test of create method, of class AbilityFacadeImpl.
      */
-//    @Test
-//    public void testCreate() {
-//        when(abilityDao.findById(ability.getId())).thenReturn(ability);
-//        AbilityDTO abilityDTO = abilityFacade.findById(ability.getId());
-//        Assert.assertEquals(beanMappingService.mapTo(ability, AbilityDTO.class), abilityDTO);
+    @Test
+    public void testCreate() {
+        abilityFacade.create(abilityDTO);
+        verify(abilityDao).create(ability);
+    }
 
-//        when(abilityDao.create(ability))
-//        when(abilityDao.create(ability));
-//        
-////        when(abilityService.)
-//        abilityFacade.create(abilityDTO);
-//        int a = 5;
-//        
-//        System.out.println("create");
-//        AbilityDTO ability = null;
-//        AbilityFacadeImpl instance = new AbilityFacadeImpl();
-//        instance.create(ability);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//        final Long id = 1l;
-//        when(entityMapper.map(creatureDTO, Creature.class)).thenReturn(creature);
-//        doAnswer(new Answer() {
-//            @Override
-//            public Object answer(InvocationOnMock invocationOnMock) throws Throwable {
-//                creature.setId(id);
-//                return null;
-//            }
-//        }).when(creatureService).createCreature(creature);
-//
-//        Assert.assertEquals(creatureFacade.createCreature(creatureDTO), id);
-//
-//        verify(entityMapper).map(creatureDTO, Creature.class);
-//        verify(creatureService).createCreature(creature);
- 
+    /**
+     * Test of edit method, of class AbilityFacadeImpl.
+     */
+    @Test
+    public void testEdit() {
+        abilityFacade.edit(abilityDTO2);
+        verify(abilityDao).edit(ability2);
+    }
 
-//    /**
-//     * Test of edit method, of class AbilityFacadeImpl.
-//     */
-//    @Test
-//    public void testEdit() {
-//        System.out.println("edit");
-//        AbilityDTO ability = null;
-//        AbilityFacadeImpl instance = new AbilityFacadeImpl();
-//        instance.edit(ability);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of remove method, of class AbilityFacadeImpl.
-//     */
-//    @Test
-//    public void testRemove() {
-//        System.out.println("remove");
-//        AbilityDTO ability = null;
-//        AbilityFacadeImpl instance = new AbilityFacadeImpl();
-//        instance.remove(ability);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
+    /**
+     * Test of remove method, of class AbilityFacadeImpl.
+     */
+    @Test
+    public void testRemove() {
+        abilityFacade.remove(abilityDTO);
+        verify(abilityDao).remove(ability);
+    }
+
     /**
      * Test of findById method, of class AbilityFacadeImpl.
      */
     @Test
     public void testFindById() {
         when(abilityDao.findById(ability.getId())).thenReturn(ability);
-        AbilityDTO abilityDTO = abilityFacade.findById(ability.getId());
-        Assert.assertEquals(beanMappingService.mapTo(ability, AbilityDTO.class), abilityDTO);
+        AbilityDTO abilityDTOLoc = abilityFacade.findById(ability.getId());
+        Assert.assertEquals(beanMappingService.mapTo(ability, AbilityDTO.class), abilityDTOLoc);
     }
 
     /**
@@ -145,7 +111,7 @@ public class AbilityFacadeImplTest extends AbstractTransactionalTestNGSpringCont
         List<Ability> abilityList = new ArrayList<>();
         abilityList.add(ability);
         abilityList.add(ability2);
-                
+
         when(abilityDao.findAll()).thenReturn(abilityList);
         List<AbilityDTO> newAbilityDTOList = abilityFacade.findAll();
         Assert.assertEquals(beanMappingService.mapTo(abilityList, AbilityDTO.class), newAbilityDTOList);

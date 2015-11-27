@@ -11,8 +11,15 @@ public class PersonDTO {
     private Long id;
     private String email;
     private String password;
+    private boolean admin = false;
 
     public PersonDTO() {
+    }
+
+    public PersonDTO(Long id, String email, String password) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
     }
 
     public Long getId() {
@@ -39,12 +46,21 @@ public class PersonDTO {
         this.password = password;
     }
 
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 83 * hash + Objects.hashCode(this.id);
-        hash = 83 * hash + Objects.hashCode(this.email);
-        hash = 83 * hash + Objects.hashCode(this.password);
+        hash = 13 * hash + Objects.hashCode(this.id);
+        hash = 13 * hash + Objects.hashCode(this.email);
+        hash = 13 * hash + Objects.hashCode(this.password);
+        hash = 13 * hash + (this.admin ? 1 : 0);
         return hash;
     }
 
@@ -66,12 +82,15 @@ public class PersonDTO {
         if (!Objects.equals(this.password, other.password)) {
             return false;
         }
+        if (this.admin != other.admin) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "PersonDTO{" + "id=" + id + ", email=" + email + ", password=" + password + '}';
+        return "PersonDTO{" + "id=" + id + ", email=" + email + ", password=" + password + ", admin=" + admin + '}';
     }
 
 }
