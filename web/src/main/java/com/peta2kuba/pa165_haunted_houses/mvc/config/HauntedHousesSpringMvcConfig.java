@@ -5,6 +5,7 @@
  */
 package com.peta2kuba.pa165_haunted_houses.mvc.config;
 
+import com.peta2kuba.pa165_haunted_houses.mvc.controllers.PersonController;
 import com.peta2kuba.sample_data.HauntedHousesWithSampleDataConfiguration;
 import javax.validation.Validator;
 import org.slf4j.Logger;
@@ -31,7 +32,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @EnableWebMvc
 @Configuration
 @Import({HauntedHousesWithSampleDataConfiguration.class})
-@ComponentScan(basePackages = "com.peta2kuba.pa165_haunted_houses.mvc.controllers")
+@ComponentScan(basePackageClasses = {PersonController.class})
 public class HauntedHousesSpringMvcConfig extends WebMvcConfigurerAdapter {
     
     final static Logger log = LoggerFactory.getLogger(HauntedHousesSpringMvcConfig.class);
@@ -44,7 +45,7 @@ public class HauntedHousesSpringMvcConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         log.debug("mapping URL / to home view");
-        registry.addViewController("/").setViewName("home");
+        registry.addViewController("/").setViewName("index");
     }
 
 
@@ -69,16 +70,16 @@ public class HauntedHousesSpringMvcConfig extends WebMvcConfigurerAdapter {
         return viewResolver;
     }
 
-    /**
-     * Provides localized messages.
-     */
-    @Bean
-    public MessageSource messageSource() {
-        log.debug("registering ResourceBundle 'Texts' for messages");
-        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-        messageSource.setBasename(TEXTS);
-        return messageSource;
-    }
+//    /**
+//     * Provides localized messages.
+//     */
+//    @Bean
+//    public MessageSource messageSource() {
+//        log.debug("registering ResourceBundle 'Texts' for messages");
+//        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+//        messageSource.setBasename(TEXTS);
+//        return messageSource;
+//    }
 
     /**
      * Provides JSR-303 Validator.

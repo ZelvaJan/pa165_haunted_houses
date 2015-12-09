@@ -46,6 +46,7 @@
         <module>api_layer</module>
         <module>rest</module>
         <module>web</module>
+        <module>sample_data</module>
   </modules>
 
     <dependencies>
