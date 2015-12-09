@@ -44,3 +44,6 @@
 /service_layer/target/
 /api_layer/target/
 /dao_layer/target/
+/web_spring_mvc/target/
+/rest/target/
+/web/target/

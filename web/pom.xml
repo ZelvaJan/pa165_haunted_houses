@@ -2,17 +2,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.peta2kuba</groupId>
         <artifactId>pa165_haunted_houses</artifactId>
+        <groupId>com.peta2kuba</groupId>
         <version>0.2</version>
     </parent>
 
     <groupId>com.peta2kuba</groupId>
-    <artifactId>web_spring_mvc</artifactId>
+    <artifactId>web</artifactId>
     <version>0.2</version>
     <packaging>war</packaging>
 
-    <name>Web Spring MVC</name>
+    <name>web</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
@@ -29,6 +29,7 @@
     </dependencies>
 
     <build>
+        <defaultGoal>tomcat7:run</defaultGoal>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -74,6 +75,16 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <url>http://localhost:8080/pa165</url>
+                    <server>localhost</server>
+                    <path>/pa165</path>
+                </configuration>
             </plugin>
         </plugins>
     </build>
