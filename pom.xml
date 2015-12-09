@@ -44,7 +44,9 @@
         <module>dao_layer</module>
         <module>service_layer</module>
         <module>api_layer</module>
-    </modules>
+        <module>web_spring_mvc</module>
+    <module>rest</module>
+  </modules>
 
     <dependencies>
     </dependencies>
