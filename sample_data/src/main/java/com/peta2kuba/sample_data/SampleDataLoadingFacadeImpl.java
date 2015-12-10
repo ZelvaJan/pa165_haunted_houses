@@ -25,6 +25,27 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
     @SuppressWarnings("unused")
     public void loadData() throws IOException {
         log.info("Loaded Haunted Houses.");
+
+        createPeople();
+        createHouses();
+        createAbilities();
+        createHaunters();
+    }
+
+    private void createPeople() {
+
+    }
+
+    private void createHouses() {
+
+    }
+
+    private void createAbilities() {
+
+    }
+
+    private void createHaunters() {
+
     }
     
 }
