@@ -43,13 +43,13 @@ public class AbilityController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String newAbility(Model model) {
+    public String newAbilityForm(Model model) {
         model.addAttribute("newAbility", new AbilityDTO());
         return "ability/add";
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(@Valid @ModelAttribute("newAbility") AbilityDTO formBean, BindingResult bindingResult,
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String newAbilityCreate(@Valid @ModelAttribute("newAbility") AbilityDTO formBean, BindingResult bindingResult,
             Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
         logger.debug("create(newAbility={})", formBean);
         //in case of validation error forward back to the the form

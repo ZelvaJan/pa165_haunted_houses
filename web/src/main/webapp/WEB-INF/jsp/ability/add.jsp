@@ -15,7 +15,7 @@
     <body>
         <h1>Add new ability</h1>
 
-        <form:form method="post" action="${pageContext.request.contextPath}/ability/create"
+        <form:form method="post" action="${pageContext.request.contextPath}/ability/add"
                    modelAttribute="newAbility" cssClass="form-horizontal">
 
             <div class="form-group">
