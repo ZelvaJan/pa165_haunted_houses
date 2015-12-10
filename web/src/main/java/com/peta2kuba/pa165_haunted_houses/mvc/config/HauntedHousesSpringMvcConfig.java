@@ -20,6 +20,7 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -28,13 +29,12 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
  *
  * @author skornok
  */
-
 @EnableWebMvc
 @Configuration
 @Import({HauntedHousesWithSampleDataConfiguration.class})
 @ComponentScan(basePackageClasses = {PersonController.class})
 public class HauntedHousesSpringMvcConfig extends WebMvcConfigurerAdapter {
-    
+
     final static Logger log = LoggerFactory.getLogger(HauntedHousesSpringMvcConfig.class);
 
     public static final String TEXTS = "Texts";
@@ -48,7 +48,6 @@ public class HauntedHousesSpringMvcConfig extends WebMvcConfigurerAdapter {
         registry.addViewController("/").setViewName("index");
     }
 
-
     /**
      * Enables default Tomcat servlet that serves static files.
      */
@@ -56,6 +55,12 @@ public class HauntedHousesSpringMvcConfig extends WebMvcConfigurerAdapter {
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         log.debug("enabling default servlet for static files");
         configurer.enable();
+    }
+
+    // equivalents for <mvc:resources/> tags
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/").setCachePeriod(31556926);
     }
 
     /**
@@ -80,7 +85,6 @@ public class HauntedHousesSpringMvcConfig extends WebMvcConfigurerAdapter {
 //        messageSource.setBasename(TEXTS);
 //        return messageSource;
 //    }
-
     /**
      * Provides JSR-303 Validator.
      */
