@@ -59,7 +59,15 @@ public class Haunter {
         this.hauntingReason = hauntingReason;
     }
 
-    public Long getId() {
+	public Haunter(final String name, final HauntingHours hauntingHours, final String description, final String hauntingReason, final List<Ability> abilities) {
+		this.name = name;
+		this.hauntingHours = hauntingHours;
+		this.description = description;
+		this.hauntingReason = hauntingReason;
+		this.abilities = abilities;
+	}
+
+	public Long getId() {
         return id;
     }
 

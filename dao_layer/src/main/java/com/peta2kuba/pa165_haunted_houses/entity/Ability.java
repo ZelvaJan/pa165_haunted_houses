@@ -41,7 +41,13 @@ public class Ability {
         this.description = description;
     }
 
-    public Long getId() {
+	public Ability(final String name, final String description, final List<Haunter> haunters) {
+		this.name = name;
+		this.description = description;
+		this.haunters = haunters;
+	}
+
+	public Long getId() {
         return id;
     }
 

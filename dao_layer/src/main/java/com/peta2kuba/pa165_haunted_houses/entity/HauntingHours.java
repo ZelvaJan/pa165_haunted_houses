@@ -32,13 +32,18 @@ public class HauntingHours {
     public HauntingHours() {
     }
 
-    public HauntingHours(Long id, Time fromTime, Time toTime) {
-        this.id = id;
+    public HauntingHours(final Long id, final Time fromTime, final Time toTime) {
+		this.id = id;
         this.fromTime = fromTime;
         this.toTime = toTime;
     }
 
-    public Long getId() {
+	public HauntingHours(final Time fromTime, final Time toTime) {
+		this.fromTime = fromTime;
+		this.toTime = toTime;
+	}
+
+	public Long getId() {
         return id;
     }
 
