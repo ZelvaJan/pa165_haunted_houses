@@ -1,6 +1,5 @@
 package com.peta2kuba.pa165_haunted_houses.mvc.controllers;
 
-
 import com.peta2kuba.pa165_haunted_houses.dto.PersonDTO;
 import com.peta2kuba.pa165_haunted_houses.facade.PersonFacade;
 import javax.validation.Valid;
@@ -24,7 +23,6 @@ import org.springframework.web.util.UriComponentsBuilder;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author skornok
@@ -38,23 +36,27 @@ public class PersonController {
     @Autowired
     private PersonFacade personFacade;
 
-
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("people", personFacade.findAllPersons());
         return "person/list";
     }
-    
+
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addPerson(Model model) {
         model.addAttribute("personCreate", new PersonDTO());
         return "person/add";
     }
-    
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(@Valid @ModelAttribute("personCreate") PersonDTO formBean, BindingResult bindingResult,
-                         Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String addPerson(
+            @Valid @ModelAttribute("personCreate") PersonDTO formBean,
+            BindingResult bindingResult,
+            Model model,
+            RedirectAttributes redirectAttributes,
+            UriComponentsBuilder uriBuilder) {
         logger.debug("create(personCreate={})", formBean);
+
         //in case of validation error forward back to the the form
         if (bindingResult.hasErrors()) {
             for (ObjectError ge : bindingResult.getGlobalErrors()) {
@@ -64,7 +66,9 @@ public class PersonController {
                 model.addAttribute(fe.getField() + "_error", true);
                 logger.trace("FieldError: {}", fe);
             }
-            return "person/add";
+
+            redirectAttributes.addFlashAttribute("errors", bindingResult);
+            return "/person/add";
         }
         //create person
         personFacade.createPerson(formBean);

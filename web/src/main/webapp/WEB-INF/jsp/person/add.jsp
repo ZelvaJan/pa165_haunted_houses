@@ -18,7 +18,7 @@
     </head>
     <body>
 
-        <form:form method="post" action="${pageContext.request.contextPath}/person/create"
+        <form:form method="post" action="${pageContext.request.contextPath}/person/add"
                    modelAttribute="personCreate" cssClass="form-horizontal">
 
             <div class="form-group ${email_error?'has-error':''}">
