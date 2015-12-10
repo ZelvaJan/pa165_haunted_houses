@@ -32,7 +32,7 @@
             <div class="form-group ${password_error?'has-error':''}">
                 <form:label path="password" cssClass="col-sm-2 control-label">Password</form:label>
                     <div class="col-sm-10">
-                    <form:input path="password" cssClass="form-control"/>
+                    <form:password path="password" cssClass="form-control"/>
                     <form:errors path="password" cssClass="help-block"/>
                 </div>
             </div>
