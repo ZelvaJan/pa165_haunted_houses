@@ -46,13 +46,13 @@ public class PersonController {
     }
     
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String newProduct(Model model) {
+    public String addPerson(Model model) {
         model.addAttribute("personCreate", new PersonDTO());
         return "person/add";
     }
     
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(@Valid @ModelAttribute("productCreate") PersonDTO formBean, BindingResult bindingResult,
+    public String create(@Valid @ModelAttribute("personCreate") PersonDTO formBean, BindingResult bindingResult,
                          Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
         logger.debug("create(personCreate={})", formBean);
         //in case of validation error forward back to the the form

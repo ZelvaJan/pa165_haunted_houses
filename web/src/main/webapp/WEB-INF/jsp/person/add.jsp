@@ -37,6 +37,18 @@
                 </div>
             </div>
 
+            <div class="form-group">
+                <form:label path="admin" cssClass="col-sm-2 control-label">admin</form:label>
+                    <div class="col-sm-10">
+                    <form:select path="admin" cssClass="form-control">
+                        <form:option value="true">yes</form:option>
+                        <form:option value="false">no</form:option>
+                    </form:select>
+                    <form:errors path="admin" cssClass="error"/>
+                </div>
+            </div>
+
+
             <button class="btn btn-primary" type="submit">Add person</button>
         </form:form>
 
