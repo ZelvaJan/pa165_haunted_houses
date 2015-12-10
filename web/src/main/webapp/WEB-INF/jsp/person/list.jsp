@@ -22,28 +22,20 @@
             <thead>
                 <tr>
                     <th>id</th>
-                    <th>given name</th>
-                    <th>surname</th>
                     <th>email</th>
-                    <th>phone</th>
-                    <th>address</th>
-                    <th>joined</th>
+                    <th>is admin?</th>
                 </tr>
             </thead>
             <tbody>
-                <c:forEach items="${users}" var="user">
+                <c:forEach items="${people}" var="person">
                     <tr>
-                        <td>${user.id}</td>
-                        <td><c:out value="${user.givenName}"/></td>
-                        <td><c:out value="${user.surname}"/></td>
-                        <td><c:out value="${user.email}"/></td>
-                        <td><c:out value="${user.phone}"/></td>
-                        <td><c:out value="${user.address}"/></td>
-                        <td><fmt:formatDate value="${user.joinedDate}" pattern="yyyy-MM-dd"/></td>
-        </tr>
-    </c:forEach>
-</tbody>
-</table>
+                        <td>${person.id}</td>
+                        <td><c:out value="${person.email}"/></td>
+                        <td><c:out value="${person.admin}"/></td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
 
-</body>
+        <a href="add" id="AddPerson" >Add new person</a>&nbsp;    </body>
 </html>
