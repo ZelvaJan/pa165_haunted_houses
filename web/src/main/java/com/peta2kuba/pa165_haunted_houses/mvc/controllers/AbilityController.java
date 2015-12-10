@@ -37,6 +37,8 @@ public class AbilityController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
+        logger.error("Error");
+        logger.debug("Debug");
         model.addAttribute("abilities", abilityFacade.findAll());
         return "ability/list";
     }
