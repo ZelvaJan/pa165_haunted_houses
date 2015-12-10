@@ -2,6 +2,8 @@ package com.peta2kuba.pa165_haunted_houses.dto;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * @author petr.melicherikŁ
@@ -9,6 +11,9 @@ import java.util.Objects;
 public class AbilityDTO {
 
     private Long id;
+
+    @NotNull
+    @Size(min = 3, max = 50)
     private String name;
     private String description;
     private ArrayList<HaunterDTO> haunters;
