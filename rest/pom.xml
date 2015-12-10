@@ -26,6 +26,11 @@
             <artifactId>api_layer</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>service_layer</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>javax</groupId>
@@ -38,7 +43,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>3.0.4.RELEASE</version>
+            <version>4.2.3.RELEASE</version>
         </dependency>
 
         <dependency>
@@ -60,16 +65,27 @@
             <artifactId>jackson-databind</artifactId>
         </dependency>
 
+        <!--tomcat-->
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-api</artifactId>
+            <version>7.0.65</version>
+            <scope>provided</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
+        <defaultGoal>tomcat7:run</defaultGoal>
         <plugins>
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
                 <configuration>
-                    <path>/rest</path>
+                    <url>http://localhost:8080/pa165</url>
+                    <server>localhost</server>
+                    <path>/pa165/rest</path>
                 </configuration>
             </plugin>
             <plugin>

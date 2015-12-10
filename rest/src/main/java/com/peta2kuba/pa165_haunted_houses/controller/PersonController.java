@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
 import java.util.Collection;
@@ -17,7 +18,7 @@ import java.util.Collection;
 /**
  * @author turcovsky on 09/12/15.
  */
-@Controller
+@RestController
 @RequestMapping("/person")
 public class PersonController {
 
