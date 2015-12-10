@@ -27,26 +27,43 @@
         </div>
 
         <div class="form-group ${address_error?'has-error':''}">
-            <form:label path="password" cssClass="col-sm-2 control-label">Password</form:label>
+            <form:label path="address" cssClass="col-sm-2 control-label">Address</form:label>
             <div class="col-sm-10">
-                <form:input path="password" cssClass="form-control"/>
-                <form:errors path="password" cssClass="help-block"/>
+                <form:input path="address" cssClass="form-control"/>
+                <form:errors path="address" cssClass="help-block"/>
             </div>
         </div>
 
         <div class="form-group">
-            <form:label path="admin" cssClass="col-sm-2 control-label">admin</form:label>
+            <form:label path="hauntedSince" cssClass="col-sm-2 control-label">Haunted since</form:label>
             <div class="col-sm-10">
-                <form:select path="admin" cssClass="form-control">
-                    <form:option value="true">yes</form:option>
-                    <form:option value="false">no</form:option>
-                </form:select>
-                <form:errors path="admin" cssClass="error"/>
+                <form:input path="hauntedSince" cssClass="form-control" />
+                <form:errors path="hauntedSince" cssClass="help-block"/>
             </div>
         </div>
 
+        <div class="form-group">
+            <form:label path="description" cssClass="col-sm-2 control-label">Description</form:label>
+            <div class="col-sm-10">
+                <form:input path="description" cssClass="form-control" />
+                <form:errors path="description" cssClass="help-block"/>
+            </div>
+        </div>
 
-        <button class="btn btn-primary" type="submit">Add person</button>
+		<%--TODO select collection of haunters haunting this house--%>
+        <%--<div class="form-group">--%>
+            <%--<form:label path="description" cssClass="col-sm-2 control-label">Description</form:label>--%>
+            <%--<div class="col-sm-10">--%>
+				<%--<form:select path="haunter" cssClass="form-control">--%>
+					<%--<c:forEach items="${categories}" var="c">--%>
+						<%--<form:option value="${c.id}">${c.name}</form:option>--%>
+					<%--</c:forEach>--%>
+				<%--</form:select>--%>
+                <%--<form:errors path="description" cssClass="help-block"/>--%>
+            <%--</div>--%>
+        <%--</div>--%>
+
+        <button class="btn btn-primary" type="submit">Add house</button>
     </form:form>
 </body>
 </html>

@@ -1,5 +1,7 @@
 package com.peta2kuba.pa165_haunted_houses.dto;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Objects;
@@ -12,6 +14,7 @@ public class HouseDTO {
     private Long id;
     private String name;
     private String address;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Timestamp hauntedSince;
     private String description;
     private List<HaunterDTO> haunters;

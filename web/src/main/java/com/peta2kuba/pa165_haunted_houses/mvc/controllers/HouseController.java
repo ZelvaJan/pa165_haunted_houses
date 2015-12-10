@@ -1,8 +1,6 @@
 package com.peta2kuba.pa165_haunted_houses.mvc.controllers;
 
 import com.peta2kuba.pa165_haunted_houses.dto.HouseDTO;
-import com.peta2kuba.pa165_haunted_houses.dto.PersonDTO;
-import com.peta2kuba.pa165_haunted_houses.facade.AbilityFacade;
 import com.peta2kuba.pa165_haunted_houses.facade.HouseFacade;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,7 +55,7 @@ public class HouseController {
 				model.addAttribute(fe.getField() + "_error", true);
 				logger.trace("FieldError: {}", fe);
 			}
-			return "person/add";
+			return "house/add";
 		}
 		//create person
 		houseFacade.createHouse(formBean);
