@@ -1,6 +1,6 @@
 <%-- 
     Document   : list
-    Created on : 10.12.2015, 17:34:21
+    Created on : 10.12.2015, 18:57:06
     Author     : petr.melicherik
 --%>
 
@@ -12,31 +12,33 @@
         <spring:url value="/resources/css/main.css" var="mainCss" />
         <link href="${mainCss}" rel="stylesheet" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Abilities</title>
+        <title>Haunters</title>
     </head>
     <body>
-        <h1>Ability list:</h1>
-    </body>
-
-    <table class="table">
-        <caption>Abilities</caption>
+        <h1>Haunter list:</h1>
+        <table class="table">
+        <caption>Haunters</caption>
         <thead>
             <tr>
                 <th>id</th>
                 <th>name</th>
                 <th>description</th>
-                <!-- TODO odkaz na hunters list pro tuhle ability -->
+                <th>haunting reason</th>
+                <!-- TODO dalsi parametry z DTO -->
             </tr>
         </thead>
         <tbody>
-            <c:forEach items="${abilities}" var="ability">
+            <c:forEach items="${haunters}" var="haunter">
                 <tr>
-                    <td>${ability.id}</td>
-                    <td><c:out value="${ability.name}"/></td>
-                    <td><c:out value="${ability.description}"/></td>
+                    <td>${haunter.id}</td>
+                    <td><c:out value="${haunter.name}"/></td>
+                    <td><c:out value="${haunter.description}"/></td>
+                    <td><c:out value="${haunter.hauntingReason}"/></td>
                     <!-- TODO odkaz na hunters list pro tuhle ability -->
                 </tr>
             </c:forEach>
         </tbody>
     </table>
+    </body>
+    
 </html>
