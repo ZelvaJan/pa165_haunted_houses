@@ -13,6 +13,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -74,6 +76,53 @@ public class PersonController {
         personFacade.createPerson(formBean);
         //report success
         redirectAttributes.addFlashAttribute("alert_success", "Person was created");
+        return "redirect:" + uriBuilder.path("/person/list").toUriString();
+    }
+
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String editPerson(@PathVariable long id, Model model) {
+        PersonDTO person = personFacade.findPersonById(id);
+        model.addAttribute("person", person);
+        return "person/edit";
+    }
+
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
+    public String editPerson(@ModelAttribute("person") PersonDTO newPerson,
+            BindingResult bindingResult,
+            Model model,
+            RedirectAttributes redirectAttributes,
+            UriComponentsBuilder uriBuilder,
+            @PathVariable long id) {
+
+        PersonDTO person = personFacade.findPersonById(id);
+
+        //in case of validation error forward back to the the form
+        if (bindingResult.hasErrors()) {
+            for (ObjectError ge : bindingResult.getGlobalErrors()) {
+                logger.trace("ObjectError: {}", ge);
+            }
+            for (FieldError fe : bindingResult.getFieldErrors()) {
+                model.addAttribute(fe.getField() + "_error", true);
+                logger.trace("FieldError: {}", fe);
+            }
+
+            redirectAttributes.addFlashAttribute("errors", bindingResult);
+            return "/person/edit";
+        }
+
+        personFacade.editPerson(newPerson);
+        redirectAttributes.addFlashAttribute("alert_success", "Person was created");
+        return "redirect:" + uriBuilder.path("/person/list").toUriString();
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public String delete(@PathVariable long id, 
+            Model model,
+            UriComponentsBuilder uriBuilder,
+            RedirectAttributes redirectAttributes) {
+        PersonDTO person = personFacade.findPersonById(id);
+        personFacade.removePerson(person);
+        redirectAttributes.addFlashAttribute("alert_success", "Person \"" + person.getEmail() + "\" was deleted.");
         return "redirect:" + uriBuilder.path("/person/list").toUriString();
     }
 }
