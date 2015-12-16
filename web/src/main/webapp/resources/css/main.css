@@ -1,23 +1,60 @@
 /*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
     Created on : 10.12.2015, 17:58:25
     Author     : petr.melicherik
 */
-h1{
-    color:red;
+
+html.js .jshidden {
+    display: none;
 }
+
 body {
-    font-family: sans-serif;
+    background-color: whitesmoke;
+    font: 16px/1.5 Georgia, Verdana, Arial;
+    padding: 0;
+    margin: 0;
+    color: #222;
+    font-family: Helvetica;
+    -webkit-background-size: cover; /* For WebKit*/
+    -moz-background-size: cover;    /* Mozilla*/
+    -o-background-size: cover;      /* Opera*/
+    background-size: cover;         /* Generic*/
 }
-.error {
-    color: #ff0000;
-    font-style: italic;
-    font-weight: bold;
+
+header {
+    width: 1024px;
+    height: 100px;
+    background-color: #002554;
 }
+
+nav {
+    height: 50px;
+    width: 1024px;
+    background-color: #55ddaa;
+}
+
+footer {
+    float: left;
+    width: 1024px;
+    height: 50px;
+    text-align: center;
+    background-color: #991111;
+}
+
+#main {
+    width: 1024px;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+    color: #002554;
+}
+
+a[href^="#error:"] {
+    background: red;
+    color: #990099;
+}
+
 td {
     border-collapse: collapse;
     border: 1px solid #aaa;
@@ -30,3 +67,82 @@ th {
     background-color: #5C82FF;
     color: white;
 }
+
+form th, form td {
+    vertical-align: top;
+    font-weight: normal;
+}
+
+form th {
+    text-align: right;
+}
+
+form .required label {
+    font-weight: bold;
+}
+
+form .error {
+    color: #D00;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.logo_container {
+    width: 488px;
+    height: 150px;
+    margin: 0 auto;
+    padding-top: 40px;
+}
+
+#logo {
+    width: 488px;
+    height: 150px;
+}
+
+h1, h2, h3, h4 {
+    color: #3484D2;
+    text-align: center;
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 2.1em;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+h3 {
+    font-size: 1.4em;
+    margin: 0px;
+    text-align: left;
+}
+
+strong {
+    display: block;
+    margin-bottom: 10px;
+}
+
+ul, li {
+    margin: 5px auto 5px auto;
+    padding-left: 5px;
+}
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+p {
+    display: block;
+}
+
+/*h1{*/
+    /*color:red;*/
+/*}*/
+/*body {*/
+    /*font-family: sans-serif;*/
+/*}*/

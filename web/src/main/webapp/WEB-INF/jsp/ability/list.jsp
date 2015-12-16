@@ -10,34 +10,39 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <spring:url value="/resources/css/main.css" var="mainCss" />
-        <link href="${mainCss}" rel="stylesheet" />
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <%@include file="../includes/head_common.jsp" %>
         <title>Abilities</title>
     </head>
     <body>
-        <h1>Ability list:</h1>
-    </body>
+        <div id="main">
+            <%@include file="../includes/header.jsp" %>
+            <%@include file="../includes/nav.jsp" %>
+            <section>
+                <h1>Ability list:</h1>
 
-    <table class="table">
-        <caption>Abilities</caption>
-        <thead>
-            <tr>
-                <th>id</th>
-                <th>name</th>
-                <th>description</th>
-                <!-- TODO odkaz na hunters list pro tuhle ability -->
-            </tr>
-        </thead>
-        <tbody>
-            <c:forEach items="${abilities}" var="ability">
-                <tr>
-                    <td>${ability.id}</td>
-                    <td><c:out value="${ability.name}"/></td>
-                    <td><c:out value="${ability.description}"/></td>
-                    <!-- TODO odkaz na hunters list pro tuhle ability -->
-                </tr>
-            </c:forEach>
-        </tbody>
-    </table>
+                <table class="table">
+                    <caption>Abilities</caption>
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>name</th>
+                            <th>description</th>
+                            <!-- TODO odkaz na hunters list pro tuhle ability -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach items="${abilities}" var="ability">
+                            <tr>
+                                <td>${ability.id}</td>
+                                <td><c:out value="${ability.name}"/></td>
+                                <td><c:out value="${ability.description}"/></td>
+                                <!-- TODO odkaz na hunters list pro tuhle ability -->
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+            </section>
+			<%@include file="../includes/footer.jsp" %>
+        </div>
+    </body>
 </html>

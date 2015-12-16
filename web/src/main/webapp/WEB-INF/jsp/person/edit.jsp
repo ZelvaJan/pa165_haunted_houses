@@ -13,43 +13,48 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <%@include file="../includes/head_common.jsp" %>
         <title>JSP Page</title>
     </head>
     <body>
-        <form:form method="post" action="${pageContext.request.contextPath}/person/edit/${id}"
-                   modelAttribute="person" cssClass="form-horizontal">
+        <div id="main">
+            <%@include file="../includes/header.jsp" %>
+            <%@include file="../includes/nav.jsp" %>
+            <section>
+                <form:form method="post" action="${pageContext.request.contextPath}/person/edit/${id}"
+                           modelAttribute="person" cssClass="form-horizontal">
 
-            <div class="form-group ${email_error?'has-error':''}">
-                <form:label path="email" cssClass="col-sm-2 control-label">Email</form:label>
-                    <div class="col-sm-10">
-                    <form:input path="email" cssClass="form-control"/>
-                    <form:errors path="email" cssClass="help-block"/>
-                </div>
-            </div>
+                    <div class="form-group ${email_error?'has-error':''}">
+                        <form:label path="email" cssClass="col-sm-2 control-label">Email</form:label>
+                            <div class="col-sm-10">
+                            <form:input path="email" cssClass="form-control"/>
+                            <form:errors path="email" cssClass="help-block"/>
+                        </div>
+                    </div>
 
-            <div class="form-group ${password_error?'has-error':''}">
-                <form:label path="password" cssClass="col-sm-2 control-label">Password</form:label>
-                    <div class="col-sm-10">
-                    <form:password path="password" cssClass="form-control"/>
-                    <form:errors path="password" cssClass="help-block"/>
-                </div>
-            </div>
+                    <div class="form-group ${password_error?'has-error':''}">
+                        <form:label path="password" cssClass="col-sm-2 control-label">Password</form:label>
+                            <div class="col-sm-10">
+                            <form:password path="password" cssClass="form-control"/>
+                            <form:errors path="password" cssClass="help-block"/>
+                        </div>
+                    </div>
 
-            <div class="form-group">
-                <form:label path="admin" cssClass="col-sm-2 control-label">admin</form:label>
-                    <div class="col-sm-10">
-                    <form:select path="admin" cssClass="form-control">
-                        <form:option value="true">yes</form:option>
-                        <form:option value="false">no</form:option>
-                    </form:select>
-                    <form:errors path="admin" cssClass="error"/>
-                </div>
-            </div>
+                    <div class="form-group">
+                        <form:label path="admin" cssClass="col-sm-2 control-label">admin</form:label>
+                            <div class="col-sm-10">
+                            <form:select path="admin" cssClass="form-control">
+                                <form:option value="true">yes</form:option>
+                                <form:option value="false">no</form:option>
+                            </form:select>
+                            <form:errors path="admin" cssClass="error"/>
+                        </div>
+                    </div>
 
-
-            <button class="btn btn-primary" type="submit">Edit person</button>
-        </form:form>
-
+                    <button class="btn btn-primary" type="submit">Edit person</button>
+                </form:form>
+        	</section>
+			<%@include file="../includes/footer.jsp" %>
+		</div>
     </body>
 </html>
