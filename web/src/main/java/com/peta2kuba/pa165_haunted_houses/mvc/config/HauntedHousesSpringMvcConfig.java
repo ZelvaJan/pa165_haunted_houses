@@ -44,7 +44,7 @@ public class HauntedHousesSpringMvcConfig extends WebMvcConfigurerAdapter {
      */
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        log.debug("mapping URL / to home view");
+        log.debug("mapping URL / to base view");
         registry.addViewController("/").setViewName("index");
     }
 
