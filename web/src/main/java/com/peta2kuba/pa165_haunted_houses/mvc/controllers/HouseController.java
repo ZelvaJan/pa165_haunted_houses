@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -25,7 +26,7 @@ import javax.validation.Valid;
 @RequestMapping("/house")
 public class HouseController {
 
-	final static Logger logger = LoggerFactory.getLogger(AbilityController.class);
+	final static Logger logger = LoggerFactory.getLogger(HouseController.class);
 
 	@Autowired
 	private HouseFacade houseFacade;
@@ -34,6 +35,12 @@ public class HouseController {
 	public String list(Model model) {
 		model.addAttribute("houses", houseFacade.findAll());
 		return "house/list";
+	}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public String houseById(@PathVariable long id, Model model) {
+		model.addAttribute("house", houseFacade.findById(id));
+		return "house/detail";
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)

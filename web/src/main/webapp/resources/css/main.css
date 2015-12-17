@@ -32,6 +32,10 @@ nav {
     background-color: #55ddaa;
 }
 
+section {
+    margin-bottom: 20px;
+}
+
 footer {
     float: left;
     width: 1024px;

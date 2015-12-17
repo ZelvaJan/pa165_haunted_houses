@@ -30,12 +30,13 @@
 						<th>address</th>
 						<th>haunted since</th>
 						<th>description</th>
-						<%--TODO haunters link--%>
+						<%--TODO haunter link--%>
 					</tr>
 					</thead>
 					<tbody>
 					<c:forEach items="${houses}" var="house">
 					<tr>
+						<td><a href="house/${house.id}" id="EditHouse" >Edit</a></td>
 						<td>${house.id}</td>
 						<td><c:out value="${house.name}"/></td>
 						<td><c:out value="${house.address}"/></td>
