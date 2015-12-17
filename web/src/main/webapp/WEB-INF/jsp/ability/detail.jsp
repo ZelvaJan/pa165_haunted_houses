@@ -40,6 +40,9 @@
                     </tbody>
                 </table>
 
+                <div>
+                    <a href="../edit/${ability.id}">Edit ability</a>&nbsp;
+                </div>
             </section>
             <%@include file="../includes/footer.jsp" %>
         </div> 

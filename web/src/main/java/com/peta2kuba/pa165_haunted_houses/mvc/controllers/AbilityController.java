@@ -41,13 +41,13 @@ public class AbilityController {
         model.addAttribute("abilities", abilityFacade.findAll());
         return "ability/list";
     }
-    
+
     @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
     public String detail(@PathVariable long id, Model model) {
         model.addAttribute("ability", abilityFacade.findById(id));
         return "ability/detail";
     }
-    
+
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable long id, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes) {
         AbilityDTO abilityDTO = abilityFacade.findById(id);
@@ -81,6 +81,34 @@ public class AbilityController {
         abilityFacade.create(formBean);
         //report success
         redirectAttributes.addFlashAttribute("alert_success", "Ability was created");
+        return "redirect:" + uriBuilder.path("/ability/list").toUriString();
+    }
+
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String editAbility(@PathVariable long id, Model model) {
+        model.addAttribute("ability", abilityFacade.findById(id));
+        return "ability/edit";
+    }
+
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
+    public String editPerson(@ModelAttribute("ability") AbilityDTO abilityDTO, BindingResult bindingResult, Model model,
+            RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder, @PathVariable long id) {
+
+        //in case of validation error forward back to the the form
+        if (bindingResult.hasErrors()) {
+            for (ObjectError ge : bindingResult.getGlobalErrors()) {
+                logger.trace("ObjectError: {}", ge);
+            }
+            for (FieldError fe : bindingResult.getFieldErrors()) {
+                model.addAttribute(fe.getField() + "_error", true);
+                logger.trace("FieldError: {}", fe);
+            }
+            redirectAttributes.addFlashAttribute("errors", bindingResult);
+            return "/ability/edit";
+        }
+
+        abilityFacade.edit(abilityDTO);
+        redirectAttributes.addFlashAttribute("alert_success", "Ability was updated");
         return "redirect:" + uriBuilder.path("/ability/list").toUriString();
     }
 
