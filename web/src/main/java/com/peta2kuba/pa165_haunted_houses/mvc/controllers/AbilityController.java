@@ -17,6 +17,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -37,9 +38,22 @@ public class AbilityController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
-        logger.error("Error");
         model.addAttribute("abilities", abilityFacade.findAll());
         return "ability/list";
+    }
+    
+    @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
+    public String detail(@PathVariable long id, Model model) {
+        model.addAttribute("ability", abilityFacade.findById(id));
+        return "ability/detail";
+    }
+    
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public String delete(@PathVariable long id, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes) {
+        AbilityDTO abilityDTO = abilityFacade.findById(id);
+        abilityFacade.remove(abilityDTO);
+        redirectAttributes.addFlashAttribute("alert_success", "Ability \"" + abilityDTO.getName() + "\" was deleted.");
+        return "redirect:" + uriBuilder.path("/ability/list").toUriString();
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)

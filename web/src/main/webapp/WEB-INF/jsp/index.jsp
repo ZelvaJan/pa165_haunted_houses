@@ -1,7 +1,7 @@
 <%-- 
-    Document   : index
-    Created on : 16-Dec-2015, 17:28:27
-    Author     : zelva
+    Document   : list
+    Created on : 10.12.2015, 17:34:21
+    Author     : petr.melicherik
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -10,6 +10,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <%@include file="includes/head_common.jsp" %>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>

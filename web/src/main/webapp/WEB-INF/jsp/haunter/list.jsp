@@ -27,6 +27,7 @@
                             <th>name</th>
                             <th>description</th>
                             <th>haunting reason</th>
+                            <th>abilities</th>
                             <!-- TODO dalsi parametry z DTO -->
                         </tr>
                     </thead>
@@ -37,6 +38,15 @@
                                 <td><c:out value="${haunter.name}"/></td>
                                 <td><c:out value="${haunter.description}"/></td>
                                 <td><c:out value="${haunter.hauntingReason}"/></td>
+                                 <td>
+                                    <ul>
+                                        <c:forEach items="${haunter.abilities}" var="ability">
+                                            <li>
+                                                <a href="../ability/${ability.id}">${ability.name}</a>
+                                            </li>
+                                    </c:forEach>
+                                    </ul>                                    
+                                </td>
                                 <!-- TODO odkaz na hunters list pro tuhle ability -->
                             </tr>
                         </c:forEach>

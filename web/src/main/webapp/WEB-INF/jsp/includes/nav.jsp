@@ -5,9 +5,11 @@
 --%>
 <nav>
 
-    <br> <a href="${pageContext.request.contextPath}/person/list">List persons</a>&nbsp;
-    <br> <a href="${pageContext.request.contextPath}/ability/list">List abilities</a>&nbsp;
-    <br> <a href="${pageContext.request.contextPath}/house/list">List houses</a>&nbsp;
-    <br> <a href="${pageContext.request.contextPath}/haunter/list">List haunter</a>&nbsp;
+    <ul id="navigation">
+        <li><a href="${pageContext.request.contextPath}/person/list">Persons</a></li>
+        <li><a href="${pageContext.request.contextPath}/ability/list">Abilities</a></li>
+        <li><a href="${pageContext.request.contextPath}/house/list">Houses</a></li>
+        <li><a href="${pageContext.request.contextPath}/haunter/list">Haunters</a></li>
+    </ul>
 
 </nav>
