@@ -40,15 +40,14 @@
 					<td><c:out value="${house.hauntedSince}"/></td>
 					<td><c:out value="${house.description}"/></td>
 					<td>
-						<c:catch var="exception">${house.haunter}</c:catch>
-						<c:if test="${not empty exception}">${exception}</c:if>
-						<%--<c:if test="${empty house.haunter}">--%>
-							<%--no haunter--%>
-						<%--</c:if>--%>
-						<c:if test="${empty exception}">
-							<a href="detail/${house.haunter.id}" id="detailHaunter">Haunter</a>
+						<c:if test="${empty house.haunter}">
+							no haunter
+						</c:if>
+						<c:if test="${not empty house.haunter}">
+							<a href="detail/${house.haunter.id}" id="DetailHaunter">${house.haunter.name}</a>
 						</c:if>
 					</td>
+					<td><a href="edit/${house.id}" id="EditHouse">Edit</a></td>
 				</tr>
 			</tbody>
 		</table>

@@ -30,23 +30,33 @@
 						<th>address</th>
 						<th>haunted since</th>
 						<th>description</th>
-						<%--TODO haunter link--%>
+						<th>haunter</th>
 					</tr>
 					</thead>
 					<tbody>
 					<c:forEach items="${houses}" var="house">
 					<tr>
 						<td>${house.id}</td>
-						<td><c:out value="${house.name}"/></td>
+						<td><a href="${house.id}" id="DetailHouse" ><c:out value="${house.name}"/></a></td>
 						<td><c:out value="${house.address}"/></td>
 						<td><c:out value="${house.hauntedSince}"/></td>
 						<td><c:out value="${house.description}"/></td>
-						<!-- TODO odkaz na haunters list -->
-						<td><a href="${house.id}" id="EditHouse" >Edit</a></td>
+						<td>
+							<c:if test="${empty house.haunter}">
+								no haunter
+							</c:if>
+							<c:if test="${not empty house.haunter}">
+								<a href="detail/${house.haunter.id}" id="DetailHaunter">${house.haunter.name}</a>
+							</c:if>
+						</td>
+						<td><a href="edit/${house.id}" id="EditHouse">Edit</a></td>
 					</tr>
 					</c:forEach>
 					</tbody>
 				</table>
+
+				<br>
+				<a href="add" id="AddPerson" >Add new person</a>&nbsp;
 			</section>
 			<%@include file="../includes/footer.jsp" %>
 		</div>

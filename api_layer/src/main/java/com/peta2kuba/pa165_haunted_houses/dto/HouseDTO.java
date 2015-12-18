@@ -12,7 +12,7 @@ public class HouseDTO {
     private Long id;
     private String name;
     private String address;
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Timestamp hauntedSince;
     private String description;
     private HaunterDTO haunter;
