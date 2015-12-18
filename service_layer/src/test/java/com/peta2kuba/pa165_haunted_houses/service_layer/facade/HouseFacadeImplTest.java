@@ -141,17 +141,13 @@ public class HouseFacadeImplTest extends AbstractTransactionalTestNGSpringContex
 		haunter.setDescription("Haunting people with his enormous head");
 		haunter.setHauntingReason("Because");
 
-		List<Haunter> haunters = new ArrayList<>();
-		haunters.add(haunter);
-		house.setHaunters(haunters);
+		house.setHaunter(haunter);
 
 		HaunterDTO haunterDTO = mapper.mapTo(haunter, HaunterDTO.class);
 
-		List<HaunterDTO> haunterDTOs = new ArrayList<>();
-		haunterDTOs.add(haunterDTO);
-		houseDTO.setHaunters(haunterDTOs);
+		houseDTO.setHaunter(haunterDTO);
 
-		boolean result = houseFacade.exorcism(houseDTO, haunterDTO, Time.valueOf("10:00:00"));
+		boolean result = houseFacade.exorcism(houseDTO, Time.valueOf("10:00:00"));
 		Assert.assertTrue(result);
 		verify(haunterDao).remove(haunter);
 	}
