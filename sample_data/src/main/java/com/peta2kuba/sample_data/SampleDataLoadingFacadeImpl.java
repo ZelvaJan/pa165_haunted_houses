@@ -82,15 +82,15 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
 		HauntingHours hh8 = hauntingHours(Time.valueOf("22:00:00"), Time.valueOf("05:50:00"));
 		HauntingHours hh9 = hauntingHours(Time.valueOf("15:00:00"), Time.valueOf("12:00:00"));
 
-		Ability ability1 = ability("MEGA Head", "Extremely large head", null);
-		Ability ability2 = ability("ULTRA stinking smell", "Stinks a lot!", null);
-		Ability ability3 = ability("sample ability", "Sample description", null);
-		Ability ability4 = ability("random ability", "Random description", null);
-		Ability ability5 = ability("Greening", "Makes you green", null);
-		Ability ability6 = ability("Clumsiness", "Like Jar Jar Binks", null);
-		Ability ability7 = ability("Force pull", "Pull a pretty girl towards yourself", null);
-		Ability ability8 = ability("Force push", "Push an ugly girl away", null);
-		Ability ability9 = ability("Force lightning", "Palpatine-like", null);
+		Ability ability1 = ability("MEGA Head", "Extremely large head");
+		Ability ability2 = ability("ULTRA stinking smell", "Stinks a lot!");
+		Ability ability3 = ability("sample ability", "Sample description");
+		Ability ability4 = ability("random ability", "Random description");
+		Ability ability5 = ability("Greening", "Makes you green");
+		Ability ability6 = ability("Clumsiness", "Like Jar Jar Binks");
+		Ability ability7 = ability("Force pull", "Pull a pretty girl towards yourself");
+		Ability ability8 = ability("Force push", "Push an ugly girl away");
+		Ability ability9 = ability("Force lightning", "Palpatine-like");
 
 		Haunter haunter1 = haunter("Prema", hh1, "The master haunter", "He just is.", abilityList(ability1));
 		Haunter haunter2 = haunter("Haunter2", hh2, "Servant1", "Because.", abilityList(ability2, ability3));
@@ -99,7 +99,7 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
 		Haunter jedi = haunter("Yoda", hh5, "Master Jedi", "Talks funny", abilityList(ability7, ability8));
 		Haunter haunter5 = haunter("Windu", hh6, "Samuel L. Jackson", "Motherfucking placeholder text motherfucker!", abilityList(ability7, ability8, ability5));
 		Haunter jarjar = haunter("Jar Jar Binks", hh4, "Be extremely aware. It's a secret Sith Lord!", "Placeholder", abilityList(ability9, ability6));
-
+                
 		house1.setHaunter(haunter1);
 		house2.setHaunter(jedi);
 		house3.setHaunter(jarjar);
@@ -120,8 +120,8 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
 		return house;
 	}
 
-	private Ability ability(final String name, final String description, final List<Haunter> haunters) {
-		Ability ability = new Ability(name, description, haunters);
+	private Ability ability(final String name, final String description) {
+		Ability ability = new Ability(name, description);
 		abilityService.createAbility(ability);
 
 		return ability;

@@ -11,6 +11,9 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 
 /**
@@ -38,8 +41,12 @@ public class Haunter {
 
     private String hauntingReason;
 
-    @ManyToMany
-    private List<Ability> abilities = new ArrayList<Ability>();
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinTable(name = "Haunter_ability",
+            joinColumns = @JoinColumn(name = "Haunter_id"),
+            inverseJoinColumns = @JoinColumn(name = "Ability_id")
+    )
+    private List<Ability> abilities;
 
     public Haunter() {
 
@@ -59,15 +66,15 @@ public class Haunter {
         this.hauntingReason = hauntingReason;
     }
 
-	public Haunter(final String name, final HauntingHours hauntingHours, final String description, final String hauntingReason, final List<Ability> abilities) {
-		this.name = name;
-		this.hauntingHours = hauntingHours;
-		this.description = description;
-		this.hauntingReason = hauntingReason;
-		this.abilities = abilities;
-	}
+    public Haunter(final String name, final HauntingHours hauntingHours, final String description, final String hauntingReason, final List<Ability> abilities) {
+        this.name = name;
+        this.hauntingHours = hauntingHours;
+        this.description = description;
+        this.hauntingReason = hauntingReason;
+        this.abilities = abilities;
+    }
 
-	public Long getId() {
+    public Long getId() {
         return id;
     }
 

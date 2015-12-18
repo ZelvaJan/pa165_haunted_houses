@@ -6,6 +6,7 @@
 package com.peta2kuba.pa165_haunted_houses.mvc.controllers;
 
 import com.peta2kuba.pa165_haunted_houses.dto.AbilityDTO;
+import com.peta2kuba.pa165_haunted_houses.dto.PersonDTO;
 import com.peta2kuba.pa165_haunted_houses.facade.AbilityFacade;
 import javax.validation.Valid;
 import org.slf4j.Logger;
@@ -53,6 +54,9 @@ public class AbilityController {
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable long id, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes) {
         AbilityDTO abilityDTO = abilityFacade.findById(id);
+        if(abilityDTO != null){
+            abilityFacade.removeById(abilityDTO.getId());
+        }
         abilityFacade.remove(abilityDTO);
         redirectAttributes.addFlashAttribute("alert_success", "Ability \"" + abilityDTO.getName() + "\" was deleted.");
         return "redirect:" + uriBuilder.path("/ability/list").toUriString();
@@ -114,11 +118,11 @@ public class AbilityController {
         return "redirect:" + uriBuilder.path("/ability/list").toUriString();
     }
 
-    @ExceptionHandler(Exception.class)
-    public ModelAndView handleAllException(Exception ex) {
-        logger.error("AbilityController", ex);
-        ModelAndView model = new ModelAndView("errors/custom_error");
-        return model;
-    }
+//    @ExceptionHandler(Exception.class)
+//    public ModelAndView handleAllException(Exception ex) {
+//        logger.error("AbilityController", ex);
+//        ModelAndView model = new ModelAndView("errors/custom_error");
+//        return model;
+//    }
 
 }

@@ -3,8 +3,10 @@ package com.peta2kuba.pa165_haunted_houses.entity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,9 +31,6 @@ public class Ability {
 
     private String description;
 
-    @ManyToMany
-    private List<Haunter> haunters = new ArrayList<>();
-
     public Ability() {
     }
 
@@ -41,13 +40,12 @@ public class Ability {
         this.description = description;
     }
 
-	public Ability(final String name, final String description, final List<Haunter> haunters) {
-		this.name = name;
-		this.description = description;
-		this.haunters = haunters;
-	}
+    public Ability(final String name, final String description) {
+        this.name = name;
+        this.description = description;
+    }
 
-	public Long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -71,26 +69,20 @@ public class Ability {
         this.description = description;
     }
 
-    public List<Haunter> getHaunters() {
-        return haunters;
-    }
-
-    public void setHaunters(List<Haunter> haunters) {
-        this.haunters = haunters;
-    }
-
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 31 * hash + Objects.hashCode(this.id);
-        hash = 31 * hash + Objects.hashCode(this.name);
-        hash = 31 * hash + Objects.hashCode(this.description);
-        hash = 31 * hash + Objects.hashCode(this.haunters);
+        int hash = 7;
+        hash = 71 * hash + Objects.hashCode(this.id);
+        hash = 71 * hash + Objects.hashCode(this.name);
+        hash = 71 * hash + Objects.hashCode(this.description);
         return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
         if (obj == null) {
             return false;
         }
@@ -98,16 +90,13 @@ public class Ability {
             return false;
         }
         final Ability other = (Ability) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
         if (!Objects.equals(this.name, other.name)) {
             return false;
         }
         if (!Objects.equals(this.description, other.description)) {
             return false;
         }
-        if (!Objects.equals(this.haunters, other.haunters)) {
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
@@ -115,7 +104,7 @@ public class Ability {
 
     @Override
     public String toString() {
-        return "Ability{" + "id=" + id + ", name=" + name + ", description=" + description + ", haunters=" + haunters + '}';
+        return "Ability{" + "id=" + id + ", name=" + name + ", description=" + description + '}';
     }
 
 }
