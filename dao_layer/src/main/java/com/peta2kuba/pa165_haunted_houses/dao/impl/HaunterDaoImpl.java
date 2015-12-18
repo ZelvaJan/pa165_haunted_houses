@@ -32,7 +32,8 @@ public class HaunterDaoImpl
 
     @Override
     public void remove(final Haunter haunter) {
-        em.remove(haunter);
+        Haunter toRemove = em.getReference(Haunter.class, haunter.getId());
+        em.remove(toRemove);
     }
 
     @Override

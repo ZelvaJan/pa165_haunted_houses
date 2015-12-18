@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <%--
   User: turcovsky
@@ -44,13 +45,18 @@
 							no haunter
 						</c:if>
 						<c:if test="${not empty house.haunter}">
-							<a href="detail/${house.haunter.id}" id="DetailHaunter">${house.haunter.name}</a>
+							<a href="../haunter/detail/${house.haunter.id}" id="DetailHaunter">${house.haunter.name}</a>
 						</c:if>
 					</td>
 					<td><a href="edit/${house.id}" id="EditHouse">Edit</a></td>
 				</tr>
 			</tbody>
 		</table>
+		<br />
+		<form:form method="post" action="${pageContext.request.contextPath}/house/${house.id}/exorcism"
+				   modelAttribute="exorcism" cssClass="form-horizontal">
+			<button class="btn btn-primary" type="submit">Perform Exorcism</button>
+		</form:form>
 	</section>
 	<%@include file="../includes/footer.jsp" %>
 </div>

@@ -38,7 +38,7 @@
                         <tr>
                             <td>${haunter.id}</td>
                             <td><c:out value="${haunter.name}"/></td>
-                            <td><c:out value="${haunter.hauntingHours}"/></td>
+                            <td><c:out value="${haunter.hauntingHours.fromTime} - ${haunter.hauntingHours.toTime}"/></td>
                             <td><c:out value="${haunter.description}"/></td>
                             <td><c:out value="${haunter.hauntingReason}"/></td>
                             <td>

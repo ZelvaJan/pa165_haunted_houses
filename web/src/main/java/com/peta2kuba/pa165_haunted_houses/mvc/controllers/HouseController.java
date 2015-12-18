@@ -24,9 +24,12 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.beans.PropertyEditorSupport;
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -100,14 +103,26 @@ public class HouseController {
         return "redirect:" + uriBuilder.path("/house/list").toUriString();
     }
 
-    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-    public String editPerson(@PathVariable long id, Model model) {
-        HouseDTO house = houseFacade.findById(id);
-        model.addAttribute("house", house);
-        List<HaunterDTO> haunterDTOList = haunterFacade.findAll();
-        model.addAttribute("haunters", haunterDTOList);
-        return "house/edit";
-    }
+	@RequestMapping(value = "/{id}/exorcism", method = RequestMethod.POST)
+	public String exorcism(RedirectAttributes redirectAttributes,
+						   UriComponentsBuilder uriBuilder,
+						   @PathVariable long id) {
+		HouseDTO house = houseFacade.findById(id);
+
+		boolean result = false;
+		if (house != null) {
+			logger.error("TIME = " + Time.valueOf(LocalTime.now()));
+			result = houseFacade.exorcism(house, Time.valueOf(LocalTime.now()));
+		}
+
+		if (result) {
+			redirectAttributes.addFlashAttribute("alert_success", "House \"" + house.getName() + "\" was deleted.");
+		} else {
+			redirectAttributes.addFlashAttribute("alert_error", "Haunter is not home right now. Come back later.");
+		}
+		redirectAttributes.addAttribute("id", id);
+		return "redirect:" + uriBuilder.path("/house/detail").toUriString();
+	}
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
     public String editPerson(@ModelAttribute("house") HouseDTO newHouse,
@@ -144,6 +159,15 @@ public class HouseController {
         return "redirect:" + uriBuilder.path("/house/list").toUriString();
     }
 
+	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+	public String editPerson(@PathVariable long id, Model model) {
+		HouseDTO house = houseFacade.findById(id);
+		model.addAttribute("house", house);
+		List<HaunterDTO> haunterDTOList = haunterFacade.findAll();
+		model.addAttribute("haunters", haunterDTOList);
+		return "house/edit";
+	}
+
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable long id,
             Model model,
@@ -156,4 +180,5 @@ public class HouseController {
         redirectAttributes.addFlashAttribute("alert_success", "House \"" + house.getName()+ "\" was deleted.");
         return "redirect:" + uriBuilder.path("/house/list").toUriString();
     }
+
 }
