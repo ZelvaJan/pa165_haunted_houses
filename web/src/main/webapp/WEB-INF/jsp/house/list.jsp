@@ -36,13 +36,13 @@
 					<tbody>
 					<c:forEach items="${houses}" var="house">
 					<tr>
-						<td><a href="house/${house.id}" id="EditHouse" >Edit</a></td>
 						<td>${house.id}</td>
 						<td><c:out value="${house.name}"/></td>
 						<td><c:out value="${house.address}"/></td>
 						<td><c:out value="${house.hauntedSince}"/></td>
 						<td><c:out value="${house.description}"/></td>
 						<!-- TODO odkaz na haunters list -->
+						<td><a href="${house.id}" id="EditHouse" >Edit</a></td>
 					</tr>
 					</c:forEach>
 					</tbody>

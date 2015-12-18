@@ -100,10 +100,10 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
 		Haunter haunter5 = haunter("Windu", hh6, "Samuel L. Jackson", "Motherfucking placeholder text motherfucker!", abilityList(ability7, ability8, ability5));
 		Haunter jarjar = haunter("Jar Jar Binks", hh4, "Be extremely aware. It's a secret Sith Lord!", "Placeholder", abilityList(ability9, ability6));
 
-		house1.setHaunters(haunterList(haunter1));
-		house2.setHaunters(haunterList(haunter2, haunter3));
-		house3.setHaunters(haunterList(haunter5));
-		house4.setHaunters(haunterList(sith, jedi, jarjar));
+		house1.setHaunter(haunter1);
+		house2.setHaunter(jedi);
+		house3.setHaunter(jarjar);
+		house4.setHaunter(sith);
     }
 
 	private Person person(final String email, final String password,  boolean admin) {
@@ -113,8 +113,8 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
 		return person;
 	}
 
-	private House house(final String name, final String address, final Timestamp hauntedSince, final String description, final List<Haunter> haunters) {
-		House house = new House(name, address, hauntedSince, description, haunters);
+	private House house(final String name, final String address, final Timestamp hauntedSince, final String description, final Haunter haunter) {
+		House house = new House(name, address, hauntedSince, description, haunter);
 		houseService.createHouse(house);
 
 		return house;

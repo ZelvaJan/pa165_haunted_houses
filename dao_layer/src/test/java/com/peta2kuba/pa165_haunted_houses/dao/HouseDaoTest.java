@@ -175,10 +175,6 @@ public class HouseDaoTest extends AbstractTestNGSpringContextTests {
 
         haunterDao.create(haunter1);
 
-        // check Haunter
-        List<Haunter> haunters = haunterDao.findAll();
-        Assert.assertTrue(haunters.contains(haunter1));
-
         // create House
         String house1Name = "Simpson's house";
         String house1Address = "742 Evergreen Terrace";
@@ -189,7 +185,7 @@ public class HouseDaoTest extends AbstractTestNGSpringContextTests {
         house1.setAddress(house1Address);
         house1.setHauntedSince(house1HauntedSince);
         house1.setDescription("description");
-        house1.setHaunters(haunters);
+        house1.setHaunter(haunter1);
 
         houseDao.create(house1);
 

@@ -22,7 +22,6 @@
 		<h1>House detail</h1>
 
 		<table class="table">
-			<caption>Houses</caption>
 			<thead>
 			<tr>
 				<th>id</th>
@@ -41,10 +40,12 @@
 					<td><c:out value="${house.hauntedSince}"/></td>
 					<td><c:out value="${house.description}"/></td>
 					<td>
-						<c:if test="${empty house.haunter}">
-							no haunter
-						</c:if>
-						<c:if test="${not empty house.haunter}">
+						<c:catch var="exception">${house.haunter}</c:catch>
+						<c:if test="${not empty exception}">${exception}</c:if>
+						<%--<c:if test="${empty house.haunter}">--%>
+							<%--no haunter--%>
+						<%--</c:if>--%>
+						<c:if test="${empty exception}">
 							<a href="detail/${house.haunter.id}" id="detailHaunter">Haunter</a>
 						</c:if>
 					</td>
