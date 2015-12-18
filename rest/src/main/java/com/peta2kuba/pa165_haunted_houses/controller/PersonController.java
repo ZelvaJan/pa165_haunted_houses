@@ -22,6 +22,8 @@ import javax.inject.Inject;
 import java.util.Collection;
 
 /**
+ * A basic outline of REST controller for Person operations.
+ *
  * @author turcovsky on 09/12/15.
  */
 @RestController
@@ -33,6 +35,13 @@ public class PersonController {
 	@Inject
 	private PersonFacade personFacade;
 
+	/**
+	 * Creates a new Person
+	 *
+	 * @param person new PersonDTO object
+	 * @return Person
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public final PersonDTO addPerson(@RequestBody PersonDTO person) throws Exception {
 
@@ -42,6 +51,12 @@ public class PersonController {
 		return person;
 	}
 
+	/**
+	 * Removes Person
+	 *
+	 * @param id Person id
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public final void removePerson(@PathVariable("id") long id) throws Exception {
 		logger.debug("rest removePerson({})", id);
@@ -49,6 +64,11 @@ public class PersonController {
 		personFacade.removePersonById(id);
 	}
 
+	/**
+	 * List of all People in database
+	 * @return List of People
+	 * @throws JsonProcessingException
+	 */
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public final Collection<PersonDTO> getPeople() throws JsonProcessingException {
 
@@ -56,6 +76,13 @@ public class PersonController {
 		return personFacade.findAllPersons();
 	}
 
+	/**
+	 * One person identified by id
+	 *
+	 * @param id Person's id
+	 * @return Person
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public final PersonDTO getPersonById(@PathVariable("id") long id) throws Exception {
 
@@ -67,6 +94,12 @@ public class PersonController {
 		return personDTO;
 	}
 
+	/**
+	 * Updates info about Person
+	 * @param id Id of updated Person
+	 * @param person Data used for update
+	 * @return Updated Person
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
 	public final PersonDTO editPerson(@PathVariable("id") long id, @RequestBody PersonDTO person) {
 		System.out.println("Updating User " + id);
