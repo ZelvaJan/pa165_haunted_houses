@@ -14,8 +14,6 @@ public interface AbilityFacade {
     void edit(AbilityDTO ability);
 
     void remove(AbilityDTO ability);
-    
-    void removeById(Long id);
 
     AbilityDTO findById(Long id);
 

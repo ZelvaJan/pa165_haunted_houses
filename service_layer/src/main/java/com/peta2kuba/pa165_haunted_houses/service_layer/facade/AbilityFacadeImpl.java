@@ -50,9 +50,4 @@ public class AbilityFacadeImpl implements AbilityFacade {
         return beanMappingService.mapTo(abilityService.findAllAbilities(), AbilityDTO.class);
     }
 
-    @Override
-    public void removeById(Long id) {
-        abilityService.removeAbility(abilityService.findAbilityById(id));
-    }
-
 }

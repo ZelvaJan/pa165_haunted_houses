@@ -7,12 +7,16 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author petr.melicherik
  */
 @Repository
 public class AbilityDaoImpl implements AbilityDao {
+
+    final static Logger logger = LoggerFactory.getLogger(AbilityDaoImpl.class);
 
     @PersistenceContext
     private EntityManager em;
@@ -29,7 +33,7 @@ public class AbilityDaoImpl implements AbilityDao {
 
     @Override
     public void remove(Ability ability) {
-        em.remove(ability);
+        em.remove(em.merge(ability));
     }
 
     @Override

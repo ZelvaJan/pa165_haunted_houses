@@ -1,15 +1,15 @@
 package com.peta2kuba.pa165_haunted_houses.entity;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 
@@ -30,6 +30,13 @@ public class Ability {
     private String name;
 
     private String description;
+
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinTable(name = "Haunter_ability",
+            joinColumns = @JoinColumn(name = "Ability_id"),
+            inverseJoinColumns = @JoinColumn(name = "Haunter_id")
+    )
+    private List<Haunter> haunters;
 
     public Ability() {
     }
@@ -69,12 +76,20 @@ public class Ability {
         this.description = description;
     }
 
+    public List<Haunter> getHaunters() {
+        return haunters;
+    }
+
+    public void setHaunters(List<Haunter> haunters) {
+        this.haunters = haunters;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 71 * hash + Objects.hashCode(this.id);
-        hash = 71 * hash + Objects.hashCode(this.name);
-        hash = 71 * hash + Objects.hashCode(this.description);
+        hash = 13 * hash + Objects.hashCode(this.id);
+        hash = 13 * hash + Objects.hashCode(this.name);
+        hash = 13 * hash + Objects.hashCode(this.description);
         return hash;
     }
 

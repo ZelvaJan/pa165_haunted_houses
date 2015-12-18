@@ -54,10 +54,9 @@ public class AbilityController {
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable long id, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes) {
         AbilityDTO abilityDTO = abilityFacade.findById(id);
-        if(abilityDTO != null){
-            abilityFacade.removeById(abilityDTO.getId());
+        if (abilityDTO != null) {
+            abilityFacade.remove(abilityDTO);
         }
-        abilityFacade.remove(abilityDTO);
         redirectAttributes.addFlashAttribute("alert_success", "Ability \"" + abilityDTO.getName() + "\" was deleted.");
         return "redirect:" + uriBuilder.path("/ability/list").toUriString();
     }
@@ -124,5 +123,4 @@ public class AbilityController {
 //        ModelAndView model = new ModelAndView("errors/custom_error");
 //        return model;
 //    }
-
 }
