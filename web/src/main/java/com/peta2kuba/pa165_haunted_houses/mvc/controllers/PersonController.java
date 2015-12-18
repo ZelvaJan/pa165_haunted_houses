@@ -2,6 +2,9 @@ package com.peta2kuba.pa165_haunted_houses.mvc.controllers;
 
 import com.peta2kuba.pa165_haunted_houses.dto.PersonDTO;
 import com.peta2kuba.pa165_haunted_houses.facade.PersonFacade;
+import java.io.IOException;
+import javax.servlet.http.HttpServletResponse;
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,6 +40,12 @@ public class PersonController {
     public String list(Model model) {
         model.addAttribute("people", personFacade.findAllPersons());
         return "person/list";
+    }
+
+    @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
+    public String detail(Model model, @PathVariable long id) {
+        model.addAttribute("person", personFacade.findPersonById(id));
+        return "person/detail";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
@@ -111,12 +120,14 @@ public class PersonController {
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public String delete(@PathVariable long id, 
+    public String delete(@PathVariable long id,
             Model model,
             UriComponentsBuilder uriBuilder,
-            RedirectAttributes redirectAttributes) {
+            RedirectAttributes redirectAttributes)  {
         PersonDTO person = personFacade.findPersonById(id);
-        personFacade.removePerson(person);
+        if (person != null) {
+            personFacade.removePersonById(id);
+        } 
         redirectAttributes.addFlashAttribute("alert_success", "Person \"" + person.getEmail() + "\" was deleted.");
         return "redirect:" + uriBuilder.path("/person/list").toUriString();
     }

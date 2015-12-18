@@ -20,7 +20,6 @@
             <%@include file="../includes/nav.jsp" %>
             <section>
                 <h1>Users</h1>
-
                 <table class="table">
                     <caption>Users</caption>
                     <thead>
@@ -28,6 +27,7 @@
                             <th>id</th>
                             <th>email</th>
                             <th>admin</th>
+                            <th>detail</th>
                             <th>edit</th>
                             <th>delete</th>
                         </tr>
@@ -38,8 +38,10 @@
                                 <td>${person.id}</td>
                                 <td><c:out value="${person.email}"/></td>
                                 <td><c:out value="${person.admin}"/></td>
-                                <td><a href="edit/${person.id}" id="EditPerson" >Edit</a></td>
-                                <td><a href="delete/${person.id}" id="DeletePerson" >Delete</a></td>
+                                <c:url value="/person" var="homeUrl" />
+                                <td><a href="${homeUrl}/detail/${person.id}" id="DetailPerson" >Detail</a></td>
+                                <td><a href="${homeUrl}/edit/${person.id}" id="EditPerson" >Edit</a></td>
+                                <td><a href="${homeUrl}/delete/${person.id}" id="DeletePerson" >Delete</a></td>
                             </tr>
                         </c:forEach>
                     </tbody>
@@ -47,8 +49,8 @@
 
                 <br>
                 <a href="add" id="AddPerson" >Add new person</a>&nbsp;
-			</section>
-			<%@include file="../includes/footer.jsp" %>
-		</div>
-	</body>
+            </section>
+            <%@include file="../includes/footer.jsp" %>
+        </div>
+    </body>
 </html>
