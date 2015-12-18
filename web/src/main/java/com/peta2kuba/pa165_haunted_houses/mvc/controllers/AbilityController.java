@@ -16,10 +16,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -91,7 +93,7 @@ public class AbilityController {
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
-    public String editPerson(@ModelAttribute("ability") AbilityDTO abilityDTO, BindingResult bindingResult, Model model,
+    public String editPerson(@Valid @ModelAttribute("ability") AbilityDTO abilityDTO, BindingResult bindingResult, Model model,
             RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder, @PathVariable long id) {
 
         //in case of validation error forward back to the the form
@@ -110,6 +112,13 @@ public class AbilityController {
         abilityFacade.edit(abilityDTO);
         redirectAttributes.addFlashAttribute("alert_success", "Ability was updated");
         return "redirect:" + uriBuilder.path("/ability/list").toUriString();
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ModelAndView handleAllException(Exception ex) {
+        logger.error("AbilityController", ex);
+        ModelAndView model = new ModelAndView("errors/custom_error");
+        return model;
     }
 
 }

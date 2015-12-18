@@ -25,10 +25,12 @@
                         <tr>
                             <th>id</th>
                             <th>name</th>
+                            <th>haunting hours</th>
                             <th>description</th>
                             <th>haunting reason</th>
                             <th>abilities</th>
-                            <!-- TODO dalsi parametry z DTO -->
+                            <th>detail</th>
+                            <th>delete</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,24 +38,33 @@
                             <tr>
                                 <td>${haunter.id}</td>
                                 <td><c:out value="${haunter.name}"/></td>
+                                <td><c:out value="${haunter.hauntingHours}"/></td>
                                 <td><c:out value="${haunter.description}"/></td>
                                 <td><c:out value="${haunter.hauntingReason}"/></td>
-                                 <td>
+                                <td>
                                     <ul>
                                         <c:forEach items="${haunter.abilities}" var="ability">
                                             <li>
-                                                <a href="../ability/${ability.id}">${ability.name}</a>
+                                                <a href="../ability/detail/${ability.id}">${ability.name}</a>
                                             </li>
-                                    </c:forEach>
+                                        </c:forEach>
                                     </ul>                                    
                                 </td>
-                                <!-- TODO odkaz na hunters list pro tuhle ability -->
+                                <td><a href="detail/${haunter.id}">Detail</a></td>
+                                <td><a href="delete/${haunter.id}">Delete</a></td>
                             </tr>
                         </c:forEach>
                     </tbody>
                 </table>
+
+                <div>
+                    <a href="list/active">List active haunters</a>&nbsp;
+                </div>
+                <div>
+                    <a href="add">Add haunter</a>&nbsp;
+                </div>
             </section>
-			<%@include file="../includes/footer.jsp" %>
+            <%@include file="../includes/footer.jsp" %>
         </div>
     </body>
 </html>

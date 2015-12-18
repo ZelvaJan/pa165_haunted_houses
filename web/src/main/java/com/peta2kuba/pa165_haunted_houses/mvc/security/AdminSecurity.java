@@ -19,7 +19,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author petr.melicherik
  */
-@WebFilter(urlPatterns = {"/ability/add", "/person/add"})
+@WebFilter(urlPatterns = {"/ability/add", "/ability/delete/*", "/ability/edit/*", "/haunter/add", "/haunter/delete/*", "/haunter/edit/*", "/person/add"})
 public class AdminSecurity implements Filter {
 
     final static Logger log = LoggerFactory.getLogger(AdminSecurity.class);

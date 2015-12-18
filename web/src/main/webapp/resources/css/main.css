@@ -50,7 +50,7 @@ footer {
 }
 
 a {
-    text-decoration: none;
+    text-decoration: underline;
     color: #002554;
 }
 
@@ -167,6 +167,10 @@ nav ul li a {
 /* Change the link color to #111 (black) on hover */
 nav ul li a:hover {
     background-color: #111;
+}
+
+ul {
+    margin: 10px;
 }
 
 /*h1{*/

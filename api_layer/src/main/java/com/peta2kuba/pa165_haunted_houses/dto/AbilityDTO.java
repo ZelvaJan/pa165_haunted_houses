@@ -15,6 +15,8 @@ public class AbilityDTO {
     @NotNull
     @Size(min = 3, max = 50)
     private String name;
+    @NotNull
+    @Size(min = 2, max = 200)
     private String description;
     private ArrayList<HaunterDTO> haunters;
 
