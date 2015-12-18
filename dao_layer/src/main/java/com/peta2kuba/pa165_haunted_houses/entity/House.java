@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
+import javax.persistence.CascadeType;
 import javax.persistence.OneToOne;
 
 /**

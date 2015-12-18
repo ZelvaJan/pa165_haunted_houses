@@ -76,6 +76,7 @@ public class HaunterController {
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable long id, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes) {
         HaunterDTO haunter = haunterFacade.findById(id);
+        
         if (haunter != null) {
             haunterFacade.removeHaunterById(id);
         }

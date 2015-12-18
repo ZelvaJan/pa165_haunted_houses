@@ -1,5 +1,6 @@
 package com.peta2kuba.pa165_haunted_houses.dto;
 
+import com.peta2kuba.pa165_haunted_houses.entity.House;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -15,6 +16,15 @@ public class HaunterDTO {
     private String description;
     private String hauntingReason;
     private List<AbilityDTO> abilities = new ArrayList<AbilityDTO>();
+    private HouseDTO house;
+
+    public HouseDTO getHouse() {
+        return house;
+    }
+
+    public void setHouse(HouseDTO house) {
+        this.house = house;
+    }
 
     public HaunterDTO() {
     }

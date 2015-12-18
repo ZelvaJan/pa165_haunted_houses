@@ -41,7 +41,8 @@ public class HaunterFacadeImpl implements HaunterFacade {
     
     @Override
     public void removeHaunterById(final Long id) {
-        haunterService.removeHaunter(haunterService.findById(id));
+        Haunter haunter = haunterService.findById(id);
+        haunterService.removeHaunter(haunter);
     }
 
     @Override

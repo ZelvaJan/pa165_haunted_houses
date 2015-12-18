@@ -39,9 +39,9 @@
                                 <td><c:out value="${person.email}"/></td>
                                 <td><c:out value="${person.admin}"/></td>
                                 <c:url value="/person" var="homeUrl" />
-                                <td><a href="${homeUrl}/detail/${person.id}" id="DetailPerson" >Detail</a></td>
-                                <td><a href="${homeUrl}/edit/${person.id}" id="EditPerson" >Edit</a></td>
-                                <td><a href="${homeUrl}/delete/${person.id}" id="DeletePerson" >Delete</a></td>
+                                <td><a href="${homeUrl}/detail/${person.id}" id="DetailPerson" >detail</a></td>
+                                <td><a href="${homeUrl}/edit/${person.id}" id="EditPerson" >edit</a></td>
+                                <td><a href="${homeUrl}/delete/${person.id}" id="DeletePerson" >delete</a></td>
                             </tr>
                         </c:forEach>
                     </tbody>

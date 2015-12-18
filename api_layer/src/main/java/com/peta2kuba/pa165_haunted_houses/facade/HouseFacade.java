@@ -16,6 +16,8 @@ public interface HouseFacade {
     void editHouse(HouseDTO houseDTO);
 
     void removeHouse(HouseDTO houseDTO);
+    
+    void removeHouseById(Long id);
 
     HouseDTO findById(Long id);
 

@@ -37,121 +37,123 @@ import java.util.List;
 @RequestMapping("/house")
 public class HouseController {
 
-	final static Logger logger = LoggerFactory.getLogger(HouseController.class);
+    final static Logger logger = LoggerFactory.getLogger(HouseController.class);
 
-	@Autowired
-	private HouseFacade houseFacade;
+    @Autowired
+    private HouseFacade houseFacade;
 
-	@Autowired
-	private HaunterFacade haunterFacade;
+    @Autowired
+    private HaunterFacade haunterFacade;
 
-	@InitBinder
-	public void binder(WebDataBinder binder) {
-		binder.registerCustomEditor(Timestamp.class,
-			new PropertyEditorSupport() {
-				public void setAsText(String value) {
-					try {
-						Date parsedDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(value);
-						setValue(new Timestamp(parsedDate.getTime()));
-					} catch (ParseException e) {
-						setValue(null);
-					}
-				}
-			});
-	}
+    @InitBinder
+    public void binder(WebDataBinder binder) {
+        binder.registerCustomEditor(Timestamp.class,
+                new PropertyEditorSupport() {
+                    public void setAsText(String value) {
+                        try {
+                            Date parsedDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(value);
+                            setValue(new Timestamp(parsedDate.getTime()));
+                        } catch (ParseException e) {
+                            setValue(null);
+                        }
+                    }
+                });
+    }
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String list(Model model) {
-		model.addAttribute("houses", houseFacade.findAll());
-		return "house/list";
-	}
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public String list(Model model) {
+        model.addAttribute("houses", houseFacade.findAll());
+        return "house/list";
+    }
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public String houseById(@PathVariable long id, Model model) {
-		model.addAttribute("house", houseFacade.findById(id));
-		return "house/detail";
-	}
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public String houseById(@PathVariable long id, Model model) {
+        model.addAttribute("house", houseFacade.findById(id));
+        return "house/detail";
+    }
 
-	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public String addHouse(Model model) {
-		model.addAttribute("houseCreate", new HouseDTO());
-		return "house/add";
-	}
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    public String addHouse(Model model) {
+        model.addAttribute("houseCreate", new HouseDTO());
+        return "house/add";
+    }
 
-	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String create(@Valid @ModelAttribute("houseCreate") HouseDTO formBean, BindingResult bindingResult,
-						 Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
-		logger.debug("create(houseCreate={})", formBean);
-		//in case of validation error forward back to the the form
-		if (bindingResult.hasErrors()) {
-			for (ObjectError ge : bindingResult.getGlobalErrors()) {
-				logger.trace("ObjectError: {}", ge);
-			}
-			for (FieldError fe : bindingResult.getFieldErrors()) {
-				model.addAttribute(fe.getField() + "_error", true);
-				logger.trace("FieldError: {}", fe);
-			}
-			return "house/add";
-		}
-		//create person
-		houseFacade.createHouse(formBean);
-		//report success
-		redirectAttributes.addFlashAttribute("alert_success", "House was created");
-		return "redirect:" + uriBuilder.path("/house/list").toUriString();
-	}
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public String create(@Valid @ModelAttribute("houseCreate") HouseDTO formBean, BindingResult bindingResult,
+            Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
+        logger.debug("create(houseCreate={})", formBean);
+        //in case of validation error forward back to the the form
+        if (bindingResult.hasErrors()) {
+            for (ObjectError ge : bindingResult.getGlobalErrors()) {
+                logger.trace("ObjectError: {}", ge);
+            }
+            for (FieldError fe : bindingResult.getFieldErrors()) {
+                model.addAttribute(fe.getField() + "_error", true);
+                logger.trace("FieldError: {}", fe);
+            }
+            return "house/add";
+        }
+        //create person
+        houseFacade.createHouse(formBean);
+        //report success
+        redirectAttributes.addFlashAttribute("alert_success", "House was created");
+        return "redirect:" + uriBuilder.path("/house/list").toUriString();
+    }
 
-	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-	public String editPerson(@PathVariable long id, Model model) {
-		HouseDTO house = houseFacade.findById(id);
-		model.addAttribute("house", house);
-		List<HaunterDTO> haunterDTOList = haunterFacade.findAll();
-		model.addAttribute("haunters", haunterDTOList);
-		return "house/edit";
-	}
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String editPerson(@PathVariable long id, Model model) {
+        HouseDTO house = houseFacade.findById(id);
+        model.addAttribute("house", house);
+        List<HaunterDTO> haunterDTOList = haunterFacade.findAll();
+        model.addAttribute("haunters", haunterDTOList);
+        return "house/edit";
+    }
 
-	@RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
-	public String editPerson(@ModelAttribute("house") HouseDTO newHouse,
-							 BindingResult bindingResult,
-							 Model model,
-							 RedirectAttributes redirectAttributes,
-							 UriComponentsBuilder uriBuilder,
-							 @PathVariable long id) {
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
+    public String editPerson(@ModelAttribute("house") HouseDTO newHouse,
+            BindingResult bindingResult,
+            Model model,
+            RedirectAttributes redirectAttributes,
+            UriComponentsBuilder uriBuilder,
+            @PathVariable long id) {
 
-		HouseDTO house = houseFacade.findById(id);
+        HouseDTO house = houseFacade.findById(id);
 
-		//in case of validation error forward back to the the form
-		if (bindingResult.hasErrors()) {
-			for (ObjectError ge : bindingResult.getGlobalErrors()) {
-				logger.trace("ObjectError: {}", ge);
-			}
-			for (FieldError fe : bindingResult.getFieldErrors()) {
-				model.addAttribute(fe.getField() + "_error", true);
-				logger.trace("FieldError: {}", fe);
-			}
+        //in case of validation error forward back to the the form
+        if (bindingResult.hasErrors()) {
+            for (ObjectError ge : bindingResult.getGlobalErrors()) {
+                logger.trace("ObjectError: {}", ge);
+            }
+            for (FieldError fe : bindingResult.getFieldErrors()) {
+                model.addAttribute(fe.getField() + "_error", true);
+                logger.trace("FieldError: {}", fe);
+            }
 
-			redirectAttributes.addFlashAttribute("errors", bindingResult);
-			return "/house/edit";
-		}
-		if (newHouse.getHauntedSince() == null) {
-			logger.error("hauntedSince ParseError!!!");
+            redirectAttributes.addFlashAttribute("errors", bindingResult);
+            return "/house/edit";
+        }
+        if (newHouse.getHauntedSince() == null) {
+            logger.error("hauntedSince ParseError!!!");
 			//model.addAttribute(bindingResult. + "_error", true);
-			// TODO set field error
+            // TODO set field error
 
-		}
+        }
 
-		houseFacade.editHouse(newHouse);
-		redirectAttributes.addFlashAttribute("alert_success", "House was edited");
-		return "redirect:" + uriBuilder.path("/house/list").toUriString();
-	}
+        houseFacade.editHouse(newHouse);
+        redirectAttributes.addFlashAttribute("alert_success", "House was edited");
+        return "redirect:" + uriBuilder.path("/house/list").toUriString();
+    }
 
-	//@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-	//public String delete(@PathVariable long id,
-	//					 Model model,
-	//					 UriComponentsBuilder uriBuilder,
-	//					 RedirectAttributes redirectAttributes) {
-	//	PersonDTO person = personFacade.findPersonById(id);
-	//	personFacade.removePerson(person);
-	//	redirectAttributes.addFlashAttribute("alert_success", "Person \"" + person.getEmail() + "\" was deleted.");
-	//	return "redirect:" + uriBuilder.path("/person/list").toUriString();
-	//}
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public String delete(@PathVariable long id,
+            Model model,
+            UriComponentsBuilder uriBuilder,
+            RedirectAttributes redirectAttributes) {
+        HouseDTO house = houseFacade.findById(id);
+        if (house != null) {
+            houseFacade.removeHouseById(id);
+        }
+        redirectAttributes.addFlashAttribute("alert_success", "House \"" + house.getName()+ "\" was deleted.");
+        return "redirect:" + uriBuilder.path("/house/list").toUriString();
+    }
 }

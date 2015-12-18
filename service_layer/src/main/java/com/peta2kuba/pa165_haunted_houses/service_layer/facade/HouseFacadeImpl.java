@@ -45,6 +45,12 @@ public class HouseFacadeImpl implements HouseFacade {
     }
 
     @Override
+    public void removeHouseById(Long id) {
+        houseService.removeHouse(houseService.findById(id));
+
+    }
+
+    @Override
     public HouseDTO findById(final Long id) {
         House house = houseService.findById(id);
         return (house == null) ? null : beanMappingService.mapTo(house, HouseDTO.class);

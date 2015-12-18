@@ -29,6 +29,7 @@
                             <th>description</th>
                             <th>haunting reason</th>
                             <th>abilities</th>
+                            <th>house</th>
                             <th>detail</th>
                             <th>detail</th>
                             <th>delete</th>
@@ -51,6 +52,8 @@
                                         </c:forEach>
                                     </ul>                                    
                                 </td>
+                                <c:url value="/house" var="homeUrl" />
+                                <td><a href="${homeUrl}/detail/${haunter.house.id}">${haunter.house.name}</a></td>
                                 <td><a href="detail/${haunter.id}">Detail</a></td>
                                 <td><a href="edit/${haunter.id}">Edit</a></td>
                                 <td><a href="delete/${haunter.id}">Delete</a></td>
