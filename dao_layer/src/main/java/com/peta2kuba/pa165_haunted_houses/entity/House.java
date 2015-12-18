@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
+import javax.persistence.OneToOne;
 
 /**
  * Haunted house entity
@@ -34,6 +35,7 @@ public class House {
 
     private String description;
 
+    @OneToOne
     private Haunter haunter;
 
     public House(final String name, final String address, final Timestamp hauntedSince, final String description, final Haunter haunter) {
