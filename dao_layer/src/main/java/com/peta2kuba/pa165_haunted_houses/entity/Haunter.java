@@ -15,6 +15,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 /**
  * Haunter entity with its Abilities and additional information
@@ -48,6 +49,9 @@ public class Haunter {
     )
     private List<Ability> abilities;
 
+    @OneToOne(cascade = {CascadeType.ALL})
+    private House house;
+    
     public Haunter() {
 
     }
@@ -114,6 +118,14 @@ public class Haunter {
         this.hauntingReason = hauntingReason;
     }
 
+    public House getHouse() {
+        return house;
+    }
+
+    public void setHouse(House house) {
+        this.house = house;
+    }
+
     public List<Ability> getAbilities() {
         return abilities;
     }
@@ -124,13 +136,13 @@ public class Haunter {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 59 * hash + Objects.hashCode(this.id);
-        hash = 59 * hash + Objects.hashCode(this.name);
-        hash = 59 * hash + Objects.hashCode(this.hauntingHours);
-        hash = 59 * hash + Objects.hashCode(this.description);
-        hash = 59 * hash + Objects.hashCode(this.hauntingReason);
-        hash = 59 * hash + Objects.hashCode(this.abilities);
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.id);
+        hash = 97 * hash + Objects.hashCode(this.name);
+        hash = 97 * hash + Objects.hashCode(this.hauntingHours);
+        hash = 97 * hash + Objects.hashCode(this.description);
+        hash = 97 * hash + Objects.hashCode(this.hauntingReason);
+        hash = 97 * hash + Objects.hashCode(this.abilities);
         return hash;
     }
 
@@ -161,12 +173,16 @@ public class Haunter {
         if (!Objects.equals(this.abilities, other.abilities)) {
             return false;
         }
+        if (!Objects.equals(this.house, other.house)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Haunter{" + "id=" + id + ", name=" + name + ", hauntingHours=" + hauntingHours + ", description=" + description + ", hauntingReason=" + hauntingReason + ", abilities=" + abilities + '}';
+        return "Haunter{" + "id=" + id + ", name=" + name + ", hauntingHours=" + hauntingHours + ", description=" + description + ", hauntingReason=" + hauntingReason + ", abilities=" + abilities + ", house=" + house + '}';
     }
+
 
 }

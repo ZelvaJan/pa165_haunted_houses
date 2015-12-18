@@ -36,7 +36,7 @@ public class House {
 
     private String description;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     private Haunter haunter;
 
     public House(final String name, final String address, final Timestamp hauntedSince, final String description, final Haunter haunter) {
