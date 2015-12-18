@@ -1,6 +1,9 @@
 package com.peta2kuba.pa165_haunted_houses.dto;
 
 import java.util.Objects;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.Email;
 
 /**
  *
@@ -9,8 +12,16 @@ import java.util.Objects;
 public class PersonDTO {
 
     private Long id;
+
+    @NotNull
+    @Size(min = 3, max = 50)
+    @Email
     private String email;
+
+    @NotNull
+    @Size(min = 3, max = 50)
     private String password;
+    
     private boolean admin = false;
 
     public PersonDTO() {

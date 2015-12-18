@@ -49,25 +49,16 @@ public class HouseServiceTest extends AbstractTransactionalTestNGSpringContextTe
 
     @BeforeMethod
     public void createHouses() {
-        List<Haunter> haunterBrnoList = new ArrayList<>();
         haunter1 = new Haunter((long) 0, "Prema", null);
         HauntingHours haunter1HauntingHours = new HauntingHours();
         haunter1HauntingHours.setFromTime(Time.valueOf("07:05:00"));
         haunter1HauntingHours.setToTime(Time.valueOf("17:05:00"));
         haunter1.setHauntingHours(haunter1HauntingHours);
-        haunterBrnoList.add(haunter1);
-
-        haunter2 = new Haunter((long) 1, "Gogogo", null);
-        HauntingHours haunter2HauntingHours = new HauntingHours();
-        haunter2HauntingHours.setFromTime(Time.valueOf("16:05:00"));
-        haunter2HauntingHours.setToTime(Time.valueOf("03:05:00"));
-        haunter2.setHauntingHours(haunter2HauntingHours);
-        haunterBrnoList.add(haunter2);
 
         houseBrno = new House();
         houseBrno.setId((long) 0);
         houseBrno.setName("Strasibrn");
-        houseBrno.setHaunters(haunterBrnoList);
+        houseBrno.setHaunter(haunter1);
     }
 
     /**
@@ -75,7 +66,7 @@ public class HouseServiceTest extends AbstractTransactionalTestNGSpringContextTe
      */
     @Test
     public void exorcismSuccess1() {
-        Assert.assertTrue(houseService.exorcism(houseBrno, haunter1, Time.valueOf("16:05:00")));
+        Assert.assertTrue(houseService.exorcism(houseBrno, Time.valueOf("16:05:00")));
     }
 
     /**
@@ -83,7 +74,7 @@ public class HouseServiceTest extends AbstractTransactionalTestNGSpringContextTe
      */
     @Test
     public void exorcismUnsuccessful1() {
-        Assert.assertFalse(houseService.exorcism(houseBrno, haunter1, Time.valueOf("18:05:00")));
+        Assert.assertFalse(houseService.exorcism(houseBrno, Time.valueOf("18:05:00")));
     }
 
     /**
@@ -91,7 +82,7 @@ public class HouseServiceTest extends AbstractTransactionalTestNGSpringContextTe
      */
     @Test
     public void exorcismSuccess2() {
-        Assert.assertFalse(houseService.exorcism(houseBrno, haunter2, Time.valueOf("15:05:00")));
+        Assert.assertTrue(houseService.exorcism(houseBrno, Time.valueOf("15:05:00")));
     }
 
     /**
@@ -99,7 +90,7 @@ public class HouseServiceTest extends AbstractTransactionalTestNGSpringContextTe
      */
     @Test
     public void exorcismUnsuccessful2() {
-        Assert.assertTrue(houseService.exorcism(houseBrno, haunter2, Time.valueOf("01:05:00")));
+        Assert.assertFalse(houseService.exorcism(houseBrno, Time.valueOf("01:05:00")));
     }
 
     /**
@@ -107,9 +98,9 @@ public class HouseServiceTest extends AbstractTransactionalTestNGSpringContextTe
      */
     @Test
     public void exorcismNull() {
-        Assert.assertFalse(houseService.exorcism(null, null, null));
-        Assert.assertFalse(houseService.exorcism(null, haunter2, Time.valueOf("01:05:00")));
-        Assert.assertFalse(houseService.exorcism(houseBrno, null, Time.valueOf("01:05:00")));
-        Assert.assertFalse(houseService.exorcism(houseBrno, haunter2, null));
+        Assert.assertFalse(houseService.exorcism(null, null));
+        Assert.assertFalse(houseService.exorcism(null, Time.valueOf("01:05:00")));
+        Assert.assertFalse(houseService.exorcism(houseBrno, Time.valueOf("01:05:00")));
+        Assert.assertFalse(houseService.exorcism(houseBrno, null));
     }
 }

@@ -61,9 +61,7 @@ public class AbilityFacadeImplTest extends AbstractTransactionalTestNGSpringCont
     @BeforeMethod
     public void init() {
         ability = new Ability((long) 1, "Head  bum", "Watch out!!");
-        ability.setHaunters(new ArrayList<>());
         ability2 = new Ability((long) 2, "Bum bum dum", "Oiii");
-        ability2.setHaunters(null);
 
         abilityDTO = beanMappingService.mapTo(ability, AbilityDTO.class);
         abilityDTO2 = beanMappingService.mapTo(ability2, AbilityDTO.class);

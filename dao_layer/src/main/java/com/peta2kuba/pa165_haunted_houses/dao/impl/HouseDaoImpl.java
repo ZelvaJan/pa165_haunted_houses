@@ -31,7 +31,8 @@ public class HouseDaoImpl
 
 	@Override
 	public void remove(final House house) {
-		em.remove(house);
+		House toRemove = em.getReference(House.class, house.getId());
+		em.remove(toRemove);
 	}
 
 	@Override

@@ -15,6 +15,8 @@ public interface HaunterFacade {
 
     void removeHaunter(HaunterDTO haunterDTO);
 
+    void removeHaunterById(Long id);
+
     HaunterDTO findById(Long id);
 
     HaunterDTO findByName(String name);

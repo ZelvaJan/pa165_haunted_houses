@@ -16,6 +16,8 @@ public interface PersonFacade {
 
     void removePerson(PersonDTO person);
 
+    void removePersonById(Long id);
+
     PersonDTO findPersonById(Long id);
 
     PersonDTO findPersonByEmail(String email);

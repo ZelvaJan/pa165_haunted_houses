@@ -50,10 +50,10 @@ public class HouseServiceImpl implements HouseService {
     }
 
     @Override
-    public boolean exorcism(House house, final Haunter haunter, Time exorcismTime) {
-        if ((house != null && haunter != null) && exorcismTime != null) {
-            List<Haunter> haunters = house.getHaunters();
-            if (haunters != null && haunters.contains(haunter)) {
+    public boolean exorcism(final House house, Time exorcismTime) {
+        if (house != null && exorcismTime != null) {
+            Haunter haunter = house.getHaunter();
+            if (haunter != null) {
                 HauntingHours hh = haunter.getHauntingHours();
 
                 // If I'm performing exorcism when the haunter is present, kill it! Kill it with fire!!!

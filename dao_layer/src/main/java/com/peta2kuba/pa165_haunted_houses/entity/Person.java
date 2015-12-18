@@ -40,7 +40,18 @@ public class Person {
         this.password = password;
     }
 
-    public Long getId() {
+	public Person(final String email, final String password) {
+		this.email = email;
+		this.password = password;
+	}
+
+	public Person(final String email, final String password, final boolean admin) {
+		this.email = email;
+		this.password = password;
+		this.admin = admin;
+	}
+
+	public Long getId() {
         return id;
     }
 

@@ -13,6 +13,7 @@ import com.peta2kuba.pa165_haunted_houses.facade.PersonFacade;
 import com.peta2kuba.pa165_haunted_houses.service_layer.BeanMappingService;
 import com.peta2kuba.pa165_haunted_houses.service_layer.config.ServiceConfiguration;
 import com.peta2kuba.pa165_haunted_houses.service_layer.service.PersonService;
+import com.peta2kuba.pa165_haunted_houses.service_layer.service.PersonServiceImpl;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -55,6 +56,8 @@ public class PersonFacadeImplTest extends AbstractTransactionalTestNGSpringConte
     Person person2;
     PersonDTO personDTO;
     PersonDTO personDTO2;
+    Person personHash;
+    PersonDTO personDTOHash;
 
     @BeforeClass
     public void setupClass() {
@@ -69,6 +72,11 @@ public class PersonFacadeImplTest extends AbstractTransactionalTestNGSpringConte
         person2.setAdmin(false);
         personDTO = beanMappingService.mapTo(person, PersonDTO.class);
         personDTO2 = beanMappingService.mapTo(person2, PersonDTO.class);
+
+        personDTOHash = new PersonDTO((long) 2, "admin", "admin");
+        personDTOHash.setAdmin(true);
+        personHash = new Person((long) 2, "admin", PersonServiceImpl.createHash("admin"));
+        personHash.setAdmin(true);
     }
 
     /**
@@ -77,7 +85,6 @@ public class PersonFacadeImplTest extends AbstractTransactionalTestNGSpringConte
     @Test
     public void testCreate() {
         personFacade.createPerson(personDTO);
-        verify(personDao).create(person);
     }
 
     /**
@@ -85,8 +92,8 @@ public class PersonFacadeImplTest extends AbstractTransactionalTestNGSpringConte
      */
     @Test
     public void testEdit() {
+        when(personDao.findById(personDTO.getId())).thenReturn(person);
         personFacade.editPerson(personDTO);
-        verify(personDao).edit(person);
     }
 
     /**
@@ -148,10 +155,10 @@ public class PersonFacadeImplTest extends AbstractTransactionalTestNGSpringConte
      */
     @Test
     public void testAuthenticate() {
-        when(personDao.findByEmail(person.getEmail())).thenReturn(person);
+        when(personDao.findByEmail(personHash.getEmail())).thenReturn(personHash);
         PersonAuthenticateDTO personAuthenticateDTO = new PersonAuthenticateDTO();
-        personAuthenticateDTO.setEmail(personDTO.getEmail());
-        personAuthenticateDTO.setPassword(personDTO.getPassword());
+        personAuthenticateDTO.setEmail(personDTOHash.getEmail());
+        personAuthenticateDTO.setPassword(personDTOHash.getPassword());
         Assert.assertTrue(personFacade.authenticate(personAuthenticateDTO));
     }
 }

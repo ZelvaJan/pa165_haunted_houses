@@ -11,7 +11,12 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.PreRemove;
 
 /**
  * Haunter entity with its Abilities and additional information
@@ -38,8 +43,15 @@ public class Haunter {
 
     private String hauntingReason;
 
-    @ManyToMany
-    private List<Ability> abilities = new ArrayList<Ability>();
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinTable(name = "Haunter_ability",
+            joinColumns = @JoinColumn(name = "Haunter_id"),
+            inverseJoinColumns = @JoinColumn(name = "Ability_id")
+    )
+    private List<Ability> abilities;
+
+    @OneToOne(cascade = {CascadeType.ALL})
+    private House house;
 
     public Haunter() {
 
@@ -57,6 +69,14 @@ public class Haunter {
         this.hauntingHours = hauntingHours;
         this.description = description;
         this.hauntingReason = hauntingReason;
+    }
+
+    public Haunter(final String name, final HauntingHours hauntingHours, final String description, final String hauntingReason, final List<Ability> abilities) {
+        this.name = name;
+        this.hauntingHours = hauntingHours;
+        this.description = description;
+        this.hauntingReason = hauntingReason;
+        this.abilities = abilities;
     }
 
     public Long getId() {
@@ -99,6 +119,14 @@ public class Haunter {
         this.hauntingReason = hauntingReason;
     }
 
+    public House getHouse() {
+        return house;
+    }
+
+    public void setHouse(House house) {
+        this.house = house;
+    }
+
     public List<Ability> getAbilities() {
         return abilities;
     }
@@ -109,13 +137,13 @@ public class Haunter {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 59 * hash + Objects.hashCode(this.id);
-        hash = 59 * hash + Objects.hashCode(this.name);
-        hash = 59 * hash + Objects.hashCode(this.hauntingHours);
-        hash = 59 * hash + Objects.hashCode(this.description);
-        hash = 59 * hash + Objects.hashCode(this.hauntingReason);
-        hash = 59 * hash + Objects.hashCode(this.abilities);
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.id);
+        hash = 97 * hash + Objects.hashCode(this.name);
+        hash = 97 * hash + Objects.hashCode(this.hauntingHours);
+        hash = 97 * hash + Objects.hashCode(this.description);
+        hash = 97 * hash + Objects.hashCode(this.hauntingReason);
+        hash = 97 * hash + Objects.hashCode(this.abilities);
         return hash;
     }
 
@@ -146,12 +174,15 @@ public class Haunter {
         if (!Objects.equals(this.abilities, other.abilities)) {
             return false;
         }
+        if (!Objects.equals(this.house, other.house)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Haunter{" + "id=" + id + ", name=" + name + ", hauntingHours=" + hauntingHours + ", description=" + description + ", hauntingReason=" + hauntingReason + ", abilities=" + abilities + '}';
+        return "Haunter{" + "id=" + id + ", name=" + name + ", hauntingHours=" + hauntingHours + ", description=" + description + ", hauntingReason=" + hauntingReason + ", abilities=" + abilities + ", house=" + house + '}';
     }
 
 }

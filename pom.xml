@@ -44,7 +44,10 @@
         <module>dao_layer</module>
         <module>service_layer</module>
         <module>api_layer</module>
-    </modules>
+        <module>rest</module>
+        <module>web</module>
+        <module>sample_data</module>
+  </modules>
 
     <dependencies>
     </dependencies>

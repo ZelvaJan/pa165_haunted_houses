@@ -18,7 +18,9 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
- * Test class of {@PersonServiceImpl}'s methods
+ * Test class of {
+ *
+ * @PersonServiceImpl}'s methods
  *
  * @author turcovsky on 26/11/15.
  */
@@ -34,6 +36,8 @@ public class PersonServiceTest extends AbstractTransactionalTestNGSpringContextT
 
     private Person p1;
     private Person p2;
+
+    private Person personHash;
 
     @BeforeClass
     public void setupClass() {
@@ -53,6 +57,9 @@ public class PersonServiceTest extends AbstractTransactionalTestNGSpringContextT
         p2.setEmail("hnidopich@zapadakov.cz");
         p2.setPassword("secure");
         p2.setAdmin(false);
+
+        personHash = new Person((long) 2, "admin@email", PersonServiceImpl.createHash("admin"));
+        personHash.setAdmin(true);
     }
 
     /**
@@ -81,11 +88,8 @@ public class PersonServiceTest extends AbstractTransactionalTestNGSpringContextT
      */
     @Test
     public void authenticateTest() {
-        when(personService.findPersonByEmail("turcovsky@master.cz")).thenReturn(p1);
-        Assert.assertTrue(personService.authenticate(p1.getEmail(), "aaaaaa"));
-
-        when(personService.findPersonByEmail("hnidopich@zapadakov.cz")).thenReturn(p2);
-        Assert.assertFalse(personService.authenticate(p2.getEmail(), "aaaaaa"));
+        when(personService.findPersonByEmail(personHash.getEmail())).thenReturn(personHash);
+        Assert.assertTrue(personService.authenticate(personHash.getEmail(), "admin"));
     }
 
     /**
@@ -93,7 +97,7 @@ public class PersonServiceTest extends AbstractTransactionalTestNGSpringContextT
      */
     @Test
     public void authenticateTestNullUser() {
-        when(personService.findPersonByEmail("turcovsky@master.cz")).thenReturn(null);
-        Assert.assertFalse(personService.authenticate(p1.getEmail(), "aaaaaa"));
+        when(personService.findPersonByEmail(personHash.getEmail())).thenReturn(null);
+        Assert.assertFalse(personService.authenticate(personHash.getEmail(), "admin"));
     }
 }

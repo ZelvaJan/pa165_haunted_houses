@@ -71,7 +71,7 @@ public class HauntingHoursDTO {
 
     @Override
     public String toString() {
-        return "HauntingHoursDTO{" + "id=" + id + ", fromTime=" + fromTime + ", toTime=" + toTime + '}';
+        return "fromTime=" + fromTime + "\ntoTime=" + toTime + '}';
     }
 
 }

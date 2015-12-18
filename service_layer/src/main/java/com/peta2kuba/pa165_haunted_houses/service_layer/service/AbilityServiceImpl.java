@@ -28,7 +28,8 @@ public class AbilityServiceImpl implements AbilityService {
 
     @Override
     public void removeAbility(Ability ability) {
-        abilityDao.remove(ability);
+        Ability a = abilityDao.findById(ability.getId());
+        abilityDao.remove(a);
     }
 
     @Override

@@ -29,10 +29,9 @@ public interface HouseService {
      * Try to exorcise specific haunter, in specific house, in specific time.
      *
      * @param house specific house
-     * @param haunter specific haunter
      * @param exorcismTime specific time
      * @return true if haunter was successfully exorcised (at the right time in
      * the right place). False otherwise.
      */
-    boolean exorcism(House house, Haunter haunter, Time exorcismTime);
+    boolean exorcism(House house, Time exorcismTime);
 }
