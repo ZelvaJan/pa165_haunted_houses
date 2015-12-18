@@ -5,4 +5,19 @@ Project Haunted Houses for PA165
 for more info, see wiki:
 https://github.com/DrakMelisek/pa165_haunted_houses/wiki
 
-# Nezapomen regenerovat equals(), hashCode() a toString(), Blbecku!!!
+# REST description:
+
+## POST /add
+* Create person
+
+## DELETE /{id}
+* Remove person
+
+## GET /
+* Return all People
+
+## GET /{id}
+* Return Person with id
+
+## PUT /{id}
+* Update Person
