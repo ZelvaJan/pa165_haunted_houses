@@ -38,6 +38,11 @@ public class HaunterFacadeImpl implements HaunterFacade {
     public void removeHaunter(final HaunterDTO haunterDTO) {
         haunterService.removeHaunter(beanMappingService.mapTo(haunterDTO, Haunter.class));
     }
+    
+    @Override
+    public void removeHaunterById(final Long id) {
+        haunterService.removeHaunter(haunterService.findById(id));
+    }
 
     @Override
     public HaunterDTO findById(final Long id) {

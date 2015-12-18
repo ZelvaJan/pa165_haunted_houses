@@ -50,13 +50,12 @@ public class HaunterController {
         model.addAttribute("haunter", haunterFacade.findById(id));
         return "haunter/detail";
     }
-    
-    
+
     @RequestMapping(value = "/compare/{id}", method = RequestMethod.POST)
     public String compare(@PathVariable long id, @ModelAttribute("selectedHaunter") HaunterDTO haunterDTOselected, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes) {
         HaunterDTO haunterDTO = haunterFacade.findById(id);
         logger.error("" + haunterDTOselected.toString());
-        
+
         HaunterDTO haunterDTO2 = haunterFacade.findById(haunterDTOselected.getId());
 
         logger.error(haunterDTO.toString());
@@ -76,9 +75,12 @@ public class HaunterController {
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable long id, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes) {
-        HaunterDTO haunterDTO = haunterFacade.findById(id);
-        haunterFacade.removeHaunter(haunterDTO);
-        redirectAttributes.addFlashAttribute("alert_success", "Haunter \"" + haunterDTO.getName() + "\" was deleted.");
+        HaunterDTO haunter = haunterFacade.findById(id);
+        if (haunter != null) {
+            haunterFacade.removeHaunterById(id);
+        }
+
+        redirectAttributes.addFlashAttribute("alert_success", "Haunter \"" + haunter.getName() + "\" was deleted.");
         return "redirect:" + uriBuilder.path("/haunter/list").toUriString();
     }
 
@@ -117,7 +119,7 @@ public class HaunterController {
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
-    public String editPerson(@Valid @ModelAttribute("haunter") HaunterDTO haunterDTO, BindingResult bindingResult, Model model,
+    public String editHaunter(@Valid @ModelAttribute("haunter") HaunterDTO haunterDTO, BindingResult bindingResult, Model model,
             RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder, @PathVariable long id) {
 
         //in case of validation error forward back to the the form

@@ -12,7 +12,7 @@
 <html>
     <head>
         <%@include file="../includes/head_common.jsp" %>
-        <title>${haunter.name}</title>
+        <title>Person detail</title>
     </head>
     <body>
         <div id="main">

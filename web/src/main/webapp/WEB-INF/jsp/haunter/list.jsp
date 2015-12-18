@@ -30,6 +30,7 @@
                             <th>haunting reason</th>
                             <th>abilities</th>
                             <th>detail</th>
+                            <th>detail</th>
                             <th>delete</th>
                         </tr>
                     </thead>
@@ -51,12 +52,13 @@
                                     </ul>                                    
                                 </td>
                                 <td><a href="detail/${haunter.id}">Detail</a></td>
+                                <td><a href="edit/${haunter.id}">Edit</a></td>
                                 <td><a href="delete/${haunter.id}">Delete</a></td>
                             </tr>
                         </c:forEach>
                     </tbody>
                 </table>
-
+                <br>
                 <div>
                     <a href="list/active">List active haunters</a>&nbsp;
                 </div>

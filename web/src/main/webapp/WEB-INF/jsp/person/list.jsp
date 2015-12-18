@@ -12,16 +12,16 @@
 <html>
     <head>
         <%@include file="../includes/head_common.jsp" %>
-        <title>JSP Page</title>
+        <title>People</title>
     </head>
     <body>
         <div id="main">
             <%@include file="../includes/header.jsp" %>
             <%@include file="../includes/nav.jsp" %>
             <section>
-                <h1>Users</h1>
+                <h1>People</h1>
                 <table class="table">
-                    <caption>Users</caption>
+                    <caption>People</caption>
                     <thead>
                         <tr>
                             <th>id</th>

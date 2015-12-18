@@ -45,7 +45,8 @@
                                 <ul>
                                     <c:forEach items="${haunter.abilities}" var="ability">
                                         <li>
-                                            <a href="../ability/${ability.id}">${ability.name}</a>
+                                            <c:url value="/ability" var="homeUrl" />
+                                            <a href="${homeUrl}/detail/${ability.id}">${ability.name}</a>
                                         </li>
                                     </c:forEach>
                                 </ul>                                    

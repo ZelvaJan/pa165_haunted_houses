@@ -14,13 +14,14 @@
 <html>
     <head>
         <%@include file="../includes/head_common.jsp" %>
-        <title>Add new person</title>
+        <title>Add person</title>
     </head>
     <body>
         <div id="main">
             <%@include file="../includes/header.jsp" %>
             <%@include file="../includes/nav.jsp" %>
             <section>
+                <br>
                 <form:form method="post" action="${pageContext.request.contextPath}/person/add"
                            modelAttribute="personCreate" cssClass="form-horizontal">
 

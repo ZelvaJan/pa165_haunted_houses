@@ -91,7 +91,7 @@ public class PersonController {
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
-    public String editPerson(@ModelAttribute("person") PersonDTO newPerson,
+    public String editPerson(@Valid @ModelAttribute("person") PersonDTO newPerson,
             BindingResult bindingResult,
             Model model,
             RedirectAttributes redirectAttributes,
@@ -99,7 +99,6 @@ public class PersonController {
             @PathVariable long id) {
 
         PersonDTO person = personFacade.findPersonById(id);
-
         //in case of validation error forward back to the the form
         if (bindingResult.hasErrors()) {
             for (ObjectError ge : bindingResult.getGlobalErrors()) {
