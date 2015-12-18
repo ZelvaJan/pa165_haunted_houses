@@ -60,7 +60,7 @@
                 </table>
 
                 <br>
-                <a href="add" id="AddPerson" >Add new person</a>&nbsp;
+                <a href="add" id="AddHouse" >Add new house</a>&nbsp;
             </section>
             <%@include file="../includes/footer.jsp" %>
         </div>
