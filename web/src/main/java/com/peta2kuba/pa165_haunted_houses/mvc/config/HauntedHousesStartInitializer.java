@@ -15,28 +15,16 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
  */
 public class HauntedHousesStartInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
     
-    /**
-     *
-     * @return
-     */
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return new Class<?>[]{HauntedHousesSpringMvcConfig.class};
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     protected String[] getServletMappings() {
         return new String[]{"/"};
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     protected Filter[] getServletFilters() {
         CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
@@ -44,10 +32,6 @@ public class HauntedHousesStartInitializer extends AbstractAnnotationConfigDispa
         return new Filter[]{encodingFilter};
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     protected Class<?>[] getServletConfigClasses() {
         return null;
