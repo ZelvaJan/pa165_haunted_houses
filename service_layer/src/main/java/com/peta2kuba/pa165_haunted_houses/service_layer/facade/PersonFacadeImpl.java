@@ -45,7 +45,7 @@ public class PersonFacadeImpl implements PersonFacade {
     public void removePersonById(Long id) {
         personService.removePerson(personService.findPersonById(id));
     }
-    
+
     @Override
     public PersonDTO findPersonById(Long id) {
         Person person = personService.findPersonById(id);

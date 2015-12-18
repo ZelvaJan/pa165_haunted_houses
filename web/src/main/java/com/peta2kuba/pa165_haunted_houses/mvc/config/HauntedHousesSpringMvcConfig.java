@@ -32,7 +32,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @EnableWebMvc
 @Configuration
 @Import({HauntedHousesWithSampleDataConfiguration.class})
-@ComponentScan(basePackageClasses = {PersonController.class})
+@ComponentScan(basePackageClasses = {PersonController.class, CustomAuthenticationProvider.class})
 public class HauntedHousesSpringMvcConfig extends WebMvcConfigurerAdapter {
 
     final static Logger log = LoggerFactory.getLogger(HauntedHousesSpringMvcConfig.class);
@@ -44,7 +44,6 @@ public class HauntedHousesSpringMvcConfig extends WebMvcConfigurerAdapter {
      */
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        log.debug("mapping URL / to base view");
         registry.addViewController("/").setViewName("index");
     }
 
@@ -53,7 +52,6 @@ public class HauntedHousesSpringMvcConfig extends WebMvcConfigurerAdapter {
      */
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-        log.debug("enabling default servlet for static files");
         configurer.enable();
     }
 
@@ -75,16 +73,6 @@ public class HauntedHousesSpringMvcConfig extends WebMvcConfigurerAdapter {
         return viewResolver;
     }
 
-//    /**
-//     * Provides localized messages.
-//     */
-//    @Bean
-//    public MessageSource messageSource() {
-//        log.debug("registering ResourceBundle 'Texts' for messages");
-//        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-//        messageSource.setBasename(TEXTS);
-//        return messageSource;
-//    }
     /**
      * Provides JSR-303 Validator.
      */

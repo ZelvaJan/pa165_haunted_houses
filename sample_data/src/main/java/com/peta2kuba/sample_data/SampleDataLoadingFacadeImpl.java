@@ -1,7 +1,6 @@
 package com.peta2kuba.sample_data;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -61,6 +60,7 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         Person person3 = person("email3@mail.com", "ffffff", false);
         Person person4 = person("email4@mail.com", "gggggg", false);
         Person person5 = person("email5@mail.com", "hhhhhh", false);
+        Person person25 = person("admin", "admin", true);
 
         House house1 = house("name1", "address1", Timestamp.valueOf("2015-09-01 08:00:00.0"), "U Premy doma", null);
         House house2 = house("name2", "address2", Timestamp.valueOf("2014-08-02 08:50:00.0"), "U Kuby doma", null);
