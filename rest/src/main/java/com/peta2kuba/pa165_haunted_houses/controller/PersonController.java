@@ -5,7 +5,9 @@ import com.peta2kuba.pa165_haunted_houses.dto.PersonDTO;
 import com.peta2kuba.pa165_haunted_houses.facade.PersonFacade;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -63,5 +65,20 @@ public class PersonController {
 			throw new RuntimeException("Person not found!");
 		}
 		return personDTO;
+	}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+	public final PersonDTO editPerson(@PathVariable("id") long id, @RequestBody PersonDTO person) {
+		System.out.println("Updating User " + id);
+
+		PersonDTO current = personFacade.findPersonById(id);
+
+		current.setEmail(person.getEmail());
+		current.setPassword(person.getPassword());
+		current.setAdmin(person.isAdmin());
+
+		personFacade.editPerson(current);
+
+		return current;
 	}
 }
