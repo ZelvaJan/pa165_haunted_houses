@@ -9,6 +9,8 @@ https://github.com/DrakMelisek/pa165_haunted_houses/wiki
 
 ## POST /add
 * Create person
+* DATA example:
+{"email”:”bill@gates.com”,”password”:”pass1234”, "admin”:”false”}
 
 ## DELETE /{id}
 * Remove person
@@ -21,3 +23,5 @@ https://github.com/DrakMelisek/pa165_haunted_houses/wiki
 
 ## PUT /{id}
 * Update Person
+* DATA example:
+{"email”:”bill@gates.com”,”password”:”pass1234”, "admin”:”false”}
