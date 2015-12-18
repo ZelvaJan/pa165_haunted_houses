@@ -39,18 +39,37 @@ public class AbilityController {
     @Autowired
     private AbilityFacade abilityFacade;
 
+    /**
+     * List all abilities
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("abilities", abilityFacade.findAll());
         return "ability/list";
     }
 
+    /**
+     * Ability detail
+     * @param id
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
     public String detail(@PathVariable long id, Model model) {
         model.addAttribute("ability", abilityFacade.findById(id));
         return "ability/detail";
     }
 
+    /**
+     * Delete ability
+     * @param id
+     * @param model
+     * @param uriBuilder
+     * @param redirectAttributes
+     * @return
+     */
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable long id, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes) {
         AbilityDTO abilityDTO = abilityFacade.findById(id);
@@ -61,12 +80,26 @@ public class AbilityController {
         return "redirect:" + uriBuilder.path("/ability/list").toUriString();
     }
 
+    /**
+     * Add ability
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String newAbilityForm(Model model) {
         model.addAttribute("newAbility", new AbilityDTO());
         return "ability/add";
     }
 
+    /**
+     * Add new ability
+     * @param formBean
+     * @param bindingResult
+     * @param model
+     * @param redirectAttributes
+     * @param uriBuilder
+     * @return
+     */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String newAbilityCreate(@Valid @ModelAttribute("newAbility") AbilityDTO formBean, BindingResult bindingResult,
             Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
@@ -89,12 +122,28 @@ public class AbilityController {
         return "redirect:" + uriBuilder.path("/ability/list").toUriString();
     }
 
+    /**
+     * Edit existing ability
+     * @param id
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String editAbility(@PathVariable long id, Model model) {
         model.addAttribute("ability", abilityFacade.findById(id));
         return "ability/edit";
     }
 
+    /**
+     * Edit existing ability
+     * @param abilityDTO
+     * @param bindingResult
+     * @param model
+     * @param redirectAttributes
+     * @param uriBuilder
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
     public String editPerson(@Valid @ModelAttribute("ability") AbilityDTO abilityDTO, BindingResult bindingResult, Model model,
             RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder, @PathVariable long id) {
@@ -116,11 +165,4 @@ public class AbilityController {
         redirectAttributes.addFlashAttribute("alert_success", "Ability was updated");
         return "redirect:" + uriBuilder.path("/ability/list").toUriString();
     }
-
-//    @ExceptionHandler(Exception.class)
-//    public ModelAndView handleAllException(Exception ex) {
-//        logger.error("AbilityController", ex);
-//        ModelAndView model = new ModelAndView("errors/custom_error");
-//        return model;
-//    }
 }

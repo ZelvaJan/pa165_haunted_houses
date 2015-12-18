@@ -16,6 +16,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.PreRemove;
 
 /**
  * Haunter entity with its Abilities and additional information
@@ -51,7 +52,7 @@ public class Haunter {
 
     @OneToOne(cascade = {CascadeType.ALL})
     private House house;
-    
+
     public Haunter() {
 
     }
@@ -183,6 +184,5 @@ public class Haunter {
     public String toString() {
         return "Haunter{" + "id=" + id + ", name=" + name + ", hauntingHours=" + hauntingHours + ", description=" + description + ", hauntingReason=" + hauntingReason + ", abilities=" + abilities + ", house=" + house + '}';
     }
-
 
 }

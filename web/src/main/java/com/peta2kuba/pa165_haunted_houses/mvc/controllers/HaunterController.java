@@ -31,18 +31,34 @@ public class HaunterController {
     @Autowired
     private HaunterFacade haunterFacade;
 
+    /**
+     * List all haunters
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("haunters", haunterFacade.findAll());
         return "haunter/list";
     }
 
+    /**
+     * List all active haunters
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/list/active", method = RequestMethod.GET)
     public String listActive(Model model) {
         model.addAttribute("haunters", haunterFacade.findActiveHaunters());
         return "haunter/list";
     }
 
+    /**
+     * Haunter detail
+     * @param id
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
     public String detail(@PathVariable long id, Model model) {
         model.addAttribute("haunters", haunterFacade.findAll());
@@ -51,6 +67,15 @@ public class HaunterController {
         return "haunter/detail";
     }
 
+    /**
+     * Compare two haunters and their powers
+     * @param id
+     * @param haunterDTOselected
+     * @param model
+     * @param uriBuilder
+     * @param redirectAttributes
+     * @return
+     */
     @RequestMapping(value = "/compare/{id}", method = RequestMethod.POST)
     public String compare(@PathVariable long id, @ModelAttribute("selectedHaunter") HaunterDTO haunterDTOselected, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes) {
         HaunterDTO haunterDTO = haunterFacade.findById(id);
@@ -73,6 +98,14 @@ public class HaunterController {
         return "haunter/compare";
     }
 
+    /**
+     * Delete haunter
+     * @param id
+     * @param model
+     * @param uriBuilder
+     * @param redirectAttributes
+     * @return
+     */
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable long id, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes) {
         HaunterDTO haunter = haunterFacade.findById(id);
@@ -85,12 +118,26 @@ public class HaunterController {
         return "redirect:" + uriBuilder.path("/haunter/list").toUriString();
     }
 
+    /**
+     * Add new haunter
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String newHaunterForm(Model model) {
         model.addAttribute("newHaunter", new HaunterDTO());
         return "haunter/add";
     }
 
+    /**
+     * Add new haunter
+     * @param formBean
+     * @param bindingResult
+     * @param model
+     * @param redirectAttributes
+     * @param uriBuilder
+     * @return
+     */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String newHaunterCreate(@Valid @ModelAttribute("newHaunter") HaunterDTO formBean, BindingResult bindingResult,
             Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
@@ -113,12 +160,28 @@ public class HaunterController {
         return "redirect:" + uriBuilder.path("haunter/list").toUriString();
     }
 
+    /**
+     * Edit existing haunter
+     * @param id
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String editHaunter(@PathVariable long id, Model model) {
         model.addAttribute("haunter", haunterFacade.findById(id));
         return "haunter/edit";
     }
 
+    /**
+     * Edit existing haunter
+     * @param haunterDTO
+     * @param bindingResult
+     * @param model
+     * @param redirectAttributes
+     * @param uriBuilder
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
     public String editHaunter(@Valid @ModelAttribute("haunter") HaunterDTO haunterDTO, BindingResult bindingResult, Model model,
             RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder, @PathVariable long id) {

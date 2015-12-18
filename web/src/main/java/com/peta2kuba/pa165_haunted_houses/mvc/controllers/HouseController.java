@@ -48,6 +48,10 @@ public class HouseController {
     @Autowired
     private HaunterFacade haunterFacade;
 
+    /**
+     *
+     * @param binder
+     */
     @InitBinder
     public void binder(WebDataBinder binder) {
         binder.registerCustomEditor(Timestamp.class,
@@ -63,24 +67,49 @@ public class HouseController {
                 });
     }
 
+    /**
+     * List all houses
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("houses", houseFacade.findAll());
         return "house/list";
     }
 
+    /**
+     * Get house by id
+     * @param id
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String houseById(@PathVariable long id, Model model) {
         model.addAttribute("house", houseFacade.findById(id));
         return "house/detail";
     }
 
+    /**
+     * Add new house
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addHouse(Model model) {
         model.addAttribute("houseCreate", new HouseDTO());
         return "house/add";
     }
 
+    /**
+     * Add new house
+     * @param formBean
+     * @param bindingResult
+     * @param model
+     * @param redirectAttributes
+     * @param uriBuilder
+     * @return
+     */
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(@Valid @ModelAttribute("houseCreate") HouseDTO formBean, BindingResult bindingResult,
             Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
@@ -103,7 +132,14 @@ public class HouseController {
         return "redirect:" + uriBuilder.path("/house/list").toUriString();
     }
 
-	@RequestMapping(value = "/{id}/exorcism", method = RequestMethod.POST)
+    /**
+     * Exorcism method
+     * @param redirectAttributes
+     * @param uriBuilder
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/{id}/exorcism", method = RequestMethod.POST)
 	public String exorcism(RedirectAttributes redirectAttributes,
 						   UriComponentsBuilder uriBuilder,
 						   @PathVariable long id) {
@@ -124,8 +160,18 @@ public class HouseController {
 		return "redirect:" + uriBuilder.path("/house/detail").toUriString();
 	}
 
+    /**
+     * Edit house
+     * @param newHouse
+     * @param bindingResult
+     * @param model
+     * @param redirectAttributes
+     * @param uriBuilder
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
-    public String editPerson(@ModelAttribute("house") HouseDTO newHouse,
+    public String editHouse(@ModelAttribute("house") HouseDTO newHouse,
             BindingResult bindingResult,
             Model model,
             RedirectAttributes redirectAttributes,
@@ -159,8 +205,14 @@ public class HouseController {
         return "redirect:" + uriBuilder.path("/house/list").toUriString();
     }
 
-	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-	public String editPerson(@PathVariable long id, Model model) {
+    /**
+     * Edit house
+     * @param id
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+	public String editHouse(@PathVariable long id, Model model) {
 		HouseDTO house = houseFacade.findById(id);
 		model.addAttribute("house", house);
 		List<HaunterDTO> haunterDTOList = haunterFacade.findAll();
@@ -168,6 +220,14 @@ public class HouseController {
 		return "house/edit";
 	}
 
+    /**
+     * Delete existing house
+     * @param id
+     * @param model
+     * @param uriBuilder
+     * @param redirectAttributes
+     * @return
+     */
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable long id,
             Model model,

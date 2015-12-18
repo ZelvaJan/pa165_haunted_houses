@@ -37,10 +37,14 @@ public class HauntedHousesSpringMvcConfig extends WebMvcConfigurerAdapter {
 
     final static Logger log = LoggerFactory.getLogger(HauntedHousesSpringMvcConfig.class);
 
+    /**
+     * TEXTS constant
+     */
     public static final String TEXTS = "Texts";
 
     /**
      * Maps the main page to a specific view.
+     * @param registry
      */
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
@@ -49,6 +53,7 @@ public class HauntedHousesSpringMvcConfig extends WebMvcConfigurerAdapter {
 
     /**
      * Enables default Tomcat servlet that serves static files.
+     * @param configurer
      */
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
@@ -56,13 +61,19 @@ public class HauntedHousesSpringMvcConfig extends WebMvcConfigurerAdapter {
     }
 
     // equivalents for <mvc:resources/> tags
-    @Override
+
+    /**
+     *
+     * @param registry
+     */
+        @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/").setCachePeriod(31556926);
     }
 
     /**
      * Provides mapping from view names to JSP pages in WEB-INF/jsp directory.
+     * @return 
      */
     @Bean
     public ViewResolver viewResolver() {
@@ -75,6 +86,7 @@ public class HauntedHousesSpringMvcConfig extends WebMvcConfigurerAdapter {
 
     /**
      * Provides JSR-303 Validator.
+     * @return 
      */
     @Bean
     public Validator validator() {

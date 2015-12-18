@@ -32,6 +32,11 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
     final static Logger logger = LoggerFactory.getLogger(CustomAuthenticationProvider.class);
 
+    /**
+     * Authetication method
+     * @param authentication
+     * @return
+     */
     @Override
     public Authentication authenticate(Authentication authentication) {
         String email = authentication.getName();
@@ -53,6 +58,11 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         return null;
     }
 
+    /**
+     *
+     * @param authentication
+     * @return
+     */
     @Override
     public boolean supports(Class<?> authentication) {
         return authentication.equals(UsernamePasswordAuthenticationToken.class);

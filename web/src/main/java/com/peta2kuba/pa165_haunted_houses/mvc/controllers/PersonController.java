@@ -36,24 +36,49 @@ public class PersonController {
     @Autowired
     private PersonFacade personFacade;
 
+    /**
+     * List all people
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("people", personFacade.findAllPersons());
         return "person/list";
     }
 
+    /**
+     * Person detail
+     * @param model
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
     public String detail(Model model, @PathVariable long id) {
         model.addAttribute("person", personFacade.findPersonById(id));
         return "person/detail";
     }
 
+    /**
+     * Add new person
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addPerson(Model model) {
         model.addAttribute("personCreate", new PersonDTO());
         return "person/add";
     }
 
+    /**
+     * Add new person
+     * @param formBean
+     * @param bindingResult
+     * @param model
+     * @param redirectAttributes
+     * @param uriBuilder
+     * @return
+     */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addPerson(
             @Valid @ModelAttribute("personCreate") PersonDTO formBean,
@@ -83,6 +108,12 @@ public class PersonController {
         return "redirect:" + uriBuilder.path("/person/list").toUriString();
     }
 
+    /**
+     * Edit existing person
+     * @param id
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String editPerson(@PathVariable long id, Model model) {
         PersonDTO person = personFacade.findPersonById(id);
@@ -90,6 +121,16 @@ public class PersonController {
         return "person/edit";
     }
 
+    /**
+     * Edit existing person
+     * @param newPerson
+     * @param bindingResult
+     * @param model
+     * @param redirectAttributes
+     * @param uriBuilder
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
     public String editPerson(@Valid @ModelAttribute("person") PersonDTO newPerson,
             BindingResult bindingResult,
@@ -118,6 +159,14 @@ public class PersonController {
         return "redirect:" + uriBuilder.path("/person/list").toUriString();
     }
 
+    /**
+     * Delete person
+     * @param id
+     * @param model
+     * @param uriBuilder
+     * @param redirectAttributes
+     * @return
+     */
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable long id,
             Model model,

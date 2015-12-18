@@ -29,6 +29,11 @@ public class LoginController {
 
     final static Logger logger = LoggerFactory.getLogger(LoginController.class);
 
+    /**
+     * Login method
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public String login(Model model) {
         model.addAttribute("user", new PersonAuthenticateDTO());
