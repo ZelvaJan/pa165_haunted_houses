@@ -18,7 +18,7 @@
             <%@include file="../includes/header.jsp" %>
             <%@include file="../includes/nav.jsp" %>
             <section>
-                <h1>Ability list:</h1>
+                <h1>Ability list</h1>
 
                 <table class="table">
                     <caption>Abilities</caption>

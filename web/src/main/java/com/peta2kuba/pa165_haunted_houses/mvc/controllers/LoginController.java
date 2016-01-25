@@ -7,14 +7,17 @@ package com.peta2kuba.pa165_haunted_houses.mvc.controllers;
 
 import com.peta2kuba.pa165_haunted_houses.dto.PersonAuthenticateDTO;
 import com.peta2kuba.pa165_haunted_houses.facade.PersonFacade;
+import javax.validation.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -40,4 +43,9 @@ public class LoginController {
         return "login";
     }
 
+    @ResponseStatus(value = HttpStatus.CONFLICT, reason = "Data integrity violation")  // 409
+    @ExceptionHandler(ConstraintViolationException.class)
+    public void conflict() {
+        // Nothing to do
+    }
 }

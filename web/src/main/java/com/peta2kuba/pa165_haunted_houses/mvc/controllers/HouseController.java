@@ -32,6 +32,11 @@ import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import javax.validation.ConstraintViolationException;
+import org.springframework.http.HttpStatus;
+import org.springframework.transaction.TransactionSystemException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
  * @author turcovsky on 10/12/15.
@@ -56,19 +61,20 @@ public class HouseController {
     public void binder(WebDataBinder binder) {
         binder.registerCustomEditor(Timestamp.class,
                 new PropertyEditorSupport() {
-                    public void setAsText(String value) {
-                        try {
-                            Date parsedDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(value);
-                            setValue(new Timestamp(parsedDate.getTime()));
-                        } catch (ParseException e) {
-                            setValue(null);
-                        }
-                    }
-                });
+            public void setAsText(String value) {
+                try {
+                    Date parsedDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(value);
+                    setValue(new Timestamp(parsedDate.getTime()));
+                } catch (ParseException e) {
+                    setValue(null);
+                }
+            }
+        });
     }
 
     /**
      * List all houses
+     *
      * @param model
      * @return
      */
@@ -80,6 +86,7 @@ public class HouseController {
 
     /**
      * Get house by id
+     *
      * @param id
      * @param model
      * @return
@@ -92,6 +99,7 @@ public class HouseController {
 
     /**
      * Add new house
+     *
      * @param model
      * @return
      */
@@ -103,6 +111,7 @@ public class HouseController {
 
     /**
      * Add new house
+     *
      * @param formBean
      * @param bindingResult
      * @param model
@@ -134,34 +143,36 @@ public class HouseController {
 
     /**
      * Exorcism method
+     *
      * @param redirectAttributes
      * @param uriBuilder
      * @param id
      * @return
      */
     @RequestMapping(value = "/{id}/exorcism", method = RequestMethod.POST)
-	public String exorcism(RedirectAttributes redirectAttributes,
-						   UriComponentsBuilder uriBuilder,
-						   @PathVariable long id) {
-		HouseDTO house = houseFacade.findById(id);
+    public String exorcism(RedirectAttributes redirectAttributes,
+            UriComponentsBuilder uriBuilder,
+            @PathVariable long id) {
+        HouseDTO house = houseFacade.findById(id);
 
-		boolean result = false;
-		if (house != null) {
-			logger.error("TIME = " + Time.valueOf(LocalTime.now()));
-			result = houseFacade.exorcism(house, Time.valueOf(LocalTime.now()));
-		}
+        boolean result = false;
+        if (house != null) {
+            logger.error("TIME = " + Time.valueOf(LocalTime.now()));
+            result = houseFacade.exorcism(house, Time.valueOf(LocalTime.now()));
+        }
 
-		if (result) {
-			redirectAttributes.addFlashAttribute("alert_success", "House \"" + house.getName() + "\" was deleted.");
-		} else {
-			redirectAttributes.addFlashAttribute("alert_error", "Haunter is not home right now. Come back later.");
-		}
-		redirectAttributes.addAttribute("id", id);
-		return "redirect:" + uriBuilder.path("/house/detail").toUriString();
-	}
+        if (result) {
+            redirectAttributes.addFlashAttribute("message", "House \"" + house.getName() + "\" was deleted.");
+        } else {
+            redirectAttributes.addFlashAttribute("message", "Haunter is not home right now. Come back later.");
+        }
+        redirectAttributes.addAttribute("id", id);
+        return "redirect:" + uriBuilder.path("/house/" + id).toUriString();
+    }
 
     /**
      * Edit house
+     *
      * @param newHouse
      * @param bindingResult
      * @param model
@@ -195,7 +206,7 @@ public class HouseController {
         }
         if (newHouse.getHauntedSince() == null) {
             logger.error("hauntedSince ParseError!!!");
-			//model.addAttribute(bindingResult. + "_error", true);
+            //model.addAttribute(bindingResult. + "_error", true);
             // TODO set field error
 
         }
@@ -207,21 +218,23 @@ public class HouseController {
 
     /**
      * Edit house
+     *
      * @param id
      * @param model
      * @return
      */
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-	public String editHouse(@PathVariable long id, Model model) {
-		HouseDTO house = houseFacade.findById(id);
-		model.addAttribute("house", house);
-		List<HaunterDTO> haunterDTOList = haunterFacade.findAll();
-		model.addAttribute("haunters", haunterDTOList);
-		return "house/edit";
-	}
+    public String editHouse(@PathVariable long id, Model model) {
+        HouseDTO house = houseFacade.findById(id);
+        model.addAttribute("house", house);
+        List<HaunterDTO> haunterDTOList = haunterFacade.findAll();
+        model.addAttribute("haunters", haunterDTOList);
+        return "house/edit";
+    }
 
     /**
      * Delete existing house
+     *
      * @param id
      * @param model
      * @param uriBuilder
@@ -237,8 +250,20 @@ public class HouseController {
         if (house != null) {
             houseFacade.removeHouseById(id);
         }
-        redirectAttributes.addFlashAttribute("alert_success", "House \"" + house.getName()+ "\" was deleted.");
+        redirectAttributes.addFlashAttribute("alert_success", "House \"" + house.getName() + "\" was deleted.");
         return "redirect:" + uriBuilder.path("/house/list").toUriString();
+    }
+
+    @ResponseStatus(value = HttpStatus.CONFLICT, reason = "Data integrity violation")  // 409
+    @ExceptionHandler(ConstraintViolationException.class)
+    public void conflict() {
+        // Nothing to do
+    }
+
+    @ResponseStatus(value = HttpStatus.CONFLICT, reason = "Data integrity violation")  // 409
+    @ExceptionHandler(TransactionSystemException.class)
+    public void transaction() {
+        // Nothing to do
     }
 
 }
