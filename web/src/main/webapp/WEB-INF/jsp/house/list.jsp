@@ -19,7 +19,7 @@
             <%@include file="../includes/header.jsp" %>
             <%@include file="../includes/nav.jsp" %>
             <section>
-                <h1>House list:</h1>
+                <h1>House list</h1>
 
                 <table class="table">
                     <caption>Houses</caption>

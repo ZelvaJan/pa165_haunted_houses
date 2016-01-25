@@ -18,7 +18,7 @@
             <%@include file="../includes/header.jsp" %>
             <%@include file="../includes/nav.jsp" %>
             <section>
-                <h1>Haunter list:</h1>
+                <h1>Haunter list</h1>
                 <table class="table">
                     <caption>Haunters</caption>
                     <thead>
@@ -53,7 +53,7 @@
                                     </ul>                                    
                                 </td>
                                 <c:url value="/house" var="homeUrl" />
-                                <td><a href="${homeUrl}/detail/${haunter.house.id}">${haunter.house.name}</a></td>
+                                <td><a href="${homeUrl}/${haunter.house.id}">${haunter.house.name}</a></td>
                                 <td><a href="detail/${haunter.id}">Detail</a></td>
                                 <td><a href="edit/${haunter.id}">Edit</a></td>
                                 <td><a href="delete/${haunter.id}">Delete</a></td>
@@ -63,10 +63,10 @@
                 </table>
                 <br>
                 <div>
-                    <a href="list/active">List active haunters</a>&nbsp;
+                    <a href="${pageContext.request.contextPath}/haunter/list/active">List active haunters</a>&nbsp;
                 </div>
                 <div>
-                    <a href="add">Add haunter</a>&nbsp;
+                    <a href="${pageContext.request.contextPath}/haunter/add">Add haunter</a>&nbsp;
                 </div>
             </section>
             <%@include file="../includes/footer.jsp" %>

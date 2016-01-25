@@ -2,19 +2,24 @@ package com.peta2kuba.pa165_haunted_houses.mvc.controllers;
 
 import com.peta2kuba.pa165_haunted_houses.dto.HaunterDTO;
 import com.peta2kuba.pa165_haunted_houses.facade.HaunterFacade;
+import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.TransactionSystemException;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -33,6 +38,7 @@ public class HaunterController {
 
     /**
      * List all haunters
+     *
      * @param model
      * @return
      */
@@ -44,6 +50,7 @@ public class HaunterController {
 
     /**
      * List all active haunters
+     *
      * @param model
      * @return
      */
@@ -55,6 +62,7 @@ public class HaunterController {
 
     /**
      * Haunter detail
+     *
      * @param id
      * @param model
      * @return
@@ -69,6 +77,7 @@ public class HaunterController {
 
     /**
      * Compare two haunters and their powers
+     *
      * @param id
      * @param haunterDTOselected
      * @param model
@@ -100,6 +109,7 @@ public class HaunterController {
 
     /**
      * Delete haunter
+     *
      * @param id
      * @param model
      * @param uriBuilder
@@ -109,7 +119,7 @@ public class HaunterController {
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable long id, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes) {
         HaunterDTO haunter = haunterFacade.findById(id);
-        
+
         if (haunter != null) {
             haunterFacade.removeHaunterById(id);
         }
@@ -120,6 +130,7 @@ public class HaunterController {
 
     /**
      * Add new haunter
+     *
      * @param model
      * @return
      */
@@ -131,6 +142,7 @@ public class HaunterController {
 
     /**
      * Add new haunter
+     *
      * @param formBean
      * @param bindingResult
      * @param model
@@ -162,6 +174,7 @@ public class HaunterController {
 
     /**
      * Edit existing haunter
+     *
      * @param id
      * @param model
      * @return
@@ -174,6 +187,7 @@ public class HaunterController {
 
     /**
      * Edit existing haunter
+     *
      * @param haunterDTO
      * @param bindingResult
      * @param model
@@ -202,5 +216,17 @@ public class HaunterController {
         haunterFacade.editHaunter(haunterDTO);
         redirectAttributes.addFlashAttribute("alert_success", "Haunter was updated");
         return "redirect:" + uriBuilder.path("/haunter/list").toUriString();
+    }
+
+    @ResponseStatus(value = HttpStatus.CONFLICT, reason = "Data integrity violation")  // 409
+    @ExceptionHandler(ConstraintViolationException.class)
+    public void conflict() {
+        // Nothing to do
+    }
+
+    @ResponseStatus(value = HttpStatus.CONFLICT, reason = "Data integrity violation")  // 409
+    @ExceptionHandler(TransactionSystemException.class)
+    public void transaction() {
+        // Nothing to do
     }
 }

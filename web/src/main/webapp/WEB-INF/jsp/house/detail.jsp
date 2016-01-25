@@ -21,6 +21,7 @@
 	<%@include file="../includes/nav.jsp" %>
 	<section>
 		<h1>House detail</h1>
+                <h2>${message}</h2>
 
 		<table class="table">
 			<thead>
